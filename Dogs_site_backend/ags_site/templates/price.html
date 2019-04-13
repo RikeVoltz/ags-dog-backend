@@ -1,0 +1,340 @@
+{% extends 'base_template.html' %}
+{% load staticfiles %}
+{% block content %}
+    <div class="container-fluid p-0">
+        <img class="main-background" src="{% static 'images/price-main-back.jpg' %}" alt="Фон"/>
+    </div>
+    <div class="container-fluid p-0">
+        <h2 class="display-4 text-black text-center logo-title-4 mt-5">
+            <a href="discounts#discounts-block">
+                Наши акции
+            </a>
+        </h2>
+        <table class="table table-bordered table-striped price-table text-center">
+            <thead class="thead-warning">
+            <tr>
+                <th scope="col">№</th>
+                <th scope="col">Наименование услуги</th>
+                <th scope="col">Стоимость, руб.</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <th scope="row">1</th>
+                <td class="text-left"><a class="text-dark" href="discounts#discounts-block">10 групповых занятий в
+                    Красносельском районе по цене девяти</a></td>
+                <td>2700</td>
+            </tr>
+            <tr>
+                <th scope="row">2</th>
+                <td class="text-left"><a class="text-dark" href="discounts#discounts-block">10 индивидуальных
+                    занятий в Красносельском районе по цене девяти</a></td>
+                <td>4500</td>
+            </tr>
+            <tr>
+                <th scope="row">3</th>
+                <td class="text-left"><a class="text-dark" href="discounts#discounts-block">Курс «Первые шаги»</a>
+                </td>
+                <td>2200</td>
+            </tr>
+            <tr>
+                <th scope="row">4</th>
+                <td class="text-left"><a class="text-dark" href="discounts#discounts-block">Курс «Золотой пёс»</a>
+                </td>
+                <td>5000</td>
+            </tr>
+            <tr>
+                <th scope="row">5</th>
+                <td class="text-left"><a class="text-dark" href="discounts#discounts-block">Курс «Серебряный
+                    пёс»</a></td>
+                <td>3500</td>
+            </tr>
+            <tr>
+                <th scope="row">6</th>
+                <td class="text-left"><a class="text-dark" href="discounts#discounts-block">Курс «Постоянный
+                    клиент»</a></td>
+                <td>9 000</td>
+            </tr>
+            <tr>
+                <th scope="row">7</th>
+                <td class="text-left"><a class="text-dark" href="discounts#discounts-block">5 классических прогулок
+                    у понравившегося Вам волкера</a></td>
+                <td>1275</td>
+            </tr>
+            <tr>
+                <th scope="row">8</th>
+                <td class="text-left"><a class="text-dark" href="discounts#discounts-block">20 классических прогулок
+                    у понравившегося Вам волкера</a></td>
+                <td>5000</td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="row-fluid text-center mb-5">
+            <span class="lead get-warning">Остерегайтесь мошенников. Оплата наличными при первом занятии.</span>
+        </div>
+        <h2 class="display-4 text-black text-center logo-title">
+            Дрессировка собак
+        </h2>
+        <table class="table table-bordered table-striped price-table text-center">
+            <thead class="thead-warning">
+            <tr>
+                <th scope="col">№</th>
+                <th scope="col">Наименование услуги</th>
+                <th scope="col">Стоимость, руб.</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <th scope="row">1</th>
+                <td class="text-left">Групповое занятие в Красносельском районе</td>
+                <td>300</td>
+            </tr>
+            <tr>
+                <th scope="row">2</th>
+                <td class="text-left">Индивидуальное занятие в Красносельском районе</td>
+                <td>500</td>
+            </tr>
+            <tr>
+                <th scope="row">3</th>
+                <td class="text-left">Индивидуальное занятие с выездом на дом в
+                    <u class="far-area" data-container="body" data-toggle="popover" data-placement="top"
+                       data-content="Зеленая область - это, кароч, тырым-пырым, пырым-тырым, вот.">
+                        зеленой области
+                    </u>
+                </td>
+                <td>700</td>
+            </tr>
+            <tr>
+                <th scope="row">4</th>
+                <td class="text-left">Индивидуальное занятие с выездом на дом в
+                    <u class="far-area" data-container="body" data-toggle="popover" data-placement="top"
+                       data-content="Синяя область - это, кароч, другой тырым-пырым, пырым-тырым, вот.">
+                        синей области
+                    </u>
+                </td>
+                <td>1000</td>
+            </tr>
+            <tr>
+                <th scope="row">5</th>
+                <td class="text-left">Индивидуальное занятие по трюковой дрессировке в Красносельском районе</td>
+                <td>400</td>
+            </tr>
+            <tr>
+                <th scope="row">6</th>
+                <td class="text-left">Индивидуальное занятие по трюковой дрессировке с выездом на дом в
+                    <u class="far-area" data-container="body" data-toggle="popover" data-placement="top"
+                       data-content="Зеленая область - это, кароч, тырым-пырым, пырым-тырым, вот.">
+                        зеленой области
+                    </u>
+                </td>
+                <td>700</td>
+            </tr>
+            <tr>
+                <th scope="row">7</th>
+                <td class="text-left">Индивидуальное занятие по трюковой дрессировке с выездом на дом в
+                    <u class="far-area" data-container="body" data-toggle="popover" data-placement="top"
+                       data-content="Синяя область - это, кароч, другой тырым-пырым, пырым-тырым, вот.">
+                        синей области
+                    </u>
+                </td>
+                <td>900</td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="row-fluid text-center mb-5">
+            <span class="lead get-warning">Остерегайтесь мошенников. Оплата наличными при первом занятии.</span>
+        </div>
+        <h2 class="display-4 text-black text-center logo-title">
+            Выгул
+        </h2>
+        <table class="table table-bordered table-striped price-table text-center">
+            <thead class="thead-warning">
+            <tr>
+                <th scope="col">№</th>
+                <th scope="col">Наименование услуги</th>
+                <th scope="col">Стоимость, руб.</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <th scope="row">1</th>
+                <td class="text-left">Классическая прогулка с собакой в <u class="far-area" data-container="body"
+                                                                           data-toggle="popover" data-placement="top"
+                                                                           data-content="Зеленая область - это, кароч, тырым-пырым, пырым-тырым, вот.">
+                    зеленой области
+                </u></td>
+                <td>300</td>
+            </tr>
+            <tr>
+                <th scope="row">2</th>
+                <td class="text-left">Активная прогулка с собакой в <u class="far-area" data-container="body"
+                                                                       data-toggle="popover" data-placement="top"
+                                                                       data-content="Зеленая область - это, кароч, тырым-пырым, пырым-тырым, вот.">
+                    зеленой области
+                </u></td>
+                <td>450</td>
+            </tr>
+            <tr>
+                <th scope="row">3</th>
+                <td class="text-left">Классическая прогулка с собакой в <u class="far-area" data-container="body"
+                                                                           data-toggle="popover" data-placement="top"
+                                                                           data-content="Синяя область - это, кароч, тырым-пырым, пырым-тырым, вот.">
+                    синей области
+                </u></td>
+                <td>350</td>
+            </tr>
+            <tr>
+                <th scope="row">4</th>
+                <td class="text-left">Активная прогулка с собакой в <u class="far-area" data-container="body"
+                                                                       data-toggle="popover" data-placement="top"
+                                                                       data-content="Синяя область - это, кароч, тырым-пырым, пырым-тырым, вот.">
+                    синей области
+                </u></td>
+                <td>500</td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="row-fluid text-center mb-5">
+            <span class="lead get-warning">Остерегайтесь мошенников. Оплата наличными при первом занятии.</span>
+        </div>
+        <h2 class="display-4 text-black text-center logo-title">
+            Коррекция поведения
+        </h2>
+        <table class="table table-bordered table-striped price-table text-center">
+            <thead class="thead-warning">
+            <tr>
+                <th scope="col">№</th>
+                <th scope="col">Наименование услуги</th>
+                <th scope="col">Стоимость, руб.</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <th scope="row">1</th>
+                <td class="text-left">Индивидуальное занятие в Красносельском районе</td>
+                <td>700</td>
+            </tr>
+            <tr>
+                <th scope="row">2</th>
+                <td class="text-left">Индивидуальное занятие с выездом на дом в
+                    <u class="far-area" data-container="body" data-toggle="popover" data-placement="top"
+                       data-content="Зеленая область - это, кароч, тырым-пырым, пырым-тырым, вот.">
+                        зеленой области
+                    </u>
+                </td>
+                <td>1000</td>
+            </tr>
+            <tr>
+                <th scope="row">3</th>
+                <td class="text-left">Индивидуальное занятие с выездом на дом в
+                    <u class="far-area" data-container="body" data-toggle="popover" data-placement="top"
+                       data-content="Синяя область - это, кароч, другой тырым-пырым, пырым-тырым, вот.">
+                        синей области
+                    </u>
+                </td>
+                <td>1300</td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="row-fluid text-center mb-5">
+            <span class="lead get-warning">Остерегайтесь мошенников. Оплата наличными при первом занятии.</span>
+        </div>
+        <h2 class="display-4 text-black text-center logo-title">
+            Прочее
+        </h2>
+        <table class="table table-bordered table-striped price-table text-center">
+            <thead class="thead-warning">
+            <tr>
+                <th scope="col">№</th>
+                <th scope="col">Наименование услуги</th>
+                <th scope="col">Стоимость, руб.</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <th scope="row">1</th>
+                <td class="text-left">Занятие в связке инструктор-собака в Красносельском районе</td>
+                <td>500</td>
+            </tr>
+            <tr>
+                <th scope="row">2</th>
+                <td class="text-left">Занятие в связке инструктор-собака с выездом на дом в
+                    <u class="far-area" data-container="body" data-toggle="popover" data-placement="top"
+                       data-content="Зеленая область - это, кароч, тырым-пырым, пырым-тырым, вот.">
+                        зеленой области
+                    </u>
+                </td>
+                <td>700</td>
+            </tr>
+            <tr>
+                <th scope="row">3</th>
+                <td class="text-left">Занятие в связке инструктор-собака с выездом на дом в
+                    <u class="far-area" data-container="body" data-toggle="popover" data-placement="top"
+                       data-content="Синяя область - это, кароч, другой тырым-пырым, пырым-тырым, вот.">
+                        синей области
+                    </u>
+                </td>
+                <td>1000</td>
+            </tr>
+            <tr>
+                <th scope="row">4</th>
+                <td class="text-left">Консультация с мастером</td>
+                <td>100</td>
+            </tr>
+            <tr class="text-grey">
+                <th scope="row">5</th>
+                <td class="text-left">Фотография (1 час) в Красносельском районе</td>
+                <td>400</td>
+            </tr>
+            <tr class="text-grey">
+                <th scope="row">6</th>
+                <td class="text-left">Фотография (1 час) с выездом на дом в
+                    <u class="far-area" data-container="body" data-toggle="popover" data-placement="top"
+                       data-content="Зеленая область - это, кароч, тырым-пырым, пырым-тырым, вот.">
+                        зеленой области
+                    </u>
+                </td>
+                <td>700</td>
+            </tr>
+            <tr class="text-grey">
+                <th scope="row">7</th>
+                <td class="text-left">Фотография (1 час) с выездом на дом в
+                    <u class="far-area" data-container="body" data-toggle="popover" data-placement="top"
+                       data-content="Синяя область - это, кароч, другой тырым-пырым, пырым-тырым, вот.">
+                        синей области
+                    </u>
+                </td>
+                <td>1000</td>
+            </tr>
+            <tr class="text-grey">
+                <th scope="row">8</th>
+                <td class="text-left">Фотография (2 часа) в Красносельском районе</td>
+                <td>700</td>
+            </tr>
+            <tr class="text-grey">
+                <th scope="row">9</th>
+                <td class="text-left">Фотография (2 часа) с выездом на дом в
+                    <u class="far-area" data-container="body" data-toggle="popover" data-placement="top"
+                       data-content="Зеленая область - это, кароч, тырым-пырым, пырым-тырым, вот.">
+                        зеленой области
+                    </u>
+                </td>
+                <td>1000</td>
+            </tr>
+            <tr class="text-grey">
+                <th scope="row">10</th>
+                <td class="text-left">Фотография (2 часа) с выездом на дом в
+                    <u class="far-area" data-container="body" data-toggle="popover" data-placement="top"
+                       data-content="Синяя область - это, кароч, другой тырым-пырым, пырым-тырым, вот.">
+                        синей области
+                    </u>
+                </td>
+                <td>1500</td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="row-fluid text-center mb-5">
+            <span class="lead get-warning">Остерегайтесь мошенников. Оплата наличными при первом занятии.</span>
+        </div>
+    </div>
+{% endblock %}

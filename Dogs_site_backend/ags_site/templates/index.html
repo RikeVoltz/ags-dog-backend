@@ -1,0 +1,209 @@
+{% extends 'base_template.html' %}
+{% load staticfiles %}
+{% block content %}
+    <div class="container-fluid whole-window">
+        <video autoplay class="main-video" loop muted>
+            <source src="{% static 'videos/main.mp4' %}" type="video/mp4">
+        </video>
+    </div>
+    <div class="container-fluid whole-window text-center">
+        <h2 class="display-4 text-black logo-title-2 ml-5">
+            Добро пожаловать в нашу Ассоциацию Грамотного Собаководства!
+        </h2>
+        <div class="row d-flex justify-content-center text-justify ml-4">
+            <p class="w-80 training-text mx-5">Наша команда сформировалась благодаря большой любви к собакам,
+                накопленному за многие годы опыту, жажде продвижения в кинологической сфере и вопиющей несправедливости
+                –
+                необразованной толпы людей, выдающих себя за кинологов.</p>
+        </div>
+        <div class="row d-flex justify-content-center text-justify ml-4">
+            <p class="w-80 training-text mx-5"> Мы рады Вам предложить активный и безопасный выгул питомца или грамотную
+                дрессировку на базе позитивного
+                метода, то есть мы работаем на мотивации собаки, подкрепляем желательное поведение, не наказываем
+                нежелательное. В основном мы используем вкусопоощрительный и игровой методы. Мы никтогда не применяем
+                грубость к животным. С нами Вы достигните взаимопонимания со своей собакой, ведь мы с легкостью решим
+                любую
+                Вашу проблему!</p>
+        </div>
+        <div class="row d-flex justify-content-center text-justify ml-4">
+            <p class="w-80 training-text mx-5">Мы относимся ответственно к своей работе, каждый сотрудник нашего клуба
+                обладает багажом знаний, необходимым
+                для того, чтобы грамотно обучить или выгулять Вашу собаку. Каждый член нашей команды развивается
+                ежедневно,
+                дополняет свои навыки, получает новый опыт. На протяжении своей работы сотрудники
+                находятся под строгим контролем – мы стараемся сделать все так, чтобы клиент был более, чем доволен.</p>
+        </div>
+        <div class="container-fluid main-table">
+            <div class="row justify-content-center">
+                <div class="blacker row justify-content-center">
+                    <div class="blacker-more">
+                        <div class="row">
+    <span>
+     Основной род нашей деятельности – это дрессировка по курсу ОКД – общему курсу дрессировки собак. Это выработка дисциплинарных навыков у собаки, которые позволяют хозяевам контролировать собаку в повседневных делах, на прогулках, помогают владельцу понять своего питомца.
+    </span>
+                        </div>
+                        <div class="row justify-content-center mt-3">
+                            <a class="blacker-btn btn btn-light" href='training#OKD'>Подробнее</a>
+                        </div>
+                    </div>
+                    <span class="align-self-end blacker-text">ОКД</span>
+                    <div class="col d-flex main-table-col main-table-col-up" id="block-11">
+                    </div>
+                </div>
+                <div class="blacker row justify-content-center">
+                    <div class="blacker-more">
+                        <div class="row">
+    <span>
+        Наши специалисты прошли обязательную сертификацию и грамотное обучение и готовы выгулять Вашего питомца!
+    </span>
+                        </div>
+                        <div class="row justify-content-center mt-3">
+                            <a class="blacker-btn btn btn-light" href='walking'>Подробнее</a>
+                        </div>
+                    </div>
+                    <span class="align-self-end blacker-text">Выгул</span>
+                    <div class="col d-flex main-table-col main-table-col-up" id="block-12">
+                    </div>
+                </div>
+                <div class="blacker row justify-content-center">
+                    <div class="blacker-more">
+                        <div class="row">
+    <span>
+УГС – курс управляемой городской собаки. Это своеобразная альтернатива курсу ОКД, отличие в том, что это упрощенный вариант, а также специализирующийся на городской среде.
+    </span>
+                        </div>
+                        <div class="row justify-content-center mt-3">
+                            <a class="blacker-btn btn btn-light" href='training#UGS'>Подробнее</a>
+                        </div>
+                    </div>
+                    <span class="align-self-end blacker-text">УГС</span>
+                    <div class="col d-flex main-table-col main-table-col-up" id="block-13">
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="blacker row justify-content-center">
+                    <div class="blacker-more">
+                        <div class="row">
+    <span>
+        Самым захватывающим направлением нашей деятельности является трюковая дрессировка. На данном курсе можно войти в полный резонанс со своей собакой и наслаждаться совместными победами и отличным взаимопониманием.
+    </span>
+                        </div>
+                        <div class="row justify-content-center mt-3">
+                            <a class="blacker-btn btn btn-light" href='training#trick'>Подробнее</a>
+                        </div>
+                    </div>
+                    <span class="align-self-start blacker-text">Трюковая дрессировка</span>
+                    <div class="col d-flex main-table-col main-table-col-down" id="block-21">
+                    </div>
+                </div>
+                <div class="blacker row justify-content-center">
+                    <div class="blacker-more">
+                        <div class="row">
+    <span>
+        Если нет возможности ходить на занятия – не беда! Можно просто написать нам, ведь у нас работает система онлайн консультаций – мы ответим Вам в этот же день!
+    </span>
+                        </div>
+                        <div class="row justify-content-center mt-3">
+                            <a class="blacker-btn btn btn-light" href='consultation'>Подробнее</a>
+                        </div>
+                    </div>
+                    <span class="align-self-start blacker-text">Консультации</span>
+                    <div class="col d-flex main-table-col main-table-col-down" id="block-22">
+                    </div>
+                </div>
+                <div class="blacker row justify-content-center">
+                    <div class="blacker-more">
+                        <div class="row">
+    <span>
+        У нас вы можете приобрести амуницию, лакомства, игрушки, а также множество других полезных товаров для Вас и Вашего питомца!
+    </span>
+                        </div>
+                        <div class="row justify-content-center mt-3">
+                            <a class="blacker-btn btn btn-light" href='shop'>Подробнее</a>
+                        </div>
+                    </div>
+                    <span class="align-self-start blacker-text">Товары</span>
+                    <div class="col d-flex main-table-col main-table-col-down" id="block-23">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid whole-window">
+        <h2 class="display-4 text-dark text-center mt-5 logo-title">
+            Почему именно наша команда?
+        </h2>
+        <div class="card-deck justify-content-center">
+            <div class="card why-us-card">
+                <img class="card-img-top align-self-center" src="{% static 'images/handshake.svg' %}"/>
+                <div class="card-body">
+                    <span class="card-text">Наша команда готова Вам помочь в сфере классической и трюковой дрессировки, мы с удовольствием выгуляем Вашу собаку и дадим Вам емкую консультацию по воспитанию питомца!</span>
+                </div>
+            </div>
+            <div class="card why-us-card">
+                <img class="card-img-top align-self-center" src="{% static 'images/student.svg' %}"/>
+                <div class="card-body">
+                    <span class="card-text">Каждый инструктор и вокер АГС прошел необходимую тщательную подготовку и совершенствуется в сфере собаководства каждый день.</span>
+                </div>
+            </div>
+            <div class="card why-us-card">
+                <img class="card-img-top align-self-center" src="{% static 'images/love.svg' %}"/>
+                <div class="card-body">
+                    <span class="card-text">Наша команда использует метод бесконфликтной дрессировки, наши специалисты никогда не кричат на собаку, не дергают ее за поводок, не применяют грубость и работают только с положительным настроем!</span>
+                </div>
+            </div>
+            <div class="card why-us-card">
+                <img class="card-img-top align-self-center" src="{% static 'images/money_pig.svg' %}"/>
+                <div class="card-body">
+                    <span class="card-text">Качественные услуги по низким ценам — воспитанная собака доступна каждому!</span>
+                </div>
+            </div>
+        </div>
+        <div class="card-deck justify-content-center">
+            <div class="card why-us-card">
+                <img class="card-img-top align-self-center" src="{% static 'images/smile.svg' %}"/>
+                <div class="card-body">
+                    <span class="card-text">Наша команда не пьет, не курит, и ведет здоровый образ жизни. С нами приятно иметь дело, ведь каждый наш сотрудник проходит предварительный отбор и квалифицированное обучение.</span>
+                </div>
+            </div>
+            <div class="card why-us-card">
+                <img class="card-img-top align-self-center" src="{% static 'images/all-call.svg' %}"/>
+                <div class="card-body">
+                    <span class="card-text">Мы работаем по всему Санкт-Петербургу и в городе Пушкине</span>
+                </div>
+            </div>
+            <div class="card why-us-card">
+                <img class="card-img-top align-self-center" src="{% static 'images/sale.svg' %}"/>
+                <div class="card-body">
+                    <span class="card-text">В нашем клубе постоянные акции и скидки!</span>
+                </div>
+            </div>
+            <div class="card why-us-card">
+                <img class="card-img-top align-self-center" src="{% static 'images/pet-24-7.svg' %}"/>
+                <div class="card-body">
+                    <span class="card-text">Наш девиз — грамотное и гуманное воспитание изо дня в день</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container main-photos-carousel-container">
+        <div class="main-photos-carousel mb-5">
+            <div class="photos-carousel-cell is-selected">
+                <div class="carousel-photo">
+                    <img src="{% static 'images/discounts-main-back.jpg' %}" alt="Фото в карусели"/>
+                </div>
+            </div>
+            <div class="photos-carousel-cell">
+                <div class="carousel-photo">
+                    <img src="{% static 'images/tests-main-back.jpg' %}" alt="Фото в карусели"/>
+                </div>
+            </div>
+            <div class="photos-carousel-cell">
+                <div class="carousel-photo">
+                    <img src="{% static 'images/walking-main-back.jpg' %}" alt="Фото в карусели"/>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,119 @@
+{% extends 'base_template.html' %}
+{% load staticfiles %}
+{% block content %}
+    <div class="container-fluid p-0">
+        <img class="main-background" src="{% static 'images/training-main-back.jpg' %}" alt="Фон"/>
+    </div>
+    <div class="container-fluid p-0">
+        <h2 class="display-4 text-black text-center my-3">
+            Дрессировка собак
+        </h2>
+        <div class="row d-flex justify-content-center text-justify ml-4">
+            <p class="training-text mx-5 w-90">Мы рады предложить Вам услуги по грамотной дрессировке собак!
+                Наша команда специализируется на ОКД (общий курс дрессировки), УГС (курс управляемой городской собаки),
+                трюковой дрессировке и корректировке поведения животных. Также мы работаем с собаками, страдающими
+                нарушениями слуха.
+                Наше отличие состоит в том, что мы не используем грубые и насильственные методы дрессировки, мы работаем
+                с положительной мотивацией собаки.
+                Занятия могут проходить как в группе (в обществе других собаководов), так и индивидуально. Каждое
+                занятие длится 60 минут. Наше местонахождение – Полежаевский парк, Красносельский район, выезд на дом
+                также возможен. Занятия проходят 1-3 раза в неделю.</p>
+        </div>
+    </div>
+    <div class="container-fluid p-0 mb-4">
+        <a id="OKD"></a>
+        <div class="row d-flex justify-content-center text-justify ml-4">
+            <h1 class="display-1 text-center mt-4 text-light training-title mt-5" id="title-1">ОКД</h1>
+        </div>
+        <div class="row d-flex justify-content-center text-justify mt-3 ml-4">
+            <p class="training-text mx-5 w-90">Основной род нашей деятельности – это дрессировка по курсу ОКД –
+                общему курсу дрессировки собак. Это выработка дисциплинарных навыков у собаки, которые позволяют
+                хозяевам
+                контролировать собаку в повседневных делах, на прогулках, помогают владельцу понять своего питомца. ОКД
+                является базой для выработки у собак комплекса условных рефлексов для их применения в удобной Вам
+                форме. </p>
+            <p class="training-text mx-5">
+                Данный курс развивает взаимопонимание между хозяином и собакой, Вы разберетесь, почему Ваш питомец
+                бедокурит/убегает от Вас/не слушается, почему собака бросается на других питомцев, мы научим Вас
+                устранять
+                конфликты и решать любую проблему, которая возникнет между Вами и Вашей собакой.
+            </p>
+            <p class="training-text mx-5">
+                Курс ОКД включает в себя обучение командам общего комплекса (сидеть, лежать, стоять), подзыв по команде,
+                апортировка предметов, хождение рядом, приучение к наморднику, подзыв-посыл с места, обозначенного
+                хозяином,
+                обучение не подбирать с земли, обучение не брать лакомство у чужих людей, выдержка на командах, показ
+                зубов,
+                прекращение нежелательных действий и преодоление комплекса препятствий. Также мы разбираемся в
+                предыдущих
+                упущениях в воспитании и помогаем владельцам решить данные проблемы.
+            </p>
+        </div>
+        <div class="d-flex justify-content-center">
+            <a class="btn btn-warning btn-training" href="#">Заказать</a>
+        </div>
+        <a id="UGS"></a>
+        <div class="row d-flex justify-content-center text-justify ml-4">
+            <h1 class="display-1 text-center mt-4 text-light training-title mt-5" id="title-2">УГС</h1>
+        </div>
+        <div class="row d-flex justify-content-center text-justify mt-3 ml-4">
+            <p class="training-text mx-5 w-90">Курс УГС (управляемая городская собака) – это упрощенный общий
+                курс дрессировки (ОКД), включающий в себя отработку базовых команд и навыков, основанный на условных
+                рефлексах и необходимых для успешного управления собакой в городских условиях. Курс включает в себя
+                комплекс
+                (сидеть, лежать, стоять), выдержка на командах, подзыв по команде, хождение рядом, обучение не подбирать
+                с
+                земли, обучение не брать лакомство у чужих людей, прекращение нежелательных действий. Мы вырабатываем
+                адекватное отношение к общественному транспорту, городской среде, велосипедам, собакам и другим
+                раздражителям, а также осуществляем корректировку нежелательного поведения.
+            </p>
+        </div>
+        <div class="d-flex justify-content-center">
+            <a class="btn btn-warning btn-training" href="#">Заказать</a>
+        </div>
+        <a id="trick"></a>
+        <div class="row d-flex justify-content-center text-justify ml-4">
+            <h1 class="display-1 text-center mt-4 text-light training-title mt-5" id="title-3">Трюковая дрессировка</h1>
+        </div>
+        <div class="row d-flex justify-content-center text-justify mt-3 ml-4">
+            <p class="training-text mx-5 w-90">Самым захватывающим направлением нашей деятельности является
+                трюковая дрессировка. На данном курсе собака уже должна обладать начальными навыками послушания. Занятия
+                проходят только индивидуально. На данном курсе можно войти в полный резонанс со своей собакой и
+                наслаждаться
+                совместными победами и отличным взаимопониманием.
+            </p>
+        </div>
+        <div class="d-flex justify-content-center">
+            <a class="btn btn-warning btn-training" href="#">Заказать</a>
+        </div>
+        <a id="correction"></a>
+        <div class="row d-flex justify-content-center text-justify ml-4">
+            <h1 class="display-1 text-center mt-4 text-light training-title mt-5" id="title-4">Коррекция поведения</h1>
+        </div>
+        <div class="row d-flex justify-content-center text-justify mt-3 ml-4">
+            <p class="training-text mx-5 w-90">На данном курсе вместе с владельцем мы разберемся, почему у
+                собаки возникли те или иные упущения в поведении и решим проблемы в индивидуальном порядке.
+            </p>
+        </div>
+        <div class="d-flex justify-content-center">
+            <a class="btn btn-warning btn-training" href="#">Заказать</a>
+        </div>
+        <a id="instructor_and_dog"></a>
+        <div class="row d-flex justify-content-center text-justify ml-4">
+            <h1 class="display-1 text-center mt-4 text-light training-title mt-5" id="title-5">Занятия «ИС»</h1>
+        </div>
+        <div class="row d-flex justify-content-center text-justify mt-3 ml-4">
+            <p class="training-text mx-5 w-90">«ИС» – это занятия в связке инструктор-собака. Данный курс
+                предназначен для занятых людей, у которых нет времени заниматься со своим питомцем или при любой другой
+                непредвиденной ситуации. Мы предлагаем услуги по дрессировке по курсу ОКД или УГС или занятия по
+                коррекции
+                поведения. При данном курсе хозяин не участвует в воспитании собаки, питомца дрессирует мастер. По итогу
+                данного курса (занятия) инструктор возвращает Вам воспитанную собаку, демонстрируя ее воспитание при
+                различных раздражителях.
+            </p>
+        </div>
+        <div class="d-flex justify-content-center">
+            <a class="btn btn-warning btn-training" href="#">Заказать</a>
+        </div>
+    </div>
+{% endblock %}

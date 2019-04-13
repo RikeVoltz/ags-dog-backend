@@ -1,0 +1,112 @@
+{% extends 'base_template.html' %}
+{% load staticfiles %}
+{% block content %}
+    <div class="container-fluid p-0">
+        <img class="main-background" src="{% static 'images/walking-main-back.jpg' %}" alt="Фон"/>
+    </div>
+    <div class="container-fluid p-0">
+        <h2 class="display-4 text-black text-center my-3">
+            Выгул собак
+        </h2>
+        <div class="row d-flex justify-content-center text-justify ml-4">
+            <p class="training-text">Наши специалисты прошли обязательную сертификацию и грамотное обучение
+                и готовы выгулять Вашего питомца!
+                Наша команда не применяет грубые методы дрессировки и общения с собакой, не отвлекается на прогулках во
+                избежание непредвиденных ситуаций, не дергает собаку, не кричит на нее, следит, чтобы питомец не
+                подбирал с земли, а также каждый специалист убирает за своим подопечным. Мы не подпускаем других собак к
+                нам, а также никогда не отпускаем питомца с поводка. Наши специалисты всегда трезвые, не курят, ведут
+                здоровый образ жизни и поддерживают хорошее настроение в любой ситуации. Мы не дрессируем собак на
+                выгуле, для этого мы предлагаем Вам отдельную <u><a class="text-black"
+                                                                    href='training.html'>услугу</a></u></p>.
+            <p class="training-text">Для выгула мы используем свои поводки – проверенные, крепкие,
+                брезентовые, с хорошими карабинами во избежание несчатного случая. От владельца требуется лишь намордник
+                для собак, которые выше 40 сантиметров в холке.
+                Мы выгуливаем собак всегда по-одному, в ином случае - только по просьбе клиента.</p>
+            <p class="training-text">Наша команда предлагает Вам для удобства два варианта: классический
+                выгул и активный.</p>
+            <p class="training-text">При классической прогулке волкер выгуливает Вашего питомца в обычном
+                темпе, не торопит его, выбирает оптимальный маршрут.
+                При активной прогулке волкер играет с Вашей собакой на протяжении всей прогулки, бегает, тратит его
+                энергию и возвращает Вам счастливого питомца!
+            </p>
+            <p class="training-text">Здесь Вы можете выбрать интересующего Вас волкера и перейти к
+                заказу прогулки или заказать выгул в удобное Вам время.</p>
+            <div class="w-100"></div>
+            <a class="btn btn-warning btn-order-by-time" href="#">Заказать по времени</a>
+            <div class="container-fluid mt-4">
+                <h3 class="display-3 text-black text-center logo-title-4">Наши специалисты по выгулу собак:</h3>
+            </div>
+            <div class="container card-columns">
+                <div class="card-deck">
+                    <div class="card walker-card">
+                        <div class="row no-gutters">
+                            <div class="col">
+                                <img alt="" class="card-img walker-img" data-alter-img="{% static 'images/placeholder2.png' %}"
+                                     src="{% static 'images/placeholder.png' %}">
+                            </div>
+                            <div class=" col">
+                                <div class="card-body">
+                                    <h5 class="card-title">Аня</h5>
+                                    <p class="card-text">Инструктор-дрессировщик, волкер</p>
+                                    <p class="card-text">&#171;Грубость в воспитании - это недостаток знаний и терпения&#187;</p>
+                                    <a class="btn btn-warning mt-auto mb-3 get-walking get-walking-delayed"
+                                       href="#">Заказать прогулку!</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card walker-card">
+                        <div class="row no-gutters">
+                            <div class="col">
+                                <img alt="" class="card-img walker-img" data-alter-img="{% static 'images/placeholder2.png' %}"
+                                     src="{% static 'images/placeholder.png' %}">
+                            </div>
+                            <div class="col">
+                                <div class="card-body">
+                                    <h5 class="card-title">Катя</h5>
+                                    <p class="card-text">Волкер</p>
+                                    <a class="btn btn-warning mt-auto mb-3 get-walking get-walking-delayed"
+                                       href="#">Заказать прогулку!</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-deck">
+                    <div class="card walker-card">
+                        <div class="row no-gutters">
+                            <div class="col">
+                                <img alt="" class="card-img walker-img" data-alter-img="{% static 'images/placeholder2.png' %}"
+                                     src="{% static 'images/placeholder.png' %}">
+                            </div>
+                            <div class="col">
+                                <div class="card-body">
+                                    <h5 class="card-title">Денис</h5>
+                                    <p class="card-text">Волкер</p>
+                                    <a class="btn btn-warning mt-auto mb-3 get-walking get-walking-delayed"
+                                       href="#">Заказать прогулку!</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card walker-card">
+                        <div class="row no-gutters">
+                            <div class="col">
+                                <img alt="" class="card-img walker-img" data-alter-img="{% static 'images/placeholder2.png' %}"
+                                     src="{% static 'images/placeholder.png' %}">
+                            </div>
+                            <div class="col">
+                                <div class="card-body">
+                                    <h5 class="card-title">Алина</h5>
+                                    <p class="card-text">Волкер</p>
+                                    <a class="btn btn-warning mt-auto mb-3 get-walking get-walking-delayed"
+                                       href="#">Заказать прогулку!</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

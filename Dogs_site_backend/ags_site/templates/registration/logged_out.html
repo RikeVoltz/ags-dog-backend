@@ -1,0 +1,12 @@
+{% extends 'base_template.html' %}
+{% load staticfiles %}
+{% block content %}
+    <div class="container-fluid p-0">
+        <img class="main-background" src="{% static 'images/auth.jpg' %}" alt="Фоновая картинка"/>
+    </div>
+    <div class="container w-50 p-0">
+        <h2 class="display-4 text-black text-center my-3">
+            Спасибо, что были на нашем сайте!
+        </h2>
+    </div>
+{% endblock %}
