@@ -5,6 +5,7 @@
     <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
     <link href="{% static 'images/logo.ico' %}" rel="icon">
     <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static "js/jquery.cookie.js" %}"></script>
     <script src="{% static 'js/popper.min.js' %}"></script>
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
     <link href="{% static 'css/flickity.min.css' %}" rel="stylesheet">
@@ -12,22 +13,32 @@
     <script src="{% static 'js/main.js' %}"></script>
     <link href="{% static 'css/font-awesome.all.css' %}" rel="stylesheet">
     <link href="{% static 'css/main.css' %}" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>АГС</title>
 </head>
 <body>
 <a href="/order">
-    <div class="fixed-btn fixed-make-order float-right">
-        <span>Сделать заказ</span>
+    <div class="fixed-btn fixed-order-training float-right">
+        <span>Заказать дрессировку</span>
     </div>
 </a>
-
-{% if is_authenticate %}
+<a href="/walking">
+    <div class="fixed-btn fixed-order-walking float-right">
+        <span>Заказать выгул</span>
+    </div>
+</a>
+{% if user.is_authenticated %}
     <a href="/profile">
         <div class=" fixed-btn fixed-profile float-right">
             <span>Перейти в профиль</span>
         </div>
     </a>
 {% else %}
+    <a href="/walking">
+    <div class="fixed-btn fixed-become-walker float-right">
+        <span>Стать волкером</span>
+    </div>
+</a>
     <a href="/login">
         <div class="fixed-btn fixed-profile float-right">
             <span>Войти в аккаунт</span>
@@ -36,55 +47,55 @@
 {% endif %}
 <div class="page-content">
     <div class="px-4 zone-arrow-up h-100 d-flex">
-        <img alt="Вверх" class="arrow-up align-self-center" src="{% static 'images/arrow.svg' %}"/>
+        <img alt="Вверх" class="arrow-up align-self-center icon-md" src="{% static 'images/arrow.svg' %}"/>
     </div>
     <div class="container-fluid p-0 h-100">
         <header>
             <div class="container-fluid fixed-top back-orange">
                 <div class="row">
-                    <div class="col-auto navbar-brand back-orange m-0">
-                        <img alt="Логотип" class="navbar-brand-logo" src="{% static 'images/logo.svg' %}"/>
+                    <div class="col-auto mr-2 navbar-brand back-orange m-0">
+                        <img alt="Логотип" class="navbar-brand-logo float-right" src="{% static 'images/logo.svg' %}"/>
                     </div>
-                    <div class="col mx-5 px-0">
-                        <div class="row d-flex justify-content-end">
-                            <div class="col">
-                                <h2 class="display-5 text-black mt-2 nav-title">
+                    <div class="col px-0">
+                        <div class="row d-flex justify-content-around">
+                            <div class="col-auto pr-0">
+                                <h2 class="text-black ml-3 mt-2 nav-title">
                                     Ассоциация Грамотного Собаководства
                                 </h2>
                             </div>
-                            <div class="col-auto d-flex align-items-center">
+                            <div class="col-auto pr-0 d-flex align-items-center">
                                 <a href="mailto:tumanova171097@gmail.com">
                                     <img alt="Электронная почта" class="icon-sm-2 my-2"
                                          src="{% static 'images/letter.svg' %}"/>
                                 </a>
                             </div>
-                            <div class="col-auto px-2 d-flex align-items-center">
+                            <div class="col-auto pr-0 d-flex align-items-center">
                                 <a href="https://www.instagram.com/agssobaka/?hl=ru" target="_blank">
                                     <img alt="ВКонтакте" class="icon-sm ml-n2 my-2"
                                          src="{% static 'images/instagram.svg' %}"/>
                                 </a>
                             </div>
-                            <div class="col-auto px-2 d-flex align-items-center">
+                            <div class="col-auto mr-auto pr-0 d-flex align-items-center">
                                 <a href="https://vk.com/id126566360" target="_blank">
                                     <img alt="ВКонтакте" class="icon-md ml-n2 my-2" src="{% static 'images/vk.svg' %}"/>
                                 </a>
                             </div>
-                            <div class="col-auto px-0 d-flex align-items-center">
-                                <img alt="Город" class="icon-xs m-2" src="{% static 'images/balloon.svg' %}"/>
+                            <div class="col-auto pl-1 pr-0 d-flex align-items-center">
+                                <img alt="Город" class="icon-xs mr-2" src="{% static 'images/balloon.svg' %}"/>
                                 <span class="city">г. Санкт-Петербург</span>
                             </div>
-                            <div class="col-1-auto pr-3 d-flex align-items-center">
+                            <div class="col-auto pl-0 pr-4 d-flex align-items-center">
                                 <a href="tel:+79516547277">
                                     <img alt="Телефон" class="icon-xs m-2" src="{% static 'images/phone.svg' %}"/>
                                 </a>
-                                <span class="city">+7 (951) 654-72-77</span>
+                                <span class="city">8 (951) 654-72-77</span>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="nav-item col d-flex align-items-center align-self-start">
+                        <div class="row justify-content-around">
+                            <div class="nav-item col-auto d-flex align-items-center align-self-start">
                                 <a class="nav-link text-center w-100" href="/">Главная </a>
                             </div>
-                            <div class="nav-item col d-flex align-items-center dropdown align-self-start">
+                            <div class="nav-item col-auto d-flex align-items-center dropdown align-self-start">
                                 <a class="nav-link text-center w-100">
                                     <span class="caret"></span>
                                     О нас
@@ -100,7 +111,7 @@
                                     <a class="dropdown-item d-flex justify-content-center" href="#">Фотогалерея</a>
                                 </div>
                             </div>
-                            <div class="nav-item col d-flex align-items-center align-self-start dropdown">
+                            <div class="nav-item col-auto d-flex align-items-center align-self-start dropdown">
                                 <a class="nav-link text-center w-100">
                                     <span class="caret"></span>
                                     Услуги
@@ -117,25 +128,19 @@
                                        href="#">Фотография</a>
                                 </div>
                             </div>
-                            <div class="nav-item col d-flex align-items-center align-self-start">
+                            <div class="nav-item col-auto d-flex align-items-center align-self-start">
                                 <a class="nav-link text-center w-100" href="/discounts/">Акции</a>
                             </div>
-                            <div class="nav-item col d-flex align-items-center align-self-start">
+                            <div class="nav-item col-auto d-flex align-items-center align-self-start">
                                 <a class="nav-link text-center w-100" href="/shop/">Товары </a>
                             </div>
-                            <div class="nav-item col d-flex align-items-center align-self-start">
+                            <div class="nav-item col-auto d-flex align-items-center align-self-start">
                                 <a class="nav-link align-middle text-center w-100" href="/price/">Прайс</a>
                             </div>
-                            <div class="nav-item col d-flex align-items-center align-self-start">
+                            <div class="nav-item col-auto d-flex align-items-center align-self-start">
                                 <a class="nav-link text-center w-100" href="/contacts/">Контакты</a>
                             </div>
-                            <div class="d-flex align-items-center form-search">
-                                <form class=" form-inline pr-3">
-                                    <input aria-label="Search" class="form-control" placeholder="Ключевое слово"
-                                           type="search">
-                                    <button class="btn btn-dark" type="submit">Поиск</button>
-                                </form>
-                            </div>
+
                         </div>
                     </div>
                 </div>

@@ -15,12 +15,10 @@ a {
 }
 
 .navbar-brand {
-    width: 12vw;
     height: auto;
 }
 
 .navbar-brand-logo {
-    margin-left: 6rem;
     margin-top: 0.5rem;
     width: 6vw;
     height: auto;
@@ -36,10 +34,10 @@ a {
 
 
 .nav-item {
-    border-radius: 3vh;
+    border-radius: 1.5vmin;
     background-color: white;
     height: 5vh;
-    font-size: 1.25rem;
+    font-size: 1.25vmax;
 }
 
 .form-search {
@@ -53,7 +51,7 @@ a {
     object-fit: fill;
     position: absolute;
     top: 12vh;
-    margin-left: 12vw;
+
     z-index: 0;
     height: 75vh;
     border-radius: 2vh;
@@ -98,17 +96,8 @@ a {
 }
 
 .dropdown-menu {
-    min-width: 7.25vw !important;
-    max-width: 7.25vw !important;
     margin-left: 0.25rem;
     margin-top: -1%;
-}
-
-.navbar {
-    min-height: 5vh;
-    font-size: 1.0rem;
-    padding: 0;
-    position: fixed;
 }
 
 .icon-xl {
@@ -220,8 +209,8 @@ a {
 
 .nav-title {
     font-family: BewlayCyrillic, serif;
-    margin-left: 1.5rem;
     margin-bottom: -1rem;
+    font-size: 3vmin;
 }
 
 .display-4 {
@@ -368,12 +357,12 @@ input.testcode:focus {
     position: relative;
     z-index: 1001;
     font-family: BewlayCyrillic, serif;
-    font-size: 8.5rem;
+    font-size: 6vw;
 }
 
 .training-text {
     max-width: 75vw;;
-    font-size: 1.25rem;
+    font-size: 1.25vw;
 }
 
 .btn-training {
@@ -462,8 +451,13 @@ input.testcode:focus {
 }
 
 .bordered {
-    border-radius: 2vh 2vh 2vh 2vh;
+    border-radius: 1.5vh;
     border: 0.1vh solid;
+}
+
+.bordered.pseudo-bordered {
+    border-radius: 1.5vh;
+    border: 0.1vh transparent;
 }
 
 .form-control:focus {
@@ -488,7 +482,7 @@ input.testcode:focus {
 }
 
 .price-table {
-    font-size: 1.25rem;
+    font-size: 1vw;
     border: 0.6vh solid #dee2e6;
     margin-left: 15%;
     width: 70%;
@@ -550,7 +544,7 @@ input.testcode:focus {
     position: absolute;
     z-index: 2000;
     font-family: BewlayCyrillic, serif;
-    font-size: 3rem;
+    font-size: 2.5vw;
     display: block;
 }
 
@@ -561,7 +555,7 @@ input.testcode:focus {
     word-wrap: break-word;
     margin-top: 5vh;
     position: absolute;
-    font-size: 1.25rem;
+    font-size: 1.1vw;
     text-align: center !important;
 }
 
@@ -615,7 +609,7 @@ input.testcode:focus {
 }
 
 .why-us-card {
-    font-size: 1.25rem;
+    font-size: 1.2vw;
     max-width: 34vh;
     text-align: center !important;
     background-color: #78e1ff;
@@ -628,7 +622,7 @@ input.testcode:focus {
     margin-bottom: 3.25rem !important;
 }
 
-.card-img-top {
+.why-us-card-img {
     width: 8vw;
     height: 10vh;
     padding: 2vh;
@@ -675,13 +669,13 @@ input.testcode:focus {
 }
 
 .city {
-    font-size: 1.1rem;
+    font-size: 1.25vw;
 }
 
 .fixed-top {
     position: fixed;
-    padding-left: 9vw;
-    padding-right: 9vw;
+    padding-left: 13.5vw;
+    padding-right: 12vw;
     z-index: 5000;
 }
 
@@ -742,26 +736,36 @@ input.testcode:focus {
     position: fixed;
     color: black;
     border-radius: 2vh 2vh 0 0;
-    font-size: 1.5rem;
-    left: 92vw;
-    width: 15vw;
-    height: 10vh;
+    font-size: 0.9vw;
+    left: 94vw;
+    width: 10vw;
+    height: 6vh;
     text-align: center;
     z-index: 1030;
 }
 
-.fixed-make-order {
-    top: 65%;
+.fixed-order-training {
+    top: 17.5%;
+    background-color: #78e1ff;
+}
+
+.fixed-become-walker {
+    top: 77.5%;
+    background-color: #ffc107;
+}
+
+.fixed-order-walking {
+    top: 37.5%;
     background-color: #ffc107;
 }
 
 .fixed-profile {
-    top: 30%;
+    top: 57.5%;
     background-color: #78e1ff;
 }
 
 .fixed-btn:hover {
-    transform: rotate(270deg) translateY(-1.75vw);
+    transform: rotate(270deg) translateY(-1.5vw);
 }
 
 .text-grey {
@@ -783,19 +787,18 @@ input.testcode:focus {
 }
 
 .hour-booked {
-    background-color: darkred;
+    background-color: grey;
 }
 
 
 .calendar-col {
-
-    max-width: 1rem;
+    width: 2.15rem;
     border-bottom: 1px solid #dee2e6;
     border-right: 1px solid #dee2e6;
 }
 
 .calendar-col-h {
-    max-width: 2rem;
+    width: 2.15rem;
     border-bottom: 1px solid #dee2e6;
     border-right: 1px solid #dee2e6;
 }
@@ -847,13 +850,130 @@ input.testcode:focus {
     margin-left: 20%;
 }
 
+.calendar-carousel > .flickity-viewport {
+    width: 47.5vw;
+}
+
 .btn-save-profile {
     border-radius: 1vh;
     background-color: #ffc107;
     font-size: 1.25rem;
-    margin-left:10vw;
+    margin-left: 17.5vw;
 }
 
-.is-change-enabled{
-    margin-left:13.5vw;
+.is-change-enabled {
+    margin-left: 13.5vw;
+}
+
+.modal-content {
+    margin-top: 50%;
+    margin-left: -50%;
+    width: 200%;
+}
+
+ol {
+    list-style-position: inside;
+    -moz-column-count: 2; /* Firefox */
+    -webkit-column-count: 2; /* Safari and Chrome */
+    column-count: 2;
+    list-style-type: decimal;
+}
+
+.rectangle-legend-map {
+    width: 2vh;
+    height: 2vh;
+}
+
+.blue {
+    background-color: #8CFFE6;
+}
+
+.green {
+    background-color: #A6FF6B;
+}
+
+.blue-text {
+    color: #8CFFE6;
+}
+
+.green-text {
+    color: #A6FF6B;
+}
+
+.h-75 {
+    height: 75% !important;
+}
+
+.walker-order-card-img {
+    width: 10vw;
+}
+
+.walker-order-card {
+    max-width: 10vw;
+}
+
+.walker-order-card-title {
+    text-align: center;
+    font-weight: 700;
+}
+
+.walker-order-card-text input {
+    width: 3vw;
+    font-size: 0.75rem;
+    margin-left: 2px;
+    margin-right: 2px;
+}
+
+.green-border {
+    border-style: solid;
+    border-spacing: 0.5vh;
+    border-color: #A6FF6B;
+    border-width: 0.75vh;
+}
+
+.blue-border {
+    border-style: solid;
+    border-color: #8CFFE6;
+    border-width: 0.75vh;
+}
+
+.walkers-panel {
+    -webkit-column-count: 3;
+    -moz-column-count: 3;
+    column-count: 3;
+}
+
+.btn-book-time {
+    background-color: #ffc107;
+}
+
+.btn-save-booking {
+    width: 25%;
+    font-size: 1rem;
+    border-radius: 2vh;
+}
+
+
+.btn-book-time:focus {
+    outline: none;
+    box-shadow: 0 0 0 0;
+}
+
+.btn-book-time.activated {
+    outline: none;
+    background-color: #8CFFE6;
+}
+
+.walking-type button:focus {
+    outline: none;
+    box-shadow: 0 0 0 0;
+}
+
+.walking-type button.activated {
+    background-color: #8CFFE6;
+    outline: none;
+}
+
+.btn-blue {
+    background-color: #8CFFE6;
 }
