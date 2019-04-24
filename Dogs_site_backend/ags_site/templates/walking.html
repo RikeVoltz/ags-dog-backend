@@ -1,6 +1,11 @@
 {% extends 'base_template.html' %}
 {% load staticfiles %}
+{% block title %} Услуги по выгулу собак в Санкт-Петербурге | АГС {% endblock %}
+{% block description %} Здесь вы можете найти цены на кинологические услуги от профессиональных и сертифицированных
+    кинологов Санкт-Петербурга{% endblock %}
 {% block content %}
+    {% include 'flags.html' %}
+    {% include 'header.html' %}
     <div class="container-fluid p-0">
         <img class="main-background" src="{% static 'images/walking-main-back.jpg' %}" alt="Фон"/>
     </div>
@@ -85,7 +90,7 @@
                     <p>Стоимость прогулки: <span class="walking-cost"></span> рублей</p>
                 </div>
                 <div class="form-row justify-content-center">
-                    <button type="submit" data-toggle="modal" data-target="#walking-order-success"
+                    <button type="submit"
                             class="btn-warning btn-save-booking" style='display:none;'>Забронировать
                         прогулку
                     </button>
@@ -172,9 +177,12 @@
                 </div>
                 <div class="modal-body justify-content-center">
                     <p>Ожидайте звонка менеджера в ближайшее время.</p>
-                    <button type="button" onclick="location.reload();" class="btn btn-blue btn-modal-order-walking-success" data-dismiss="modal">Ок</button>
+                    <button type="button" onclick="location.reload();"
+                            class="btn btn-blue btn-modal-order-walking-success" data-dismiss="modal">Ок
+                    </button>
                 </div>
             </div>
         </div>
     </div>
+    {% include 'footer.html' %}
 {% endblock %}

@@ -1,15 +1,23 @@
 {% extends 'base_template.html' %}
 {% load staticfiles %}
+{% block title %} Прайс на кинологические услуги в Санкт-Петербурге | АГС {% endblock %}
+{% block description %} Здесь вы можете найти цены на кинологические услуги от профессиональных и сертифицированных
+    кинологов Санкт-Петербурга{% endblock %}
 {% block content %}
+    {% include 'flags.html' %}
+    {% include 'header.html' %}
     <div class="container-fluid p-0">
         <img class="main-background" src="{% static 'images/price-main-back.jpg' %}" alt="Фон"/>
     </div>
     <div class="container-fluid p-0">
-        <h2 class="display-4 text-black text-center logo-title-4 mt-5">
+        <h1 class="display-4 text-black text-center my-3">
+            Прайс
+        </h1>
+        <h3 class="display-5 text-black text-center logo-title-4 mt-5">
             <a href="discounts#discounts-block">
                 Наши акции
             </a>
-        </h2>
+        </h3>
         <table class="table table-bordered table-striped price-table text-center">
             <thead class="thead-warning">
             <tr>
@@ -53,7 +61,7 @@
                 <th scope="row">6</th>
                 <td class="text-left"><a class="text-dark" href="discounts#discounts-block">Курс «Постоянный
                     клиент»</a></td>
-                <td>9 000</td>
+                <td>9000</td>
             </tr>
             <tr>
                 <th scope="row">7</th>
@@ -72,9 +80,9 @@
         <div class="row-fluid text-center mb-5">
             <span class="lead get-warning">Остерегайтесь мошенников. Оплата наличными при первом занятии.</span>
         </div>
-        <h2 class="display-4 text-black text-center logo-title">
+        <h3 class="display-5 text-black text-center logo-title">
             Дрессировка собак
-        </h2>
+        </h3>
         <table class="table table-bordered table-striped price-table text-center">
             <thead class="thead-warning">
             <tr>
@@ -144,9 +152,9 @@
         <div class="row-fluid text-center mb-5">
             <span class="lead get-warning">Остерегайтесь мошенников. Оплата наличными при первом занятии.</span>
         </div>
-        <h2 class="display-4 text-black text-center logo-title">
+        <h3 class="display-5 text-black text-center logo-title">
             Выгул
-        </h2>
+        </h3>
         <table class="table table-bordered table-striped price-table text-center">
             <thead class="thead-warning">
             <tr>
@@ -197,9 +205,9 @@
         <div class="row-fluid text-center mb-5">
             <span class="lead get-warning">Остерегайтесь мошенников. Оплата наличными при первом занятии.</span>
         </div>
-        <h2 class="display-4 text-black text-center logo-title">
+        <h3 class="display-5 text-black text-center logo-title">
             Коррекция поведения
-        </h2>
+        </h3>
         <table class="table table-bordered table-striped price-table text-center">
             <thead class="thead-warning">
             <tr>
@@ -239,9 +247,9 @@
         <div class="row-fluid text-center mb-5">
             <span class="lead get-warning">Остерегайтесь мошенников. Оплата наличными при первом занятии.</span>
         </div>
-        <h2 class="display-4 text-black text-center logo-title">
+        <h3 class="display-5 text-black text-center logo-title">
             Прочее
-        </h2>
+        </h3>
         <table class="table table-bordered table-striped price-table text-center">
             <thead class="thead-warning">
             <tr>
@@ -337,4 +345,5 @@
             <span class="lead get-warning">Остерегайтесь мошенников. Оплата наличными при первом занятии.</span>
         </div>
     </div>
+    {% include 'footer.html' %}
 {% endblock %}

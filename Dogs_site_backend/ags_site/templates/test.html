@@ -1,21 +1,24 @@
 {% extends 'base_template.html' %}
 {% load staticfiles %}
 {% block content %}
-    <div class="container-fluid text-center">
+    {% include 'flags.html' %}
+    {% include 'header.html' %}
+    <div class="container-fluid p-0 mt-12vh text-center mb-5">
         <div class="row">
-<span class="lead lead-tests">Приветствуем Вас на странице тестирования!<br/> Данный тест содержит NaN вопросов. Всё тестирование занимает NaN минут. Каждый вопрос ограничен по времени.
-Во время теста не рекомендуется использовать источники из сети Интернет, в противном случае для ответов на данные вопросы времени может быть недостаточно. Время ответа на каждый из данных вопросов варьируется от 5 до 15 секунд, блок отсчета времени расположен под вариантами ответов. Для наиболее удобного и быстрого ответа на поставленный вопрос после выбора варианта нажимайте Enter.<br/>Тестирование содержит блок A (проверка знаний пород собак), блок B (проверка знаний о поведении собак и взаимодействии с ними) и блок C (проверка профессиональной квалификации). Для успешного прохождения тестирования необходимо набрать как минимум 50% правильных ответов.<br/>Желаем Вам удачи!
+<span class="lead lead-tests mb-3">Приветствуем Вас на странице тестирования!<br/> Данный тест содержит 40 вопросов. Всё тестирование занимает около 8 минут. Каждый вопрос ограничен по времени.
+Во время теста не рекомендуется использовать источники из сети Интернет, в противном случае времени для ответов на данные вопросы может быть недостаточно. Время ответа на каждый из данных вопросов варьируется от 7 до 20 секунд, блок отсчета времени расположен в верхнем левом углу блока тестирования.<br/>Тестирование содержит блок A (проверка знаний пород собак), блок B (проверка знаний о поведении собак и взаимодействии с ними, а также проверка знаний о выгуле собак) и блок C (проверка общих знаний). Для успешного прохождения тестирования необходимо набрать как минимум 60% правильных ответов.<br/>Желаем Вам удачи!
 </span>
         </div>
-        <div class="row justify-content-center">
-            <form class="my-3 form">
-                <input aria-label="testcode" class="form-control testcode text-center" placeholder="Введите код"
-                       type="testcode">
-            </form>
-        </div>
         <div class="row tests-title justify-content-center">
-            <button class="btn btn-outline-light btn-xl" type="button">Начать тестирование</button>
+            <button class="btn btn-outline-light btn-xl btn-show-test" type="button">Начать тестирование</button>
+        </div>
+        <div class="container-fluid test-container mt-5" style="display:none;">
+            <iframe id="otpwgt-undefined49064" src="https://onlinetestpad.com/hrjcchgozxyka" frameborder="0"
+                    style="width:100%;"
+                    onload="var f = document.getElementById('otpwgt-undefined49064'); var h = 0; var listener = function (event) { if (event.origin.indexOf('onlinetestpad') == -1) { return; } h = parseInt(event.data); if (isNaN(h)) h = 400; f.style.height = h + 'px'; }; function addEvent(elem, evnt, func) { if (elem.addEventListener) { elem.addEventListener(evnt, func, false); } else if (elem.attachEvent) { elem.attachEvent('on' + evnt, func); } else { elem['on' + evnt] = func; } } addEvent(window, 'message', listener);"
+                    scrolling="no"></iframe>
         </div>
     </div>
+    {% include 'footer.html' %}
 {% endblock %}
 

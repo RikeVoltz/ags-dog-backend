@@ -1,12 +1,14 @@
 {% extends 'base_template.html' %}
 {% load staticfiles %}
 {% block content %}
+    {% include 'flags.html' %}
+    {% include 'header.html' %}
     <div class="container-fluid p-0">
         <img class="main-background" src="{% static 'images/auth.jpg' %}" alt="Фоновая картинка"/>
     </div>
-    <h2 class="display-4 text-black text-center logo-title-4 mt-3">
+    <h1 class="display-4 text-black text-center logo-title-4 mt-3">
         Мой профиль
-    </h2>
+    </h1>
     <div class="container-fluid w-80 mb-5">
         <div class="row">
             <div class="col-3 mt-3">
@@ -24,16 +26,20 @@
                 </div>
                 <div class="row h-75 flex-column justify-content-end">
                     <p class="display-4-5 ml-3">Мои районы</p>
-                    <p class="ml-3 green-text">
+                    <div class="rectangle-legend-map-small green bordered m-3">
+                    </div>
+                    <span class="ml-3">
                         {% for zone in walker.green_zones.all %}
                             {{ zone.name }},
                         {% endfor %}
-                    </p>
-                    <p class="ml-3 blue-text">
+                    </span>
+                    <div class="rectangle-legend-map-small blue bordered m-3">
+                    </div>
+                    <span class="ml-3">
                         {% for zone in walker.blue_zones.all %}
                             {{ zone.name }},
                         {% endfor %}
-                    </p>
+                    </span>
                 </div>
             </div>
             <div class="col-6 pl-0">
@@ -71,6 +77,10 @@
                                                          data-content="{{ walking.dog_owner_name }}, {{ walking.address }}, {{ walking.breed }}, {{ walking.type }} выгул"
                                                          {% endif %}id="hour-{{ forloop.counter0 }}"
                                                          class="{% if not walker.can_change_dates %}hour-disabled {% endif %}far-area col calendar-col{% if walking.dog_owner_name %} hour-booked
+
+
+
+
                                                              {% else %}{% if not walking.is_free %} hour-activated {% endif %}{% endif %}">
                                                     </div>
                                                 {% endfor %}
@@ -182,4 +192,5 @@
             </div>
         </div>
     </div>
+    {% include 'footer.html' %}
 {% endblock %}

@@ -1,15 +1,18 @@
 {% extends 'base_template.html' %}
 {% load staticfiles %}
 {% block content %}
+    {% include 'flags.html' %}
+    {% include 'header.html' %}
     <div class="container-fluid  p-0">
         <img class="main-background" src="{% static 'images/order-main-back.jpg' %}" alt="Фон"/>
     </div>
     <div class="container-fluid p-0">
-        <h2 class="display-4 text-black text-center logo-title-4 mt-5">
+        <h1 class="display-4 text-black text-center logo-title-4 mt-5">
             Сделать заказ
-        </h2>
+        </h1>
         <div class="row d-flex justify-content-center text-justify ml-4">
-            <p class="training-text mx-5 w-90">Внимание! Заказ выгула находится <a href="/walking" style="color: blue">здесь!</a></p>
+            <p class="training-text mx-5 w-90">Внимание! Заказ выгула находится <a href="/walking" style="color: blue">здесь!</a>
+            </p>
             <p class="training-text mx-5 w-90">В данном разделе Вы можете заказать акции по дрессировке и акции по
                 выгулу собак, занятия по различным
                 видами дрессировки, заказать товары или консультации. Пожалуйста, заполните контактные данные:</p>
@@ -21,4 +24,5 @@
             </iframe>
         </div>
     </div>
+    {% include 'footer.html' %}
 {% endblock %}

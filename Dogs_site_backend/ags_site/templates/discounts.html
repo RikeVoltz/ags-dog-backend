@@ -1,21 +1,23 @@
 {% extends 'base_template.html' %}
 {% load staticfiles %}
 {% block content %}
+    {% include 'flags.html' %}
+    {% include 'header.html' %}
     <div class="container-fluid p-0">
         <img class="main-background" src="{% static 'images/discounts-main-back.jpg' %}" alt="Фон"/>
     </div>
     <div class="container-fluid p-0">
-        <h2 class="display-4 text-black text-center my-3">
+        <h1 class="display-4 text-black text-center my-3">
             <a name="discounts-block"></a>
             Акции и скидки
-        </h2>
+        </h1>
         <div class="row mb-5 text-center justify-content-center">
             <div class="col-4 mr-5 bordered sale-block">
                 <div class="row justify-content-center">
                     <div class="col-auto mt-2">
                         <img class="icon-md paw-icon" src="{% static 'images/paw.svg' %}"/>
                     </div>
-                    <h3 class="display-4-5 text-black logo-title mt-2">
+                    <h3 class="display-5 mt-2">
                         Курс «Золотой пёс»
                     </h3>
                     <div class="col-auto mt-2">
@@ -38,7 +40,7 @@
                     <div class="col-auto mt-2">
                         <img class="icon-md paw-icon" src="{% static 'images/paw.svg' %}"/>
                     </div>
-                    <h3 class="display-4-5 text-black logo-title mt-2">
+                    <h3 class="display-5 mt-2">
                         Курс «Серебряный пёс»
                     </h3>
                     <div class="col-auto mt-2">
@@ -63,7 +65,7 @@
                     <div class="col-auto mt-2">
                         <img class="icon-md paw-icon" src="{% static 'images/paw.svg' %}"/>
                     </div>
-                    <h3 class="display-4-5 text-black logo-title mt-2">
+                    <h3 class="display-5 mt-2">
                         Курс «Постоянный клиент»
                     </h3>
                     <div class="col-auto mt-2">
@@ -86,7 +88,7 @@
                     <div class="col-auto mt-2">
                         <img class="icon-md paw-icon" src="{% static 'images/paw.svg' %}"/>
                     </div>
-                    <h3 class="display-4-5 text-black logo-title mt-2">
+                    <h3 class="display-5 mt-2">
                         Курс «Первые шаги»
                     </h3>
                     <div class="col-auto mt-2">
@@ -111,7 +113,7 @@
                     <div class="col-auto mt-2">
                         <img class="icon-md paw-icon" src="{% static 'images/paw.svg' %}"/>
                     </div>
-                    <h3 class="display-4-5 text-black logo-title mt-2">
+                    <h3 class="display-5 mt-2">
                         10 групповых по цене 9
                     </h3>
                     <div class="col-auto mt-2">
@@ -134,7 +136,7 @@
                     <div class="col-auto mt-2">
                         <img class="icon-md paw-icon" src="{% static 'images/paw.svg' %}"/>
                     </div>
-                    <h3 class="display-4-5 text-black logo-title mt-2">
+                    <h3 class="display-5 mt-2">
                         10 индивидуальных по цене 9
                     </h3>
                     <div class="col-auto mt-2">
@@ -159,7 +161,7 @@
                     <div class="col-auto mt-2">
                         <img class="icon-md paw-icon" src="{% static 'images/paw.svg' %}"/>
                     </div>
-                    <h3 class="display-4-5 text-black logo-title mt-2">
+                    <h3 class="display-5 mt-2">
                         5 прогулок
                     </h3>
                     <div class="col-auto mt-2">
@@ -182,7 +184,7 @@
                     <div class="col-auto mt-2">
                         <img class="icon-md paw-icon" src="{% static 'images/paw.svg' %}"/>
                     </div>
-                    <h3 class="display-4-5 text-black logo-title mt-2">
+                    <h3 class="display-5 mt-2">
                         20 прогулок
                     </h3>
                     <div class="col-auto mt-2">
@@ -202,4 +204,5 @@
             </div>
         </div>
     </div>
+    {% include 'footer.html' %}
 {% endblock %}

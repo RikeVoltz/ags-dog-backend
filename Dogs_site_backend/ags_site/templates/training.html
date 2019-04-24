@@ -1,6 +1,11 @@
 {% extends 'base_template.html' %}
 {% load staticfiles %}
+{% block title %} Услуги по дрессировке собак в Санкт-Петербурге | АГС {% endblock %}
+{% block description %} Здесь вы можете найти цены на кинологические услуги от профессиональных и сертифицированных
+    кинологов Санкт-Петербурга {% endblock %}
 {% block content %}
+    {% include 'flags.html' %}
+    {% include 'header.html' %}
     <div class="container-fluid p-0">
         <img class="main-background" src="{% static 'images/training-main-back.jpg' %}" alt="Фон"/>
     </div>
@@ -116,4 +121,5 @@
             <a class="btn btn-warning btn-training" href="/order">Заказать</a>
         </div>
     </div>
+    {% include 'footer.html' %}
 {% endblock %}

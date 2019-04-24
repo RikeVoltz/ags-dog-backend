@@ -1,27 +1,57 @@
+/*Заголовки - BewlayCyrillic, всё остальное - OpenSans*/
+
 @font-face {
     font-family: BewlayCyrillic;
     src: url("../fonts/Bewlay Br1 Cyrillic.woff") format("woff");
 }
 
+/*Хэдер*/
 
-.page-content {
-    font-family: OpenSans, serif;
-    margin-left: 5vw;
-    margin-right: 5vw;
+.arrow-up {
+    position: fixed;
+    display: none !important;
+    left: 0;
+    z-index: 5000;
 }
 
-a {
-    color: black;
+.arrow-up:hover {
+    background-color: #eeeeee;
+    cursor: pointer;
 }
 
-.navbar-brand {
-    height: auto;
+.fixed-top {
+    position: fixed;
+    padding-left: 13%;
+    padding-right: 13%;
+    background-color: white;
+    z-index: 4999;
 }
 
 .navbar-brand-logo {
     margin-top: 0.5rem;
-    width: 6vw;
+    width: 7rem;
     height: auto;
+}
+
+.nav-title {
+    font-family: BewlayCyrillic, serif;
+    font-size: 2rem;
+}
+
+.page-content {
+    font-family: OpenSans, serif;
+}
+
+@media (min-width: 1199.98px) {
+    .page-content {
+        margin-left: 5vw;
+        margin-right: 5vw;
+    }
+}
+
+
+a {
+    color: black;
 }
 
 .nav-item:hover {
@@ -37,7 +67,7 @@ a {
     border-radius: 1.5vmin;
     background-color: white;
     height: 5vh;
-    font-size: 1.25vmax;
+    font-size: 1.25rem;
 }
 
 .form-search {
@@ -58,7 +88,7 @@ a {
 }
 
 .main-background {
-    margin-top: 12vh;
+    margin-top: 12%;
     margin-left: 8.5vw;
     z-index: -1;
     height: auto;
@@ -100,32 +130,16 @@ a {
     margin-top: -1%;
 }
 
-.icon-xl {
-    width: 6vw;
-}
-
 .icon-lg {
-    width: 4.0vw;
-}
-
-.icon-md-3 {
     width: 3vw;
 }
 
-.icon-md-2 {
-    width: 3.5vw;
-}
-
 .icon-md {
-    width: 2vw;
+    width: 2rem;
 }
 
 .icon-sm {
-    width: 1.5vw;
-}
-
-.icon-sm-2 {
-    width: 1.75vw;
+    width: 1.5rem;
 }
 
 .icon-xs {
@@ -207,15 +221,14 @@ a {
     padding-bottom: 15vh;
 }
 
-.nav-title {
-    font-family: BewlayCyrillic, serif;
-    margin-bottom: -1rem;
-    font-size: 3vmin;
-}
-
 .display-4 {
     font-family: BewlayCyrillic, serif;
 }
+
+.display-5 {
+    font-family: BewlayCyrillic, serif;
+}
+
 
 .logo-title-3 {
     font-family: BewlayCyrillic, serif;
@@ -243,18 +256,6 @@ input.testcode:focus {
 
 .h-85 {
     height: 85% !important;
-}
-
-.zone-arrow-up {
-    position: fixed;
-    display: none !important;
-    left: 1%;
-    z-index: 5000;
-}
-
-.zone-arrow-up:hover {
-    background-color: #eeeeee;
-    cursor: pointer;
 }
 
 .far-area:hover {
@@ -362,7 +363,7 @@ input.testcode:focus {
 
 .training-text {
     max-width: 75vw;;
-    font-size: 1.25vw;
+    font-size: 1.25rem;
 }
 
 .btn-training {
@@ -423,6 +424,23 @@ input.testcode:focus {
     padding: 15vh;
     background-image: url('../images/tests-main-back.jpg');
     z-index: 1001;
+    width: 80%;
+    margin-left: 10%;
+}
+
+.tests-interesting-title {
+    border-radius: 2vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    padding: 15vh;
+    z-index: 1001;
+    width: 80%;
+    margin-left: 11%;
+}
+
+.tests-interesting-title#title-1 {
+    background-image: url('../images/tests_interesting_1.jpg');
 }
 
 .tests-title > .btn {
@@ -509,7 +527,6 @@ input.testcode:focus {
 .display-4-5 {
     font-size: 2.25rem;
     font-weight: 300;
-    line-height: 1.2;
 }
 
 .text-black {
@@ -609,13 +626,13 @@ input.testcode:focus {
 }
 
 .why-us-card {
-    font-size: 1.2vw;
+    font-size: 1.2rem;
     max-width: 34vh;
     text-align: center !important;
-    background-color: #78e1ff;
-    margin-bottom: 3vh;
-    margin-top: 3vh;
+    margin-bottom: 0;
+    margin-top: 1.5vh;
     border-radius: 3vh;
+    border-width: 0;
 }
 
 .mb-6 {
@@ -623,8 +640,8 @@ input.testcode:focus {
 }
 
 .why-us-card-img {
-    width: 8vw;
-    height: 10vh;
+    width: 9.6vw;
+    height: 12vh;
     padding: 2vh;
 }
 
@@ -662,21 +679,6 @@ input.testcode:focus {
 .logo-title-5 {
     font-family: BewlayCyrillic, serif;
     margin-top: 10vh;
-}
-
-.back-orange {
-    background-color: white;
-}
-
-.city {
-    font-size: 1.25vw;
-}
-
-.fixed-top {
-    position: fixed;
-    padding-left: 13.5vw;
-    padding-right: 12vw;
-    z-index: 5000;
 }
 
 .mb-2-5 {
@@ -736,31 +738,31 @@ input.testcode:focus {
     position: fixed;
     color: black;
     border-radius: 2vh 2vh 0 0;
-    font-size: 0.9vw;
-    left: 94vw;
-    width: 10vw;
-    height: 6vh;
+    font-size: 1rem;
+    left: 94%;
+    width: 10rem;
+    height: 3rem;
     text-align: center;
     z-index: 1030;
 }
 
 .fixed-order-training {
-    top: 17.5%;
+    top: 20%;
     background-color: #78e1ff;
 }
 
 .fixed-become-walker {
-    top: 77.5%;
+    top: 87.5%;
     background-color: #ffc107;
 }
 
 .fixed-order-walking {
-    top: 37.5%;
+    top: 42.5%;
     background-color: #ffc107;
 }
 
 .fixed-profile {
-    top: 57.5%;
+    top: 65%;
     background-color: #78e1ff;
 }
 
@@ -846,7 +848,7 @@ input.testcode:focus {
     margin-left: 5vw;
 }
 
-.flickity-prev-next-button.previous {
+.calendar-carousel > .flickity-prev-next-button.previous {
     margin-left: 20%;
 }
 
@@ -882,6 +884,11 @@ ol {
 .rectangle-legend-map {
     width: 2vh;
     height: 2vh;
+}
+
+.rectangle-legend-map-small {
+    width: 1.5vh;
+    height: 1.5vh;
 }
 
 .blue {
@@ -976,4 +983,15 @@ ol {
 
 .btn-blue {
     background-color: #8CFFE6;
+}
+
+.mt-12vh {
+    margin-top: 12vh;
+}
+
+.why-us-card-title {
+    height: 5vh;
+    font-family: BewlayCyrillic, sans-serif;
+    font-weight: 500;
+    font-size: 1.5rem;
 }

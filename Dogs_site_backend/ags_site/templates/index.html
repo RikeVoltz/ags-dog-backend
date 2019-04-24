@@ -1,15 +1,17 @@
 {% extends 'base_template.html' %}
 {% load staticfiles %}
 {% block content %}
+    {% include 'flags.html' %}
+    {% include 'header.html' %}
     <div class="container-fluid whole-window d-flex justify-content-center">
         <video autoplay class="main-video" loop muted>
             <source src="{% static 'videos/main.mp4' %}" type="video/mp4">
         </video>
     </div>
-    <div class="container-fluid whole-window text-center">
-        <h2 class="display-4 text-black logo-title-2">
+    <div class="container-fluid whole-window text-center d-flex flex-column align-items-center">
+        <h1 class="display-4 text-black logo-title-2">
             Добро пожаловать в нашу Ассоциацию Грамотного Собаководства!
-        </h2>
+        </h1>
         <div class="row d-flex justify-content-center text-justify">
             <p class="w-80 training-text mx-5">Наша команда сформировалась благодаря большой любви к собакам,
                 накопленному за многие годы опыту, жажде продвижения в кинологической сфере и вопиющей несправедливости
@@ -131,58 +133,66 @@
         </div>
     </div>
     <div class="container-fluid whole-window">
-        <h2 class="display-4 text-dark text-center mt-5 logo-title">
+        <h2 class="display-4 text-black text-center mt-5 logo-title">
             Почему именно наша команда?
         </h2>
-        <div class="card-deck justify-content-center">
+        <div class="card-deck justify-content-center mb-n3">
             <div class="card why-us-card">
                 <img class="card-img-top why-us-card-img align-self-center" src="{% static 'images/handshake.svg' %}"/>
+                <h5 class="card-title why-us-card-title">Профессиональная дрессировка и качественный выгул</h5>
                 <div class="card-body">
-                    <span class="card-text">Наша команда готова Вам помочь в сфере классической и трюковой дрессировки, мы с удовольствием выгуляем Вашу собаку и дадим Вам емкую консультацию по воспитанию питомца!</span>
+                    <span class="card-text why-us-card-text">Наша команда поможет Вам в сфере классической и трюковой дрессировки, мы выгуляем Вашу собаку и дадим Вам емкую консультацию по воспитанию питомца!</span>
                 </div>
             </div>
             <div class="card why-us-card">
                 <img class="card-img-top why-us-card-img align-self-center" src="{% static 'images/student.svg' %}"/>
+                <h5 class="card-title why-us-card-title">Грамотный персонал</h5>
                 <div class="card-body">
-                    <span class="card-text">Каждый инструктор и вокер АГС прошел необходимую тщательную подготовку и совершенствуется в сфере собаководства каждый день.</span>
+                    <span class="card-text">Каждый инструктор и волкер АГС прошел необходимую подготовку у кинолога и совершенствуется в сфере собаководства каждый день.</span>
                 </div>
             </div>
             <div class="card why-us-card">
                 <img class="card-img-top why-us-card-img align-self-center" src="{% static 'images/love.svg' %}"/>
+                <h5 class="card-title why-us-card-title">Бесконфликтный метод дрессировки</h5>
                 <div class="card-body">
-                    <span class="card-text">Наша команда использует метод бесконфликтной дрессировки, наши специалисты никогда не кричат на собаку, не дергают ее за поводок, не применяют грубость и работают только с положительным настроем!</span>
+                    <span class="card-text">Наши специалисты никогда не кричат на собаку, знают как выйти из любой затруднительной ситуации и никогда не применяют грубость.</span>
                 </div>
             </div>
             <div class="card why-us-card">
                 <img class="card-img-top why-us-card-img align-self-center" src="{% static 'images/money_pig.svg' %}"/>
+                <h5 class="card-title why-us-card-title">Низкие цены</h5>
                 <div class="card-body">
-                    <span class="card-text">Качественные услуги по низким ценам — воспитанная собака доступна каждому!</span>
+                    <span class="card-text">Качественные кинологические услуги по выгодной стоимости — воспитанная собака доступна каждому!</span>
                 </div>
             </div>
         </div>
         <div class="card-deck justify-content-center">
             <div class="card why-us-card">
                 <img class="card-img-top why-us-card-img align-self-center" src="{% static 'images/smile.svg' %}"/>
+                <h5 class="card-title why-us-card-title">Лучшая команда</h5>
                 <div class="card-body">
                     <span class="card-text">Наша команда не пьет, не курит, и ведет здоровый образ жизни. С нами приятно иметь дело, ведь каждый наш сотрудник проходит предварительный отбор и квалифицированное обучение.</span>
                 </div>
             </div>
             <div class="card why-us-card">
                 <img class="card-img-top why-us-card-img align-self-center" src="{% static 'images/all-call.svg' %}"/>
+                <h5 class="card-title why-us-card-title">Услуги по всему городу</h5>
                 <div class="card-body">
-                    <span class="card-text">Мы работаем по всему Санкт-Петербургу и в городе Пушкине</span>
+                    <span class="card-text">Мы работаем в каждом районе Санкт-Петербурга и в городе Пушкине.</span>
                 </div>
             </div>
             <div class="card why-us-card">
                 <img class="card-img-top why-us-card-img align-self-center" src="{% static 'images/sale.svg' %}"/>
+                <h5 class="card-title why-us-card-title">Акции и скидки</h5>
                 <div class="card-body">
-                    <span class="card-text">В нашем клубе постоянные акции и скидки!</span>
+                    <span class="card-text">В нашем кинологическом клубе мы предоставляем выгодные акции и большие скидки!</span>
                 </div>
             </div>
             <div class="card why-us-card">
                 <img class="card-img-top why-us-card-img align-self-center" src="{% static 'images/pet-24-7.svg' %}"/>
+                <h5 class="card-title why-us-card-title">Мы любим собак</h5>
                 <div class="card-body">
-                    <span class="card-text">Наш девиз — грамотное и гуманное воспитание изо дня в день</span>
+                    <span class="card-text">Наш девиз — грамотное и гуманное воспитание изо дня в день!</span>
                 </div>
             </div>
         </div>
@@ -206,4 +216,5 @@
             </div>
         </div>
     </div>
+    {% include 'footer.html' %}
 {% endblock %}

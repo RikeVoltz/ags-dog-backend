@@ -1,13 +1,15 @@
 {% extends 'base_template.html' %}
 {% load staticfiles %}
 {% block content %}
+    {% include 'flags.html' %}
+    {% include 'header.html' %}
     <div class="container-fluid p-0">
         <img class="main-background" src="{% static 'images/consultation-main-back.png' %}" alt="Фоновая картинка"/>
     </div>
     <div class="container-fluid p-0">
-        <h2 class="display-4 text-black text-center my-3">
+        <h1 class="display-4 text-black text-center my-3">
             Консультации
-        </h2>
+        </h1>
         <div class="row d-flex justify-content-center text-justify ml-4">
             <p class="training-text mx-5 w-90">Мы предлагаем грамотную емкую консультацию по интересующим Вас вопросам.
                 Спросите нас, и мы ответим, почему собака рычит на Вас, крушит квартиру, бросается на других питомцев,
@@ -22,4 +24,5 @@
             <a class="btn btn-warning btn-training" href="#">Заказать</a>
         </div>
     </div>
+    {% include 'footer.html' %}
 {% endblock %}

@@ -1,137 +1,16 @@
-<!DOCTYPE html>
+{% extends 'base_template.html' %}
 {% load staticfiles %}
-<html lang="ru">
-<head>
-    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
-    <link href="{% static 'images/logo.ico' %}" rel="icon">
-    <script src="{% static 'js/jquery.min.js' %}"></script>
-    <script src="{% static 'js/popper.min.js' %}"></script>
-    <script src="{% static 'js/bootstrap.min.js' %}"></script>
-    <link href="{% static 'css/flickity.min.css' %}" rel="stylesheet">
-    <script src="{% static 'js/flickity.pkgd.min.js' %}"></script>
-    <script src="{% static 'js/main.js' %}"></script>
-    <link href="{% static 'css/font-awesome.all.css' %}" rel="stylesheet">
-    <link href="{% static 'css/main.css' %}" rel="stylesheet">
-    <title>АГС</title>
-</head>
-<body>
-<div class="page-content">
-    <div class="px-4 zone-arrow-up h-100 d-flex">
-        <img alt="Вверх" class="arrow-up align-self-center" src="{% static 'images/arrow.svg' %}"/>
-    </div>
-    <div class="container-fluid p-0 h-100">
-        <header>
-            <div class="container-fluid fixed-top back-orange">
-                <div class="row">
-                    <div class="col-auto navbar-brand back-orange m-0">
-                        <img alt="Логотип" class="navbar-brand-logo" src="{% static 'images/logo.svg' %}"/>
-                    </div>
-                    <div class="col mx-5 px-0">
-                        <div class="row d-flex justify-content-end">
-                            <div class="col">
-                                <h2 class="display-5 text-black mt-2 nav-title">
-                                    Ассоциация Грамотного Собаководства
-                                </h2>
-                            </div>
-                            <div class="col-auto d-flex align-items-center">
-                                <a href="mailto:anna171097@mail.ru">
-                                    <img alt="Электронная почта" class="icon-sm-2 my-2"
-                                         src="{% static 'images/letter.svg' %}"/>
-                                </a>
-                            </div>
-                            <div class="col-auto px-2 d-flex align-items-center">
-                                <a href="https://www.instagram.com/agssobaka/?hl=ru" target="_blank">
-                                    <img alt="ВКонтакте" class="icon-sm ml-n2 my-2"
-                                         src="{% static 'images/instagram.svg' %}"/>
-                                </a>
-                            </div>
-                            <div class="col-auto px-2 d-flex align-items-center">
-                                <a href="https://vk.com/id126566360" target="_blank">
-                                    <img alt="ВКонтакте" class="icon-md ml-n2 my-2" src="{% static 'images/vk.svg' %}"/>
-                                </a>
-                            </div>
-                            <div class="col-auto px-0 d-flex align-items-center">
-                                <img alt="Город" class="icon-xs m-2" src="{% static 'images/balloon.svg' %}"/>
-                                <span class="city">г. Санкт-Петербург</span>
-                            </div>
-                            <div class="col-1-auto pr-3 d-flex align-items-center">
-                                <a href="tel:+79516547277">
-                                    <img alt="Телефон" class="icon-xs m-2" src="{% static 'images/phone.svg' %}"/>
-                                </a>
-                                <span class="city">+7 (951) 654-72-77</span>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="nav-item col d-flex align-items-center align-self-start">
-                                <a class="nav-link text-center w-100" href="index">Главная </a>
-                            </div>
-                            <div class="nav-item col d-flex align-items-center dropdown align-self-start">
-                                <a class="nav-link text-center w-100">
-                                    <span class="caret"></span>
-                                    О нас
-                                </a>
-                                <div class="dropdown-menu py-0">
-                                    <div class="dropdown-menu-after"></div>
-                                    <a class="dropdown-item d-flex justify-content-center" href="#">Наши специалисты</a>
-                                    <a class="dropdown-item d-flex justify-content-center" href="walking">История
-                                        создания</a>
-                                    <a class="dropdown-item d-flex justify-content-center" href="#">Новости</a>
-                                    <a class="dropdown-item d-flex justify-content-center"
-                                       href="interesting">Интересное</a>
-                                    <a class="dropdown-item d-flex justify-content-center" href="#">Фотогалерея</a>
-                                </div>
-                            </div>
-                            <div class="nav-item col d-flex align-items-center align-self-start dropdown">
-                                <a class="nav-link text-center w-100">
-                                    <span class="caret"></span>
-                                    Услуги
-                                </a>
-                                <div class="dropdown-menu py-0">
-                                    <div class="dropdown-menu-after"></div>
-                                    <a class="dropdown-item d-flex justify-content-center" href="training">Дрессировка
-                                        собак</a>
-                                    <a class="dropdown-item d-flex justify-content-center" href="walking">Выгул
-                                        собак</a>
-                                    <a class="dropdown-item d-flex justify-content-center" href="#">Консультации</a>
-                                    <a class="dropdown-item d-flex justify-content-center disabled" href="#">Курсинг</a>
-                                    <a class="dropdown-item d-flex justify-content-center disabled"
-                                       href="#">Фотография</a>
-                                </div>
-                            </div>
-                            <div class="nav-item col d-flex align-items-center align-self-start">
-                                <a class="nav-link text-center w-100" href="discounts">Акции</a>
-                            </div>
-                            <div class="nav-item col d-flex align-items-center align-self-start">
-                                <a class="nav-link text-center w-100" href="shop">Товары </a>
-                            </div>
-                            <div class="nav-item col d-flex align-items-center align-self-start">
-                                <a class="nav-link align-middle text-center w-100" href="price">Прайс</a>
-                            </div>
-                            <div class="nav-item col d-flex align-items-center align-self-start">
-                                <a class="nav-link text-center w-100" href="contacts">Контакты</a>
-                            </div>
-                            <div class="d-flex align-items-center form-search">
-                                <form class=" form-inline pr-3">
-                                    <input aria-label="Search" class="form-control" placeholder="Ключевое слово"
-                                           type="search">
-                                    <button class="btn btn-dark" type="submit">Поиск</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </header>
-    </div>
-    {% load staticfiles %}
+{% block content %}
+    {% include 'flags.html' %}
+    {% include 'header.html' %}
     <div class="container-fluid p-0">
-        <h2 class="display-4 text-black text-center logo-title-5">
+        <h1 class="display-4 text-black text-center logo-title-5">
             Наши контакты
-        </h2>
-        <div class="container mb-4 bordered w-40 contacts-container">
-            <h2 class="display-4-5 text-black logo-title-4 text-center mt-2">
+        </h1>
+        <div class="container mb-4 bordered w-40 contacts-container text-center">
+            <span class="display-4-5 text-black logo-title-4 text-center mt-2">
                 Ассоциация Грамотного Собаководства
-            </h2>
+            </span>
             <div class="row ml-2 my-2">
                 <div class="col-lg-10">
                     <div class="row justify-content-between">
@@ -151,7 +30,7 @@
                     </div>
                 </div>
                 <div class="col p-0">
-                    <img class="icon-md-3 mt-1 mx-4 p-0" src="{% static 'images/balloon-2.svg' %}"/>
+                    <img class="icon-lg mt-1 mx-4 p-0" src="{% static 'images/balloon-2.svg' %}"/>
                 </div>
             </div>
         </div>
@@ -198,6 +77,4 @@
     <div class="row-copyright d-flex align-items-end">
         <span class="copyright">© 2019 AGSdog</span>
     </div>
-</div>
-</body>
-</html>
+{% endblock %}
