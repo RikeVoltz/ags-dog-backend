@@ -75,8 +75,8 @@ class Walker(Model):
         cur_month_days_amount = get_cur_month_days_amount()
         next_month_days_amount = get_cur_month_days_amount(is_next_month=True)
         walking_dates = list(self.walkingdate_set.get_queryset())
-        cur_month_walking_dates = map(lambda date: not date.month, walking_dates)
-        next_month_walking_dates = map(lambda date: date.month, walking_dates)
+        cur_month_walking_dates = [date for date in walking_dates if not date.month]
+        next_month_walking_dates = [date for date in walking_dates if date.month]
         cur_month = self._get_structured_walking_dates(cur_month_days_amount, cur_month_walking_dates)
         next_month = self._get_structured_walking_dates(next_month_days_amount, next_month_walking_dates)
         cur_month = cut_into_weeks(cur_month)

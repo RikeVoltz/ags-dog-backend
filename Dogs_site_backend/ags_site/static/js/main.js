@@ -14,16 +14,88 @@ function applyCSRFTokenToAjaxRequests() {
 }
 
 function onDistrictSelectAjaxSuccessHandler(data) {
+    let date_select = $('.date-select');
     data = $.parseJSON(data);
     if (data.length === 0) {
+        date_select.hide();
         $('.order-by-time-form').append('<span class="no-walkers-warning" style="color:red">К сожалению, в данном районе пока нет выгульщиков. Пожалуйста, выберите другой район</span>')
     } else {
         date_select.append('<option value="" disabled selected style=\'display:none;\'>Выберите из списка</option>');
         $(data).each(function () {
             $('.date-select').append(`<option value="${this}">${this}</option>`);
         });
-        $('.date-select').show();
+        date_select.show();
     }
+}
+
+function createWalkerCards(walkers_data, is_blue) {
+    let popup_message = (is_blue) ? 'Данный волкер находится далеко от выбранного Вами района' : 'Данный волкер находится рядом с выбранным Вами районом';
+    $(walkers_data).each(function () {
+            let hours = '';
+            $(this.hours).each(function () {
+                hours += `<input type="button" class="btn btn-book-time p-0" value="${this}">`;
+            });
+            $('.walkers-panel').append(`<div id="${this.walker_id}" data-toggle="popover" data-placement="left"` +
+                ` data-container="body"  data-content="${popup_message}"` +
+                ` class="card walker-order-card ${(is_blue) ? 'blue' : 'green'}-walker"><img src="/media/${this.photo}" class="card-img-top walker-order-card-img img-fluid ${(is_blue) ? 'blue' : 'green'}-border" alt="...">` +
+                `<div class="card-body"><h5 class="card-title walker-order-card-title">${this.name}</h5>` +
+                `<div class="card-text walker-order-card-text d-flex justify-content-center">${hours}</div></div>` +
+                `</div>`);
+        }
+    );
+}
+
+function changeCost() {
+    let cost = 0;
+    let bookTimeBtnActivated = $('.btn-book-time.activated');
+    if (bookTimeBtnActivated.parents('.walker-order-card').hasClass('green-walker'))
+        cost = 300;
+    else
+        cost = 450;
+    if ($('.walking-type button.activated').text() === 'Активный')
+        cost += 50;
+    $('.walking-cost').text(cost * bookTimeBtnActivated.length);
+}
+
+function onClickBookedTimeBtnHandler() {
+    if (!$(this).hasClass('not-click')) {
+        $(this).toggleClass('activated');
+        let bookTimeBtnActivated = $('.btn-book-time.activated');
+        if (bookTimeBtnActivated.length === 0) {
+            $('.btn-book-time.not-click').removeClass('not-click');
+            $('.walking-type').hide();
+            $('.btn-save-booking').hide();
+            $('.walking-type button.activated').removeClass('activated');
+            $('.row-cost-walking').hide();
+        } else {
+            $('.btn-book-time').addClass('not-click');
+            $(this).parent().children().removeClass('not-click');
+            $('.walking-type').show();
+            changeCost();
+        }
+    }
+}
+
+function onDataSelectAjaxSuccessHandler(data) {
+    let walker_panels = $('.walkers-panel');
+    data = $.parseJSON(data);
+    walker_panels.empty();
+    createWalkerCards(data[0], false);
+    createWalkerCards(data[1], true);
+    $('.walker-order-card').hover(function () {
+            $(this).popover('show');
+        }, function () {
+            $(this).popover('hide');
+        },
+    );
+    $('.btn-book-time').on('click', onClickBookedTimeBtnHandler);
+    walker_panels.show();
+    $('.walking-order-contacts').show();
+    $('.btn-save-booking').hide();
+    $('.row-cost-walking').hide();
+    $('.walking-type').hide();
+    $('.btn-book-time.activated').removeClass('activated');
+    $('.walking-type button.activated').removeClass('activated');
 }
 
 
@@ -35,7 +107,6 @@ $(document).ready(function () {
     let no_walker_warning = $('.no-walkers-warning');
     let walking_type = $('.walking-type');
     let walking_cost = $('.row-cost-walking');
-    let booked_time_btn = $('.btn-book-time.activated');
     let walking_type_activated_btn = $('.walking-type button.activated');
     let walking_order_contacts = $('.walking-order-contacts');
     let btn_save_booking = $('.btn-save-booking');
@@ -49,8 +120,8 @@ $(document).ready(function () {
     });
 
     district_select.on('change', function () {
+        $('.walker-order-card').popover('hide');
         date_select.empty();
-        date_select.hide();
         walkers_panel.empty();
         walkers_panel.hide();
         walking_order_contacts.hide();
@@ -68,117 +139,16 @@ $(document).ready(function () {
     });
 
     date_select.on('change', function () {
-        walkers_panel.empty();
-        walkers_panel.hide();
-        walking_order_contacts.hide();
-        no_walker_warning.hide();
-        walking_type_activated_btn.removeClass('activated');
-        walking_type.hide();
-        walking_cost.hide();
-        btn_save_booking.hide();
+        $('.walker-order-card').popover('hide');
         $.ajax({
             type: "POST",
             url: '/walking/',
             data: {'walking_zone': district_select.val(), 'day_month': $(this).val()},
-            success: function (data) {
-                data = $.parseJSON(data);
-                $(data[0]).each(function () {
-                    let hours = '';
-                    $(this.hours).each(function () {
-                        hours += `<input type="button" class="btn btn-book-time p-0" value="${this}">`;
-                    });
-                    $('.walkers-panel').append(`<div id="${this.walker_id}" data-toggle="popover" data-placement="left"` +
-                        ` data-container="body"  data-content="Данный волкер находится рядом с выбранным Вами районом"` +
-                        ` class="card walker-order-card green-walker"><img src="/media/${this.photo}" class="card-img-top walker-order-card-img img-fluid green-border" alt="...">` +
-                        `<div class="card-body"><h5 class="card-title walker-order-card-title">${this.name}</h5>` +
-                        `<div class="card-text walker-order-card-text d-flex justify-content-center">${hours}</div></div>` +
-                        `</div>`);
-                });
-                $(data[1]).each(function () {
-                    let hours = '';
-                    $(this.hours).each(function () {
-                        hours += `<input type="button" class="btn btn-book-time p-0" value="${this}">`;
-                    });
-                    $('.walkers-panel').append(`<div id="${this.walker_id}" data-toggle="popover" data-placement="left"` +
-                        ` data-container="body"  data-content="Данный волкер находится далеко от выбранного Вами района"` +
-                        ` class="card walker-order-card blue-walker"><img src="/media/${this.photo}" class="card-img-top walker-order-card-img img-fluid blue-border" alt="...">` +
-                        `<div class="card-body"><h5 class="card-title walker-order-card-title">${this.name}</h5>` +
-                        `<div class="card-text walker-order-card-text d-flex justify-content-center">${hours}</div></div>` +
-                        `</div>`);
-                });
-                $('.walker-order-card').on("mouseover", function () {
-                    $(this).popover('show');
-                });
-
-                $('.walker-order-card').on("mouseout", function () {
-                    $(this).popover('hide');
-                });
-                $('.btn-book-time').on('click', function () {
-                    if (!$(this).hasClass('activated')) {
-                        $(this).addClass('activated');
-                        $('.walking-type').show();
-                        if ($(this).parents('.walker-order-card').hasClass('green-walker')) {
-                            if ($('.walking-type button.activated').text() === 'Классический') {
-                                $('.walking-cost').text(300 * $('.btn-book-time.activated').length);
-                            } else {
-                                $('.walking-cost').text(350 * $('.btn-book-time.activated').length);
-                            }
-                        } else if ($(this).parents('.walker-order-card').hasClass('blue-walker')) {
-                            if ($('.walking-type button.activated').text() === 'Классический') {
-                                $('.walking-cost').text(450 * $('.btn-book-time.activated').length);
-                            } else {
-                                $('.walking-cost').text(500 * $('.btn-book-time.activated').length);
-                            }
-                        }
-                    } else {
-                        $(this).removeClass('activated');
-                        if ($('.btn-book-time.activated').length === 0) {
-                            $('.walking-type').hide();
-                            $('.btn-save-booking').hide();
-                            $('.walking-type button.activated').removeClass('activated');
-                            $('.row-cost-walking').hide();
-                        } else {
-                            if ($(this).parents('.walker-order-card').hasClass('green-walker')) {
-                                if ($('.walking-type button.activated').text() === 'Классический') {
-                                    $('.walking-cost').text(300 * $('.btn-book-time.activated').length);
-                                } else {
-                                    $('.walking-cost').text(350 * $('.btn-book-time.activated').length);
-                                }
-                            } else if ($(this).parents('.walker-order-card').hasClass('blue-walker')) {
-                                if ($('.walking-type button.activated').text() === 'Классический') {
-                                    $('.walking-cost').text(450 * $('.btn-book-time.activated').length);
-                                } else {
-                                    $('.walking-cost').text(500 * $('.btn-book-time.activated').length);
-                                }
-                            }
-                        }
-                    }
-                });
-                $('.walkers-panel').show();
-                $('.walking-order-contacts').show();
-                $('.btn-save-booking').hide();
-                $('.row-cost-walking').hide();
-                $('.walking-type').hide();
-                $('.btn-book-time.activated').removeClass('activated');
-                $('.walking-type button.activated').removeClass('activated');
-            },
+            success: onDataSelectAjaxSuccessHandler
         });
     });
 
     $('.walking-type button').on('click', function () {
-        if ($('.btn-book-time.activated').parents('.walker-order-card').hasClass('green-walker')) {
-            if ($(this).text() === 'Классический') {
-                $('.walking-cost').text(300 * $('.btn-book-time.activated').length);
-            } else {
-                $('.walking-cost').text(350 * $('.btn-book-time.activated').length);
-            }
-        } else if ($('.btn-book-time.activated').parents('.walker-order-card').hasClass('blue-walker')) {
-            if ($(this).text() === 'Классический') {
-                $('.walking-cost').text(450 * $('.btn-book-time.activated').length);
-            } else {
-                $('.walking-cost').text(500 * $('.btn-book-time.activated').length);
-            }
-        }
         if (!$(this).hasClass('activated')) {
             $('.walking-type button.activated').removeClass('activated');
             $(this).addClass('activated');
@@ -191,6 +161,7 @@ $(document).ready(function () {
                 $('.row-cost-walking').hide();
             }
         }
+        changeCost();
     });
 
     $('.map-pop').on('click', function () {
@@ -237,7 +208,7 @@ $(document).ready(function () {
             scrollTop: 0
         }, 600);
     });
-    $(".walker-img").on("mouseover mouseout", function () {
+    $(".walker-img").hover(function () {
         let tmp = $(this).attr('src');
         $(this).attr('src', $(this).attr('data-alter-img'));
         $(this).attr('data-alter-img', tmp);
@@ -276,9 +247,8 @@ function onDropdownHoverHandler() {
 
 function serializeWalkingDates(walking_dates) {
     let serialized = "";
-    for (let [day, hours] of walking_dates) {
+    for (let [day, hours] of walking_dates)
         serialized += `${day}-${hours.join(',')};`;
-    }
     return serialized;
 }
 

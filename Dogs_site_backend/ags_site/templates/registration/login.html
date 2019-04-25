@@ -1,6 +1,8 @@
 {% extends 'base_template.html' %}
 {% load staticfiles %}
 {% block content %}
+    {% include 'flags.html' %}
+    {% include 'header.html' %}
     <div class="container-fluid p-0">
         <img class="main-background" src="{% static 'images/auth.jpg' %}" alt="Фоновая картинка"/>
     </div>
@@ -36,4 +38,5 @@
             <input type="hidden" name="next" value="{{ next }}"/>
         </form>
     </div>
+    {% include 'footer.html' %}
 {% endblock %}

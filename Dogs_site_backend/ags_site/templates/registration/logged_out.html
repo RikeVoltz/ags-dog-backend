@@ -1,6 +1,8 @@
 {% extends 'base_template.html' %}
 {% load staticfiles %}
 {% block content %}
+    {% include 'flags.html' %}
+    {% include 'header.html' %}
     <div class="container-fluid p-0">
         <img class="main-background" src="{% static 'images/auth.jpg' %}" alt="Фоновая картинка"/>
     </div>
@@ -9,4 +11,5 @@
             Спасибо, что были на нашем сайте!
         </h2>
     </div>
+    {% include 'footer.html' %}
 {% endblock %}

@@ -30,7 +30,7 @@ def _get_structured_walkers(walkers):
 
 
 def _get_walkers(is_blue, month, day, walking_zone_id):
-    main_query = Q(month=month, day=day, dog_owner_name__ne='', address__ne='')
+    main_query = Q(month=month, day=day, dog_owner_name='', address='')
     if is_blue:
         sub_query = Q(walker__blue_zones__id=walking_zone_id)
     else:
@@ -51,7 +51,7 @@ def _get_formatted_days(days, cur_month):
 
 
 def _get_days(now, cur_month_days, walking_zone_id):
-    main_query = Q(dog_owner_name__ne='', address__ne='')
+    main_query = Q(dog_owner_name__gt='', address__gt='')
     two_weeks_day_query = Q(month=False, day__gte=now.day) | Q(month=True, day__lt=14 - (cur_month_days - now.day))
     walking_zones_query = Q(walker__green_zones__id=walking_zone_id) | Q(walker__blue_zones__id=walking_zone_id)
     days = WalkingDate.objects.filter(main_query & two_weeks_day_query & walking_zones_query).values('day', 'month')
