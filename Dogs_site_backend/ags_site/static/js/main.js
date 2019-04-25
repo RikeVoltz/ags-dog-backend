@@ -216,28 +216,10 @@ $(document).ready(function () {
         );
     });
 
-    $('.walking-dates-form').submit(function (event) {
-        let walking_dates = new Map();
-        $('.hour-activated').each(function () {
-            let cur_month_days = parseInt($('.calendar-carousel-cell:first >.container> .calendar-row:last > .calendar-col-h:first-child').text());
-            let hour = parseInt(this.id.split('-')[1]);
-            let day = parseInt($(this).parents('.calendar-row').prop('id').split('-')[1]);
-            let month = parseInt($(this).parents('.calendar-carousel-cell').prop('id').split('-')[1]);
-            let idx = cur_month_days * month + day - 1;
-            if (walking_dates.has(idx)) {
-                let tmp = walking_dates.get(idx);
-                tmp.push(hour + 7);
-                walking_dates.set(idx, tmp);
-            } else
-                walking_dates.set(idx, [hour + 7]);
-
-        });
-        let res = "";
-        for (let [day, hours] of walking_dates) {
-            res += `${day}-${hours.join(',')};`;
-        }
-        $('#id_walking_dates').val(res);
-
+    $('.walking-dates-form').submit(function () {
+        let walking_dates = getWalkingDatesMap();
+        let serialized_walking_dates = serializeWalkingDates(walking_dates);
+        $('#id_walking_dates').val(serialized_walking_dates);
     });
 
     $('.main-photos-carousel').flickity({
@@ -265,35 +247,12 @@ $(document).ready(function () {
         $(this).attr('data-alter-img', tmp);
     });
 
-    $(".blacker").on("mouseover", function () {
-        if (!$(this).hasClass("activated")) {
-            if ($(this).children(".main-table-col").hasClass("main-table-col-down")) {
-                $(this).children(".main-table-col").stop(false, false).animate({opacity: 0.2}, 500);
-                $(this).children(".blacker-text").stop(false, false).animate({"margin-top": "37vh"}, 500);
-            } else {
-                $(this).children(".main-table-col").stop(false, false).animate({opacity: 0.2}, 500);
-                $(this).children(".blacker-text").stop(false, false).animate({"margin-top": "-37vh"}, 500);
-            }
-            $(this).addClass("activated");
-            $(this).find(".blacker-btn").stop(false, false).animate({"z-index": 2000}, 300);
-        }
-    });
-
-    $(".blacker").on("mouseout", function () {
-        if ($(this).hasClass("activated")) {
-            $(this).children(".main-table-col").stop(false, false).animate({opacity: 1}, 500);
-            $(this).children(".blacker-text").stop(false, false).animate({"margin-top": "0vh"}, 500);
-            $(this).removeClass("activated");
-            $(this).find(".blacker-btn").stop(false, false).animate({"z-index": -1}, 300);
-        }
-    });
+    $(".blacker").hover(blackerMouseoverHandler, blackerMouseoutHandler);
 
     $(".far-area").on("mouseover", function () {
-        $(this).popover('show');
-    });
-
-    $(".far-area").on("mouseout", function () {
-        $(this).popover('hide');
+        $(this).popover('show')
+    }).on("mouseout", function () {
+        $(this).popover('hide')
     });
 });
 
@@ -308,3 +267,52 @@ $(window).scroll(function () {
         });
     }
 });
+
+function serializeWalkingDates(walking_dates) {
+    let serialized = "";
+    for (let [day, hours] of walking_dates) {
+        serialized += `${day}-${hours.join(',')};`;
+    }
+    return serialized;
+}
+
+function getWalkingDatesMap() {
+    let result = new Map();
+    $('.hour-activated').each(function () {
+        let cur_month_days = parseInt($('.calendar-carousel-cell:first >.container> .calendar-row:last > .calendar-col-h:first-child').text());
+        let hour = parseInt(this.id.split('-')[1]);
+        let day = parseInt($(this).parents('.calendar-row').prop('id').split('-')[1]);
+        let month = parseInt($(this).parents('.calendar-carousel-cell').prop('id').split('-')[1]);
+        let idx = cur_month_days * month + day - 1;
+        if (result.has(idx)) {
+            let tmp = result.get(idx);
+            tmp.push(hour + 7);
+            result.set(idx, tmp);
+        } else
+            result.set(idx, [hour + 7]);
+    });
+    return result;
+}
+
+function blackerMouseoverHandler() {
+    if (!$(this).hasClass("activated")) {
+        let blacker_text = $(this).children(".blacker-text");
+        let main_table_col = $(this).children(".main-table-col");
+        main_table_col.stop(false, false).animate({opacity: 0.2}, 500);
+        let margin_top = "37vh";
+        if (main_table_col.hasClass("main-table-col-up"))
+            margin_top = "-" + margin_top;
+        blacker_text.stop(false, false).animate({"margin-top": margin_top}, 500);
+        $(this).addClass("activated");
+        $(this).find(".blacker-btn").stop(false, false).animate({"z-index": 2000}, 300);
+    }
+}
+
+function blackerMouseoutHandler() {
+    if ($(this).hasClass("activated")) {
+        $(this).children(".main-table-col").stop(false, false).animate({opacity: 1}, 500);
+        $(this).children(".blacker-text").stop(false, false).animate({"margin-top": "0vh"}, 500);
+        $(this).removeClass("activated");
+        $(this).find(".blacker-btn").stop(false, false).animate({"z-index": -1}, 300);
+    }
+}
