@@ -41,6 +41,24 @@ def _get_walkers(is_blue, month, day, walking_zone_id):
     return result_walkers
 
 
+def _get_formatted_days(days, cur_month):
+    formatted_days = []
+    for day in days:
+        formatted_day = '{day:02d}.{month:02d}'.format(day=day['day'] + 1, month=day['month'] + cur_month)
+        if formatted_day not in formatted_days:
+            formatted_days.append(formatted_day)
+    return formatted_days
+
+
+def _get_days(now, cur_month_days, walking_zone_id):
+    main_query = Q(dog_owner_name__ne='', address__ne='')
+    two_weeks_day_query = Q(month=False, day__gte=now.day) | Q(month=True, day__lt=14 - (cur_month_days - now.day))
+    walking_zones_query = Q(walker__green_zones__id=walking_zone_id) | Q(walker__blue_zones__id=walking_zone_id)
+    days = WalkingDate.objects.filter(main_query & two_weeks_day_query & walking_zones_query).values('day', 'month')
+    days = sorted(list(days), key=lambda i: (i['month'], i['day']))
+    return _get_formatted_days(days, now.month)
+
+
 def walking(request):
     walking_zones = WalkingZone.objects.values('id', 'name')
     cur_month_days = get_cur_month_days_amount()
@@ -55,18 +73,8 @@ def walking(request):
             blue_walkers = _get_walkers(is_blue=True, month=month, day=day, walking_zone_id=walking_zone_id)
             return HttpResponse(dumps([list(green_walkers.values()), list(blue_walkers.values())]))
         else:
-            days = list(WalkingDate.objects.filter(
-                (Q(month=False, day__gte=now.day) | Q(month=True, day__lt=14 - (cur_month_days - now.day))) & (
-                        Q(walker__green_zones__id=walking_zone_id) |
-                        Q(walker__blue_zones__id=walking_zone_id))).exclude(~Q(dog_owner_name='')) \
-                        .exclude(~Q(address='')).values('day', 'month'))
-            days = sorted(days, key=lambda i: (i['month'], i['day']))
-            result_days = []
-            for day in days:
-                formatted_day = '{day:02d}.{month:02d}'.format(day=day['day'] + 1, month=day['month'] + now.month)
-                if formatted_day not in result_days:
-                    result_days.append(formatted_day)
-            return HttpResponse(dumps(result_days))
+            days = _get_days(now, cur_month_days, walking_zone_id)
+            return HttpResponse(dumps(days))
     return render(request, 'walking.html', {'walking_zones': walking_zones})
 
 
