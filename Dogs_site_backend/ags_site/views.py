@@ -113,8 +113,7 @@ def consultation(request):
 
 
 def book_walking(request):
-    if request.method == 'POST' and 'name' in request.POST and 'breed' in request.POST and 'type' in request.POST \
-            and 'hour' in request.POST and 'address' in request.POST and 'day' in request.POST:
+    if request.method == 'POST' and request.POST.keys() >= {'name', 'breed', 'type', 'hour', 'address', 'day'}:
         form = BookWalkingForm(request.POST)
         if form.is_valid():
             book_walking_date(request.POST)
