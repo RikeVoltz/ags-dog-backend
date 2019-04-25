@@ -230,16 +230,8 @@ $(document).ready(function () {
         wrapAround: true,
     });
 
-    $(".dropdown").hover(
-        function () {
-            $('.dropdown-menu', this).not('.in .dropdown-menu').stop(true, true).slideDown(150);
-            $(this).toggleClass('open');
-        },
-        function () {
-            $('.dropdown-menu', this).not('.in .dropdown-menu').stop(true, true).slideUp(150);
-            $(this).toggleClass('open');
-        }
-    );
+    $(".dropdown").hover(onDropdownHoverHandler);
+
     $('.arrow-up').click(function () {
         $('body,html').animate({
             scrollTop: 0
@@ -271,6 +263,16 @@ $(window).scroll(function () {
         });
     }
 });
+
+function onDropdownHoverHandler() {
+    let dropdown_menu = $('.dropdown-menu', this).not('.in .dropdown-menu');
+    dropdown_menu.stop(true, true);
+    if ($(this).hasClass('open'))
+        dropdown_menu.slideUp(150);
+    else
+        dropdown_menu.slideDown(150);
+    $(this).toggleClass('open');
+}
 
 function serializeWalkingDates(walking_dates) {
     let serialized = "";
