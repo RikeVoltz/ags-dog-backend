@@ -5,7 +5,7 @@ from django.core.validators import RegexValidator, MinValueValidator, MaxValueVa
 from django.db.models import Model, Q, CharField, IntegerField, BooleanField, ForeignKey, CASCADE, OneToOneField, \
     ImageField, DateField, ManyToManyField
 
-from .scripts import get_cur_next_month_days_amount, cut_into_weeks
+from .scripts import get_cur_month_days_amount, cut_into_weeks
 
 
 class ShopProduct(Model):
@@ -72,7 +72,8 @@ class Walker(Model):
         return month
 
     def get_walking_dates(self):
-        cur_month_days_amount, next_month_days_amount = get_cur_next_month_days_amount()
+        cur_month_days_amount = get_cur_month_days_amount()
+        next_month_days_amount = get_cur_month_days_amount(is_next_month=True)
         walking_dates = list(self.walkingdate_set.get_queryset())
         cur_month_walking_dates = map(lambda date: not date.month, walking_dates)
         next_month_walking_dates = map(lambda date: date.month, walking_dates)
@@ -87,13 +88,13 @@ class Walker(Model):
                                                                          'address', 'breed', 'type'))
 
     def _fill_walking_dates_from_form_data(self, form_data):
-        cur_month_days, next_month_days = get_cur_next_month_days_amount()
+        cur_month_days_amount = get_cur_month_days_amount()
         for walking_date in form_data:
             day, hours = walking_date.split('-')
             day = int(day)
-            month = day > cur_month_days - 1
+            month = day > cur_month_days_amount - 1
             if month:
-                day -= cur_month_days
+                day -= cur_month_days_amount
             for hour in hours.split(','):
                 WalkingDate.objects.create(day=day, hour=hour, walker_id=self.id, month=month)
 

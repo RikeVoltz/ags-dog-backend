@@ -1,74 +1,72 @@
-import calendar
 import datetime
 from json import dumps
 
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseForbidden, HttpResponseBadRequest
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 
 from ags_site.forms import ProfileForm, BookWalkingForm
 from ags_site.models import Walker, WalkingZone, WalkingDate, Q
+from .scripts import get_cur_month_days_amount
 
 
 def training(request):
     return render(request, 'training.html')
 
 
+def _get_structured_walkers(walkers):
+    structured_walkers = {}
+    for walker in walkers:
+        if walker['walker__id'] not in structured_walkers:
+            structured_walkers[walker['walker__id']] = {
+                'walker_id': walker['walker__id'],
+                'photo': walker['walker__photo'],
+                'name': walker['walker__user__first_name'],
+                'hours': ['{:02d}:00'.format(walker['hour'])]
+            }
+        else:
+            structured_walkers[walker['walker__id']]['hours'].append('{:02d}:00'.format(walker['hour']))
+    return structured_walkers
+
+
+def _get_walkers(is_blue, month, day, walking_zone_id):
+    main_query = Q(month=month, day=day, dog_owner_name__ne='', address__ne='')
+    if is_blue:
+        sub_query = Q(walker__blue_zones__id=walking_zone_id)
+    else:
+        sub_query = Q(walker__green_zones__id=walking_zone_id)
+    walkers = list(WalkingDate.objects.filter(main_query & sub_query).values('hour', 'walker__photo', 'walker__id',
+                                                                             'walker__user__first_name'))
+    result_walkers = _get_structured_walkers(walkers)
+    return result_walkers
+
+
 def walking(request):
     walking_zones = WalkingZone.objects.values('id', 'name')
+    cur_month_days = get_cur_month_days_amount()
     now = datetime.datetime.now()
-    cur_month_days = calendar.monthrange(now.year, now.month)[1]
-    if 'walking_zone' in request.POST and 'day_month' in request.POST:
-        day, month = request.POST['day_month'].split('.')
-        day = int(day) - 1
-        month = bool(int(month) - now.month)
-        green_walkers = list(WalkingDate.objects.filter(
-            (Q(month=month, day=day) & (Q(walker__green_zones__id=int(request.POST['walking_zone'])))))
-                             .exclude(~Q(dog_owner_name='')).exclude(~Q(address='')).values('hour', 'walker__photo',
-                                                                                            'walker__id',
-                                                                                            'walker__user__first_name'))
-        result_green_walkers = {}
-        for walker in green_walkers:
-            if walker['walker__id'] not in result_green_walkers:
-                result_green_walkers[walker['walker__id']] = {
-                    'walker_id': walker['walker__id'],
-                    'photo': walker['walker__photo'],
-                    'name': walker['walker__user__first_name'],
-                    'hours': ['{:02d}:00'.format(walker['hour'])]
-                }
-            else:
-                result_green_walkers[walker['walker__id']]['hours'].append('{:02d}:00'.format(walker['hour']))
-        blue_walkers = list(WalkingDate.objects.filter(
-            (Q(month=month, day=day) & (Q(walker__blue_zones__id=int(request.POST['walking_zone'])))))
-                            .exclude(~Q(dog_owner_name='')).exclude(~Q(address='')).values('hour', 'walker__photo',
-                                                                                           'walker__id',
-                                                                                           'walker__user__first_name'))
-        result_blue_walkers = {}
-        for walker in blue_walkers:
-            if walker['walker__id'] not in result_blue_walkers:
-                result_blue_walkers[walker['walker__id']] = {
-                    'walker_id': walker['walker__id'],
-                    'photo': walker['walker__photo'],
-                    'name': walker['walker__user__first_name'],
-                    'hours': ['{:02d}:00'.format(walker['hour'])]
-                }
-            else:
-                result_blue_walkers[walker['walker__id']]['hours'].append('{:02d}:00'.format(walker['hour']))
-
-        return HttpResponse(dumps([list(result_green_walkers.values()), list(result_blue_walkers.values())]))
-    elif 'walking_zone' in request.POST:
-        days = list(WalkingDate.objects.filter(
-            (Q(month=False, day__gte=now.day) | Q(month=True, day__lt=14 - (cur_month_days - now.day))) & (
-                    Q(walker__green_zones__id=int(request.POST['walking_zone'])) |
-                    Q(walker__blue_zones__id=int(request.POST['walking_zone'])))).exclude(~Q(dog_owner_name='')) \
-            .exclude(~Q(address='')).values(
-            'day', 'month'))
-        days = sorted(days, key=lambda i: (i['month'], i['day']))
-        result_days = []
-        for day in days:
-            formatted_day = '{day:02d}.{month:02d}'.format(day=day['day'] + 1, month=day['month'] + now.month)
-            if formatted_day not in result_days:
-                result_days.append(formatted_day)
-        return HttpResponse(dumps(result_days))
+    if 'walking_zone' in request.POST:
+        walking_zone_id = int(request.POST['walking_zone'])
+        if 'day_month' in request.POST:
+            day, month = request.POST['day_month'].split('.')
+            day = int(day) - 1
+            month = bool(int(month) - now.month)
+            green_walkers = _get_walkers(is_blue=False, month=month, day=day, walking_zone_id=walking_zone_id)
+            blue_walkers = _get_walkers(is_blue=True, month=month, day=day, walking_zone_id=walking_zone_id)
+            return HttpResponse(dumps([list(green_walkers.values()), list(blue_walkers.values())]))
+        else:
+            days = list(WalkingDate.objects.filter(
+                (Q(month=False, day__gte=now.day) | Q(month=True, day__lt=14 - (cur_month_days - now.day))) & (
+                        Q(walker__green_zones__id=walking_zone_id) |
+                        Q(walker__blue_zones__id=walking_zone_id))).exclude(~Q(dog_owner_name='')) \
+                        .exclude(~Q(address='')).values('day', 'month'))
+            days = sorted(days, key=lambda i: (i['month'], i['day']))
+            result_days = []
+            for day in days:
+                formatted_day = '{day:02d}.{month:02d}'.format(day=day['day'] + 1, month=day['month'] + now.month)
+                if formatted_day not in result_days:
+                    result_days.append(formatted_day)
+            return HttpResponse(dumps(result_days))
     return render(request, 'walking.html', {'walking_zones': walking_zones})
 
 
@@ -136,22 +134,21 @@ def book_walking_date(data):
         address=data['address'])
 
 
+@login_required(login_url='/login')
 def profile(request):
-    if request.user.is_authenticated:
-        try:
-            walker = request.user.walker
-            if request.method == 'POST':
-                form = ProfileForm(request.POST)
-                if form.is_valid():
-                    save_walking_dates(request.POST['walking_dates'], walker)
-            else:
-                form = ProfileForm()
-        except Walker.DoesNotExist:
-            walker = None
-            form = None
-        return render(request, 'profile.html', {'walker': walker, 'form': form})
+    try:
+        walker = request.user.walker
+    except Walker.DoesNotExist:
+        walker = None
+        form = None
     else:
-        return redirect('/login')
+        if request.method == 'POST':
+            form = ProfileForm(request.POST)
+            if form.is_valid():
+                save_walking_dates(request.POST['walking_dates'], walker)
+        else:
+            form = ProfileForm()
+    return render(request, 'profile.html', {'walker': walker, 'form': form})
 
 
 def save_walking_dates(walking_dates, walker):

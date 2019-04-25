@@ -2,11 +2,13 @@ from calendar import monthrange, nextmonth
 from datetime import datetime
 
 
-def get_cur_next_month_days_amount():
+def get_cur_month_days_amount(is_next_month=False):
     now = datetime.now()
-    cur_month_days_amount = monthrange(now.year, now.month)[1]
-    next_month_days_amount = monthrange(*nextmonth(now.year, now.month))[1]
-    return cur_month_days_amount, next_month_days_amount
+    if is_next_month:
+        month_days_amount = monthrange(*nextmonth(now.year, now.month))[1]
+    else:
+        month_days_amount = monthrange(now.year, now.month)[1]
+    return month_days_amount
 
 
 def cut_into_weeks(data):
