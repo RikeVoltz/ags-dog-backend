@@ -17,29 +17,53 @@
                     <img src="{{ walker.walking_map.url }}" class="bordered img-fluid"/>
                 </a>
             </div>
-            <div class="col-2 p-0 mr-0 mt-3 justify-content-between">
+            <div class="col-3 p-0 mr-0 mt-3 justify-content-between">
                 <div class="row">
-                    <p class="display-4-5 ml-3">{{ walker.user.get_full_name }}</p>
-                    <p class="ml-3">Дата рождения: {{ walker.birth_date|date:"d.m.Y" }}</p>
-                    <p class="ml-3">Телефон: {{ walker.phone }}</p>
-                    <p class="ml-3">Email: {{ walker.user.email }}</p>
+                    <div class="col">
+                        <div class="row">
+                            <p class="display-4-5 ml-3">{{ walker.user.get_full_name }}</p>
+                        </div>
+                        <div class="row">
+                            <p class="ml-3">Дата рождения: {{ walker.birth_date|date:"d.m.Y" }}</p>
+                        </div>
+                        <div class="row">
+                            <p class="ml-3">Телефон: {{ walker.phone }}</p>
+                        </div>
+                        <div class="row">
+                            <p class="ml-3">Email: {{ walker.user.email }}</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="row h-75 flex-column justify-content-end">
-                    <p class="display-4-5 ml-3">Мои районы</p>
-                    <div class="rectangle-legend-map-small green bordered m-3">
+                <div class="row d-flex align-items-end" style="height:63%">
+                    <div class="col">
+                        <p class="display-4-5 ml-2">Мои районы</p>
+                        <div class="row">
+                            <div class="col-1">
+                                <div class="rectangle-legend-map-small green bordered ml-2 mt-1">
+                                </div>
+                            </div>
+                            <div class="col">
+                                <p class="ml-2">
+                                    {% for zone in walker.green_zones.all %}
+                                        {{ zone.name }},
+                                    {% endfor %}
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-1">
+                                <div class="rectangle-legend-map-small blue bordered ml-2 mt-1">
+                                </div>
+                            </div>
+                            <div class="col">
+                                <p class="ml-2">
+                                    {% for zone in walker.blue_zones.all %}
+                                        {{ zone.name }},
+                                    {% endfor %}
+                                </p>
+                            </div>
+                        </div>
                     </div>
-                    <span class="ml-3">
-                        {% for zone in walker.green_zones.all %}
-                            {{ zone.name }},
-                        {% endfor %}
-                    </span>
-                    <div class="rectangle-legend-map-small blue bordered m-3">
-                    </div>
-                    <span class="ml-3">
-                        {% for zone in walker.blue_zones.all %}
-                            {{ zone.name }},
-                        {% endfor %}
-                    </span>
                 </div>
             </div>
             <div class="col-6 pl-0">
@@ -81,6 +105,18 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
                                                              {% else %}{% if not walking.is_free %} hour-activated {% endif %}{% endif %}">
                                                     </div>
                                                 {% endfor %}
@@ -102,6 +138,7 @@
                     </form>
                 </div>
             </div>
+
         </div>
     </div>
     <div class="modal fade" id="map-modal" tabindex="-1" role="dialog" aria-hidden="true">
