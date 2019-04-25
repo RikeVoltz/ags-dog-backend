@@ -2,7 +2,7 @@ function csrfSafeMethod(method) {
     return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
 }
 
-$(document).ready(function () {
+function applyCSRFTokenToAjaxRequests() {
     $.ajaxSetup({
         beforeSend: function (xhr, settings) {
             let csrf_token = $.cookie('csrftoken');
@@ -11,6 +11,34 @@ $(document).ready(function () {
             }
         }
     });
+}
+
+function onDistrictSelectAjaxSuccessHandler(data) {
+    data = $.parseJSON(data);
+    if (data.length === 0) {
+        $('.order-by-time-form').append('<span class="no-walkers-warning" style="color:red">К сожалению, в данном районе пока нет выгульщиков. Пожалуйста, выберите другой район</span>')
+    } else {
+        date_select.append('<option value="" disabled selected style=\'display:none;\'>Выберите из списка</option>');
+        $(data).each(function () {
+            $('.date-select').append(`<option value="${this}">${this}</option>`);
+        });
+        $('.date-select').show();
+    }
+}
+
+
+$(document).ready(function () {
+    applyCSRFTokenToAjaxRequests();
+    let district_select = $('.district-select');
+    let date_select = $('.date-select');
+    let walkers_panel = $('.walkers-panel');
+    let no_walker_warning = $('.no-walkers-warning');
+    let walking_type = $('.walking-type');
+    let walking_cost = $('.row-cost-walking');
+    let booked_time_btn = $('.btn-book-time.activated');
+    let walking_type_activated_btn = $('.walking-type button.activated');
+    let walking_order_contacts = $('.walking-order-contacts');
+    let btn_save_booking = $('.btn-save-booking');
 
     $('.btn-show-test').on('click', function () {
         $('.test-container').show();
@@ -20,52 +48,40 @@ $(document).ready(function () {
         $('.order-by-time-form').toggle();
     });
 
-    $('.district-select').on('change', function () {
-        $('.date-select').hide();
-        $('.walkers-panel').hide();
-        $('.walking-order-contacts').hide();
-        $('.no-walkers-warning').hide();
-        $('.walking-type').hide();
-        $('.btn-save-booking').hide();
-        $('.row-cost-walking').hide();
-        $('.btn-book-time.activated').removeClass('activated');
-        $('.walking-type button.activated').removeClass('activated');
+    district_select.on('change', function () {
+        date_select.empty();
+        date_select.hide();
+        walkers_panel.empty();
+        walkers_panel.hide();
+        walking_order_contacts.hide();
+        no_walker_warning.hide();
+        walking_type_activated_btn.removeClass('activated');
+        walking_type.hide();
+        walking_cost.hide();
+        btn_save_booking.hide();
         $.ajax({
             type: "POST",
             url: '/walking/',
             data: {'walking_zone': $(this).val()},
-            success: function (data) {
-                $('.date-select').empty();
-                data = $.parseJSON(data);
-                if (data.length === 0) {
-                    $('.order-by-time-form').append('<span class="no-walkers-warning" style="color:red">К сожалению, в данном районе пока нет выгульщиков. Пожалуйста, выберите другой район</span>')
-                } else {
-                    $('.date-select').append('<option value="" disabled selected style=\'display:none;\'>Выберите из списка</option>');
-                    $(data).each(function () {
-                        $('.date-select').append(`<option value="${this}">${this}</option>`);
-                    });
-                    $('.date-select').show();
-                }
-                $('.walkers-panel').hide();
-                $('.btn-save-booking').hide();
-                $('.walking-type').hide();
-                $('.btn-book-time.activated').removeClass('activated');
-                $('.walking-type button.activated').removeClass('activated');
-                $('.row-cost-walking').hide();
-            },
+            success: onDistrictSelectAjaxSuccessHandler,
         });
     });
 
-    $('.date-select').on('change', function () {
-        $('.btn-save-booking').hide();
-        $('.row-cost-walking').hide();
+    date_select.on('change', function () {
+        walkers_panel.empty();
+        walkers_panel.hide();
+        walking_order_contacts.hide();
+        no_walker_warning.hide();
+        walking_type_activated_btn.removeClass('activated');
+        walking_type.hide();
+        walking_cost.hide();
+        btn_save_booking.hide();
         $.ajax({
             type: "POST",
             url: '/walking/',
-            data: {'walking_zone': $('.district-select').val(), 'day_month': $(this).val()},
+            data: {'walking_zone': district_select.val(), 'day_month': $(this).val()},
             success: function (data) {
                 data = $.parseJSON(data);
-                $('.walkers-panel').empty();
                 $(data[0]).each(function () {
                     let hours = '';
                     $(this.hours).each(function () {
@@ -177,11 +193,9 @@ $(document).ready(function () {
         }
     });
 
-    $(function () {
-        $('.map-pop').on('click', function () {
-            $('.map-preview').attr('src', $(this).find('img').attr('src'));
-            $('#map-modal').modal('show');
-        });
+    $('.map-pop').on('click', function () {
+        $('.map-preview').attr('src', $(this).find('img').attr('src'));
+        $('#map-modal').modal('show');
     });
 
     $('.calendar-carousel').flickity({
@@ -189,23 +203,13 @@ $(document).ready(function () {
     });
 
     $('.calendar-col:not(.calendar-col-h):not(.hour-booked):not(.hour-disabled)').on('click', function () {
-        if ($(this).hasClass('hour-activated')) {
-            $(this).removeClass('hour-activated');
-        } else
-            $(this).addClass('hour-activated');
+        $(this).toggleClass('hour-activated');
     });
 
     $('.order-walking-form').submit(function (event) {
-        $("#walking-order-success").modal('toggle');
         event.preventDefault();
-        let form_data = new FormData();
-        form_data.append('name', $('.order-walking-name-input').val());
-        form_data.append('breed', $('.order-walking-breed-input').val());
-        form_data.append('type', $('.walking-type button.activated').text());
-        form_data.append('address', $('.order-walking-address-input').val());
-        form_data.append('hour', $('.btn-book-time.activated').val().split(':')[0]);
-        form_data.append('day', $('.date-select').val());
-        form_data.append('walker_id', $('.btn-book-time.activated').parents('.walker-order-card').prop('id'));
+        $("#walking-order-success").modal('toggle');
+        let form_data = getOrderWalkingFormData();
         $.ajax({
                 type: "POST",
                 url: "/book_walking/",
@@ -247,7 +251,7 @@ $(document).ready(function () {
         $(this).attr('data-alter-img', tmp);
     });
 
-    $(".blacker").hover(blackerMouseoverHandler, blackerMouseoutHandler);
+    $(".blacker").hover(onBlackerMouseoverHandler, onBlackerMouseoutHandler);
 
     $(".far-area").on("mouseover", function () {
         $(this).popover('show')
@@ -276,6 +280,19 @@ function serializeWalkingDates(walking_dates) {
     return serialized;
 }
 
+function getOrderWalkingFormData() {
+    let result = new FormData();
+    let booked_time_btn = $('.btn-book-time.activated');
+    result.append('name', $('.order-walking-name-input').val());
+    result.append('breed', $('.order-walking-breed-input').val());
+    result.append('type', $('.walking-type button.activated').text());
+    result.append('address', $('.order-walking-address-input').val());
+    result.append('hour', booked_time_btn.val().split(':')[0]);
+    result.append('day', $('.date-select').val());
+    result.append('walker_id', booked_time_btn.parents('.walker-order-card').prop('id'));
+    return result;
+}
+
 function getWalkingDatesMap() {
     let result = new Map();
     $('.hour-activated').each(function () {
@@ -294,7 +311,7 @@ function getWalkingDatesMap() {
     return result;
 }
 
-function blackerMouseoverHandler() {
+function onBlackerMouseoverHandler() {
     if (!$(this).hasClass("activated")) {
         let blacker_text = $(this).children(".blacker-text");
         let main_table_col = $(this).children(".main-table-col");
@@ -308,7 +325,7 @@ function blackerMouseoverHandler() {
     }
 }
 
-function blackerMouseoutHandler() {
+function onBlackerMouseoutHandler() {
     if ($(this).hasClass("activated")) {
         $(this).children(".main-table-col").stop(false, false).animate({opacity: 1}, 500);
         $(this).children(".blacker-text").stop(false, false).animate({"margin-top": "0vh"}, 500);
