@@ -86,18 +86,15 @@ class Walker(Model):
         return list(WalkingDate.objects.filter(walker_id=self.id).values('day', 'hour', 'month', 'dog_owner_name',
                                                                          'address', 'breed', 'type'))
 
-    def _fill_walking_dates_from_form_data(self, data):
+    def _fill_walking_dates_from_form_data(self, form_data):
         cur_month_days, next_month_days = get_cur_next_month_days_amount()
-        for walking_date in data:
+        for walking_date in form_data:
             day, hours = walking_date.split('-')
             day = int(day)
-            if day > cur_month_days - 1:
+            month = day > cur_month_days - 1
+            if month:
                 day -= cur_month_days
-                month = True
-            else:
-                month = False
-            hours = hours.split(',')
-            for hour in hours:
+            for hour in hours.split(','):
                 WalkingDate.objects.create(day=day, hour=hour, walker_id=self.id, month=month)
 
     def set_walking_dates(self, data):
