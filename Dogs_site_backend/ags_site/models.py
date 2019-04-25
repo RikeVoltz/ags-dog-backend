@@ -58,47 +58,37 @@ class Walker(Model):
         return self.user.get_full_name()
 
     @staticmethod
-    def get_structured_walking_dates(walking_dates, cur_month_days, next_month_days):
-        cur_month = [(idx + 1, [{'is_free': True} for _ in range(16)]) for idx in range(cur_month_days)]
-        next_month = [(idx + 1, [{'is_free': True} for _ in range(16)]) for idx in range(next_month_days)]
+    def _get_structured_walking_dates(month_days_amount, walking_dates):
+        month = [(idx + 1, [{'is_free': True} for _ in range(16)]) for idx in range(month_days_amount)]
         for walking_date in walking_dates:
-            if not walking_date.month:
-                if walking_date.dog_owner_name:
-                    cur_month[walking_date.day][1][walking_date.hour - 7] = {'is_free': False,
-                                                                             'address': walking_date.address,
-                                                                             'dog_owner_name': walking_date.dog_owner_name,
-                                                                             'breed': walking_date.breed,
-                                                                             'type': walking_date.get_type_display()}
-                else:
-                    cur_month[walking_date.day][1][walking_date.hour - 7] = {'is_free': False}
+            if walking_date.dog_owner_name:
+                month[walking_date.day][1][walking_date.hour - 7] = {'is_free': False,
+                                                                     'address': walking_date.address,
+                                                                     'dog_owner_name': walking_date.dog_owner_name,
+                                                                     'breed': walking_date.breed,
+                                                                     'type': walking_date.get_type_display()}
             else:
-                if walking_date.dog_owner_name:
-                    next_month[walking_date.day][1][walking_date.hour - 7] = {'is_free': False,
-                                                                              'address': walking_date.address,
-                                                                              'dog_owner_name': walking_date.dog_owner_name,
-                                                                              'breed': walking_date.breed,
-                                                                              'type': walking_date.get_type_display()}
-                else:
-                    next_month[walking_date.day][1][walking_date.hour - 7] = {'is_free': False}
-        return cur_month, next_month
+                month[walking_date.day][1][walking_date.hour - 7] = {'is_free': False}
+        return month
 
     def get_walking_dates(self):
-        cur_month_days, next_month_days = get_cur_next_month_days_amount()
+        cur_month_days_amount, next_month_days_amount = get_cur_next_month_days_amount()
         walking_dates = list(self.walkingdate_set.get_queryset())
-        cur_month, next_month = self.get_structured_walking_dates(walking_dates, cur_month_days, next_month_days)
+        cur_month_walking_dates = map(lambda date: not date.month, walking_dates)
+        next_month_walking_dates = map(lambda date: date.month, walking_dates)
+        cur_month = self._get_structured_walking_dates(cur_month_days_amount, cur_month_walking_dates)
+        next_month = self._get_structured_walking_dates(next_month_days_amount, next_month_walking_dates)
         cur_month = cut_into_weeks(cur_month)
         next_month = cut_into_weeks(next_month)
         return cur_month, next_month
 
-    def set_walking_dates(self, serialized):
-        prev = list(
-            WalkingDate.objects.filter(walker_id=self.id).values('day', 'hour', 'month', 'dog_owner_name', 'address',
-                                                                 'breed', 'type'))
-        WalkingDate.objects.filter(walker_id=self.id).exclude(~Q(dog_owner_name='')).exclude(~Q(address='')).delete()
-        if serialized:
-            serialized = serialized.split(';')
+    def _get_walking_dates_list(self):
+        return list(WalkingDate.objects.filter(walker_id=self.id).values('day', 'hour', 'month', 'dog_owner_name',
+                                                                         'address', 'breed', 'type'))
+
+    def _fill_walking_dates_from_form_data(self, data):
         cur_month_days, next_month_days = get_cur_next_month_days_amount()
-        for walking_date in serialized:
+        for walking_date in data:
             day, hours = walking_date.split('-')
             day = int(day)
             if day > cur_month_days - 1:
@@ -109,8 +99,13 @@ class Walker(Model):
             hours = hours.split(',')
             for hour in hours:
                 WalkingDate.objects.create(day=day, hour=hour, walker_id=self.id, month=month)
-        cur = list(
-            WalkingDate.objects.filter(walker_id=self.id).values('day', 'hour', 'month', 'dog_owner_name', 'address',
-                                                                 'breed', 'type'))
-        if prev != cur:
+
+    def set_walking_dates(self, data):
+        prev_walking_dates_version = self._get_walking_dates_list()
+        WalkingDate.objects.filter(walker_id=self.id).exclude(~Q(dog_owner_name='')).exclude(~Q(address='')).delete()
+        if data:
+            data = data.split(';')
+        self._fill_walking_dates_from_form_data(data)
+        cur_walking_dates_version = self._get_walking_dates_list()
+        if prev_walking_dates_version != cur_walking_dates_version:
             Walker.objects.filter(id=self.id).update(can_change_dates=False)
