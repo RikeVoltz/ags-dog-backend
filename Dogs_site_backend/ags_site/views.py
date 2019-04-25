@@ -2,7 +2,7 @@ import datetime
 from json import dumps
 
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse, HttpResponseForbidden, HttpResponseBadRequest
+from django.http import HttpResponse, HttpResponseForbidden, HttpResponseBadRequest, Http404
 from django.shortcuts import render
 
 from ags_site.forms import ProfileForm, BookWalkingForm
@@ -139,15 +139,13 @@ def profile(request):
     try:
         walker = request.user.walker
     except Walker.DoesNotExist:
-        walker = None
-        form = None
+        return Http404()
+    if request.method == 'POST':
+        form = ProfileForm(request.POST)
+        if form.is_valid():
+            save_walking_dates(request.POST['walking_dates'], walker)
     else:
-        if request.method == 'POST':
-            form = ProfileForm(request.POST)
-            if form.is_valid():
-                save_walking_dates(request.POST['walking_dates'], walker)
-        else:
-            form = ProfileForm()
+        form = ProfileForm()
     return render(request, 'profile.html', {'walker': walker, 'form': form})
 
 
