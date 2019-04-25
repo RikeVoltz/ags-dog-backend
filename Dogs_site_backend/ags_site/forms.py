@@ -6,8 +6,8 @@ class ProfileForm(forms.Form):
 
 
 class BookWalkingForm(forms.Form):
-    name = forms.CharField(widget=forms.HiddenInput(), required=False)
-    breed = forms.CharField(widget=forms.HiddenInput(), required=False)
-    hour = forms.CharField(widget=forms.HiddenInput(), required=False)
-    address = forms.CharField(widget=forms.HiddenInput(), required=False)
-    day = forms.CharField(widget=forms.HiddenInput(), required=False)
+    name = forms.CharField(widget=forms.HiddenInput(), required=True)
+    breed = forms.CharField(widget=forms.HiddenInput(), required=True)
+    hour = forms.CharField(widget=forms.HiddenInput(), required=True)
+    address = forms.CharField(widget=forms.HiddenInput(), required=True)
+    day = forms.CharField(widget=forms.HiddenInput(), required=True)
