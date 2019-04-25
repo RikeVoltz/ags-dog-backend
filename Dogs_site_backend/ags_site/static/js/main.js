@@ -101,15 +101,8 @@ function onDataSelectAjaxSuccessHandler(data) {
 
 $(document).ready(function () {
     applyCSRFTokenToAjaxRequests();
-    let district_select = $('.district-select');
     let date_select = $('.date-select');
     let walkers_panel = $('.walkers-panel');
-    let no_walker_warning = $('.no-walkers-warning');
-    let walking_type = $('.walking-type');
-    let walking_cost = $('.row-cost-walking');
-    let walking_type_activated_btn = $('.walking-type button.activated');
-    let walking_order_contacts = $('.walking-order-contacts');
-    let btn_save_booking = $('.btn-save-booking');
 
     $('.btn-show-test').on('click', function () {
         $('.test-container').show();
@@ -119,17 +112,17 @@ $(document).ready(function () {
         $('.order-by-time-form').toggle();
     });
 
-    district_select.on('change', function () {
+    $('.district-select').on('change', function () {
         $('.walker-order-card').popover('hide');
         date_select.empty();
         walkers_panel.empty();
         walkers_panel.hide();
-        walking_order_contacts.hide();
-        no_walker_warning.hide();
-        walking_type_activated_btn.removeClass('activated');
-        walking_type.hide();
-        walking_cost.hide();
-        btn_save_booking.hide();
+        $('.walking-order-contacts').hide();
+        $('.no-walkers-warning').hide();
+        ('.walking-type button.activated').removeClass('activated');
+        $('.walking-type').hide();
+        $('.row-cost-walking').hide();
+        $('.btn-save-booking').hide();
         $.ajax({
             type: "POST",
             url: '/walking/',
@@ -143,7 +136,7 @@ $(document).ready(function () {
         $.ajax({
             type: "POST",
             url: '/walking/',
-            data: {'walking_zone': district_select.val(), 'day_month': $(this).val()},
+            data: {'walking_zone': $('.district-select').val(), 'day_month': $(this).val()},
             success: onDataSelectAjaxSuccessHandler
         });
     });
@@ -255,7 +248,7 @@ function serializeWalkingDates(walking_dates) {
 function getOrderWalkingFormData() {
     let result = new FormData();
     let booked_time_btn = $('.btn-book-time.activated');
-    result.append('name', $('.order-walking-name-input').val());
+    result.extend('name', $('.order-walking-name-input').val());
     result.append('breed', $('.order-walking-breed-input').val());
     result.append('type', $('.walking-type button.activated').text());
     result.append('address', $('.order-walking-address-input').val());
