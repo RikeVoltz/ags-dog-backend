@@ -11,10 +11,20 @@
             Интересное
         </h1>
         <h3 class="display-5 text-black text-center my-3">
+            Тест на знание пород для начинающих
+        </h3>
+        <div class="row tests-interesting-title justify-content-center" id="title-1">
+            <button class="btn btn-outline-light btn-xl" onclick="location.href='/test?type=breeds_beginner'"
+                    type="button">Пройти тест
+            </button>
+        </div>
+        <h3 class="display-5 text-black text-center my-3">
             Тест на волкера
         </h3>
         <div class="row tests-interesting-title justify-content-center" id="title-1">
-            <button class="btn btn-outline-light btn-xl" type="button">Пройти тест</button>
+            <button class="btn btn-outline-light btn-xl" onclick="location.href='/test?type=walker'" type="button">
+                Пройти тест
+            </button>
         </div>
     </div>
     {% include 'footer.html' %}

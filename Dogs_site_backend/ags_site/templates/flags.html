@@ -1,0 +1,48 @@
+<div class="row-fluid fixed-btn-row d-flex justify-content-center align-items-center">
+    {% if user.is_authenticated %}
+        <div class="col-3 m-2 p-0"><a href="/order">
+            <div class="fixed-btn fixed-order-training">
+                <span>Заказать дрессировку</span>
+            </div>
+        </a>
+        </div>
+        <div class="col-3 m-2 p-0"><a href="/walking">
+            <div class="fixed-btn fixed-order-walking">
+                <span>Заказать выгул</span>
+            </div>
+        </a>
+        </div>
+        <div class="col-3 m-2 p-0"><a href="/profile">
+            <div class=" fixed-btn fixed-profile">
+                <span>Перейти в профиль</span>
+            </div>
+        </a>
+        </div>
+    {% else %}
+        <div class="col-2 m-2 p-0"><a href="/order">
+            <div class="fixed-btn fixed-order-training">
+                <span>Заказать дрессировку</span>
+            </div>
+        </a>
+        </div>
+        <div class="col-2 m-2 p-0"><a href="/walking">
+            <div class="fixed-btn fixed-order-walking">
+                <span>Заказать выгул</span>
+            </div>
+        </a>
+        </div>
+        <div class="col-2 m-2 p-0"><a href="/walking">
+            <div class="fixed-btn fixed-become-walker">
+                <span>Стать волкером</span>
+            </div>
+        </a>
+        </div>
+        <div class="col-2 m-2 p-0"><a href="/login">
+            <div class="fixed-btn fixed-profile">
+                <span>Войти в аккаунт</span>
+            </div>
+        </a>
+        </div>
+    {% endif %}
+</div>
+

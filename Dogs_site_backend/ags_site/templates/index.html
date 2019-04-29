@@ -3,13 +3,13 @@
 {% block content %}
     {% include 'flags.html' %}
     {% include 'header.html' %}
-    <div class="container-fluid whole-window d-flex justify-content-center">
+    <div class="container-fluid h-auto d-flex justify-content-center">
         <video autoplay class="main-video" loop muted>
             <source src="{% static 'videos/main.mp4' %}" type="video/mp4">
         </video>
     </div>
     <div class="container-fluid whole-window text-center d-flex flex-column align-items-center">
-        <h1 class="display-4 text-black logo-title-2">
+        <h1 class="display-4 text-black mt-3">
             Добро пожаловать в нашу Ассоциацию Грамотного Собаководства!
         </h1>
         <div class="row d-flex justify-content-center text-justify">
@@ -21,8 +21,7 @@
         <div class="row d-flex justify-content-center text-justify">
             <p class="w-80 training-text mx-5"> Мы рады Вам предложить активный и безопасный выгул питомца или грамотную
                 дрессировку на базе позитивного
-                метода. Мы работаем на мотивации собаки, подкрепляем желательное поведение, не наказываем
-                нежелательное. В основном мы используем вкусопоощрительный и игровой методы. Мы никтогда не применяем
+                метода. Мы работаем на мотивации собаки, подкрепляем желательное поведение. В основном мы используем вкусопоощрительный и игровой методы. Мы никтогда не применяем
                 грубость к животным. С нами Вы достигните взаимопонимания со своей собакой, ведь мы с легкостью решим
                 любую
                 Вашу проблему!</p>
@@ -139,7 +138,7 @@
         <div class="card-deck justify-content-center mb-n3">
             <div class="card why-us-card">
                 <img class="card-img-top why-us-card-img align-self-center" src="{% static 'images/handshake.svg' %}"/>
-                <h5 class="card-title why-us-card-title">Профессиональная дрессировка и качественный выгул</h5>
+                <h5 class="card-title why-us-card-title">Профессиональная дрессировка и выгул</h5>
                 <div class="card-body">
                     <span class="card-text why-us-card-text">Наша команда поможет Вам в сфере классической и трюковой дрессировки, мы выгуляем Вашу собаку и дадим Вам емкую консультацию по воспитанию питомца!</span>
                 </div>

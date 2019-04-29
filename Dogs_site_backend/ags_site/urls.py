@@ -1,13 +1,16 @@
 from django.urls import path, include
+
 from . import views
 
 urlpatterns = [
     path(r'', include('django.contrib.auth.urls')),
     path(r'', views.index, name='index'),
     path(r'profile/', views.profile, name='profile'),
+    path(r'specialists/', views.specialists, name='specialists'),
     path(r'training/', views.training, name='training'),
     path(r'walking/', views.walking, name='walking'),
     path(r'test/', views.test, name='test'),
+    path(r'shop/<str:url_title>', views.shop_category, name='shop_category'),
     path(r'shop/', views.shop, name='shop'),
     path(r'price/', views.price, name='price'),
     path(r'order', views.order, name='order'),

@@ -1,20 +1,56 @@
 import datetime
+from os import path
 
 from django.contrib.auth.models import User
 from django.core.validators import RegexValidator, MinValueValidator, MaxValueValidator
 from django.db.models import Model, Q, CharField, IntegerField, BooleanField, ForeignKey, CASCADE, OneToOneField, \
-    ImageField, DateField, ManyToManyField
+    ImageField, DateField, ManyToManyField, FloatField, DO_NOTHING, TextField
 
+from Dogs_site_backend.settings import MEDIA_ROOT
 from .scripts import get_cur_month_days_amount, cut_into_weeks
 
 
+class ShopProductCategory(Model):
+    class Meta:
+        verbose_name = 'Категория товаров'
+        verbose_name_plural = 'Категории товаров'
+
+    title = CharField(max_length=30, verbose_name='Название категории')
+    thumbnail = ImageField(max_length=30, blank=True, verbose_name='Обложка категории',
+                           default=path.join(MEDIA_ROOT, 'default.png'))
+    url_regex = RegexValidator(regex=r'^[a-zA-Z_]+$',
+                               message="Имя должно состоять из латинских букв и знаков подчёркивания")
+    url_title = CharField(validators=[url_regex], max_length=30, verbose_name="Имя в адресе страницы")
+
+    def __str__(self):
+        return self.title
+
+
 class ShopProduct(Model):
+    class Meta:
+        verbose_name = 'Товар'
+        verbose_name_plural = 'Товары'
+
     title = CharField(max_length=30, verbose_name='Название товара')
-    thumbnail = ImageField(max_length=30, verbose_name='Название товара')
-    Video = CharField(max_length=30, verbose_name='Название товара')
+    thumbnail = ImageField(blank=True, verbose_name='Обложка товара',
+                           default='default.png')
+    description = TextField(blank=True, verbose_name='Описание товара')
+    image_1 = ImageField(verbose_name='Первое изображение', blank=True)
+    image_2 = ImageField(verbose_name='Второе изображение', blank=True)
+    image_3 = ImageField(verbose_name='Третье изображение', blank=True)
+    price = FloatField(verbose_name='Цена')
+    category = ForeignKey(ShopProductCategory, on_delete=DO_NOTHING, blank=True, null=True,
+                          verbose_name='Категория товара')
+
+    def __str__(self):
+        return self.title
 
 
 class WalkingZone(Model):
+    class Meta:
+        verbose_name = 'Зона выгула(район)'
+        verbose_name_plural = 'Зоны выгула(районы)'
+
     name = CharField(max_length=20, verbose_name='Название района')
 
     def __str__(self):
@@ -26,6 +62,10 @@ def user_directory_path(instance, filename):
 
 
 class WalkingDate(Model):
+    class Meta:
+        verbose_name = 'Выгул'
+        verbose_name_plural = 'Выгулы'
+
     walker = ForeignKey('Walker', on_delete=CASCADE)
     day = IntegerField()
     hour = IntegerField(validators=[MinValueValidator(7), MaxValueValidator(22)])
@@ -43,8 +83,19 @@ class WalkingDate(Model):
 
 
 class Walker(Model):
+    class Meta:
+        verbose_name = 'Волкер'
+        verbose_name_plural = 'Волкеры'
+
     user = OneToOneField(User, on_delete=CASCADE, verbose_name='Пользователь')
     photo = ImageField(verbose_name='Аватар', upload_to=user_directory_path)
+    extra_photo_1 = ImageField(verbose_name='Дополнительное фото 1', blank=True, null=True,
+                               upload_to=user_directory_path)
+    extra_photo_2 = ImageField(verbose_name='Дополнительное фото 2', blank=True, null=True,
+                               upload_to=user_directory_path)
+    extra_photo_3 = ImageField(verbose_name='Дополнительное фото 3', blank=True, null=True,
+                               upload_to=user_directory_path)
+    history = TextField(verbose_name='Текст на странице специалистов', blank=True, null=True)
     walking_map = ImageField(verbose_name='Карта выгула', upload_to=user_directory_path, blank=True)
     birth_date = DateField(verbose_name='Дата рождения')
     green_zones = ManyToManyField(WalkingZone, related_name='green_zones', verbose_name='Зеленые зоны')

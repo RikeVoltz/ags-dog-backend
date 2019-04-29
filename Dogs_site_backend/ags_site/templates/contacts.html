@@ -3,8 +3,8 @@
 {% block content %}
     {% include 'flags.html' %}
     {% include 'header.html' %}
-    <div class="container-fluid p-0">
-        <h1 class="display-4 text-black text-center logo-title-5">
+    <div class="container-fluid p-0 d-flex flex-column justify-content-center">
+        <h1 class="display-4 text-black text-center" style="margin-top:8%">
             Наши контакты
         </h1>
         <div class="container mb-4 bordered w-40 contacts-container text-center">
@@ -26,7 +26,7 @@
                     <div class="row justify-content-between">
                         <span class="training-text">Адрес:</span>
                         <div class="col contacts-between mb-2-5 mx-2"></div>
-                        <span class="training-text">Полежаевский парк</span>
+                        <span class="training-text">Красносельский район</span>
                     </div>
                 </div>
                 <div class="col p-0">
@@ -69,8 +69,8 @@
                 </form>
             </div>
             <div class="col embed-responsive">
-                <iframe frameborder="0"
-                        src="https://yandex.ru/map-widget/v1/?um=constructor%3Aa14f6bfda48ced5f6d0aea3dace7b2fe43c803cd45991d6133647df3e92c2b17&amp;source=constructor"></iframe>
+                <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3Aa14f6bfda48ced5f6d0aea3dace7b2fe43c803cd45991d6133647df3e92c2b17&amp;source=constructor"
+                        frameborder="0"></iframe>
             </div>
         </div>
     </div>

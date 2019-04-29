@@ -3,80 +3,20 @@
 {% block content %}
     {% include 'flags.html' %}
     {% include 'header.html' %}
-    <div class="container-fluid w-80 h-auto">
-        <h2 class="display-4 text-black text-center logo-title-5">
+    <div class="container-fluid p-0 w-80">
+        <h1 class="display-4 text-black text-center" style="margin-top:8%">
             Товары
-        </h2>
+        </h1>
         <div class="card-deck mb-5">
-            <div class="card shop-card">
-                <img class="card-img" src="{% static 'images/matras.jpg' %}"/>
-                <div class="card-shop-img-overlay">
+            {% for category in categories %}
+                <div class="card shop-card">
+                    <a href="{{ category.url_title }}">
+                        <img class="card-img-top shop-card-img" src="{{ category.thumbnail.url }}"/></a>
                     <div class="card-body">
-                        <h5 class="card-title card-shop-title text-center">Матрасы и лежанки</h5>
+                        <h5 class="card-title card-shop-title text-center">{{ category.title }}</h5>
                     </div>
                 </div>
-            </div>
-            <div class="card shop-card">
-                <img class="card-img" src="{% static 'images/clicker.jpg' %}"/>
-                <div class="card-shop-img-overlay">
-                    <div class="card-body">
-                        <h5 class="card-title card-shop-title text-center">Кликеры</h5>
-                    </div>
-                </div>
-            </div>
-            <div class="card shop-card">
-                <img class="card-img" src="{% static 'images/matras.jpg' %}"/>
-                <div class="card-shop-img-overlay">
-                    <div class="card-body">
-                        <h5 class="card-title card-shop-title text-center">Матрасы и лежанки</h5>
-                    </div>
-                </div>
-            </div>
-            <div class="card shop-card">
-                <img class="card-img" src="{% static 'images/matras.jpg' %}"/>
-                <div class="card-shop-img-overlay">
-                    <div class="card-body">
-                        <h5 class="card-title card-shop-title text-center">Матрасы и лежанки</h5>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <h2 class="display-4-5 text-black text-center logo-title-4">
-            Лакомства
-        </h2>
-        <div class="card-deck">
-            <div class="card shop-card">
-                <img class="card-img" src="{% static 'images/matras.jpg' %}"/>
-                <div class="card-shop-img-overlay">
-                    <div class="card-body">
-                        <h5 class="card-title card-shop-title text-center">Матрасы и лежанки</h5>
-                    </div>
-                </div>
-            </div>
-            <div class="card shop-card">
-                <img class="card-img" src="{% static 'images/matras.jpg' %}"/>
-                <div class="card-shop-img-overlay">
-                    <div class="card-body">
-                        <h5 class="card-title card-shop-title text-center">Матрасы и лежанки</h5>
-                    </div>
-                </div>
-            </div>
-            <div class="card shop-card">
-                <img class="card-img" src="{% static 'images/matras.jpg' %}"/>
-                <div class="card-shop-img-overlay">
-                    <div class="card-body">
-                        <h5 class="card-title card-shop-title text-center">Матрасы и лежанки</h5>
-                    </div>
-                </div>
-            </div>
-            <div class="card shop-card">
-                <img class="card-img" src="{% static 'images/matras.jpg' %}"/>
-                <div class="card-shop-img-overlay">
-                    <div class="card-body">
-                        <h5 class="card-title card-shop-title text-center">Матрасы и лежанки</h5>
-                    </div>
-                </div>
-            </div>
+            {% endfor %}
         </div>
     </div>
     {% include 'footer.html' %}

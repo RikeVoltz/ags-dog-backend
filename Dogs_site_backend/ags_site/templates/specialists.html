@@ -1,0 +1,69 @@
+{% extends 'base_template.html' %}
+{% load staticfiles %}
+{% block content %}
+    {% include 'flags.html' %}
+    {% include 'header.html' %}
+    <div class="container-fluid p-0">
+        <img class="main-background" src="{% static 'images/specialists-main-back.jpg' %}" alt="Фоновая картинка"/>
+    </div>
+    <div class="container-fluid p-0">
+        <h1 class="display-4 text-black text-center logo-title-4 mt-3">
+            Наши специалисты
+        </h1>
+        <div class="card-deck specialists-card-deck">
+            {% for walker in walkers %}
+                <div class="card specialists-card">
+                    <div class="card-body">
+                        <h3 class="card-title text-center">{{ walker.user.first_name }}</h3>
+                        <div class="row">
+                            <div class="col-auto">
+                                <div id="photos-specialist-{{ walker.id }}" class="carousel slide" data-ride="carousel">
+                                    <div class="carousel-inner">
+                                        {% if walker.extra_photo_1 %}
+                                            <div class="carousel-item specialists-carousel-item active">
+                                                <img src="{{ walker.extra_photo_1.url }}"
+                                                     class="d-block img-fluid specialists-carousel-img" alt="...">
+                                            </div>
+                                        {% endif %}
+                                        {% if walker.extra_photo_2 %}
+                                            <div class="carousel-item specialists-carousel-item">
+                                                <img src="{{ walker.extra_photo_2.url }}"
+                                                     class="d-block img-fluid specialists-carousel-img" alt="...">
+                                            </div>
+                                        {% endif %}
+                                        {% if walker.extra_photo_3 %}
+                                            <div class="carousel-item specialists-carousel-item">
+                                                <img src="{{ walker.extra_photo_3.url }}"
+                                                     class="d-block img-fluid specialists-carousel-img" alt="...">
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                    <a class="carousel-control-prev" href="#photos-specialist-1" role="button"
+                                       data-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        <span class="sr-only">Previous</span>
+                                    </a>
+                                    <a class="carousel-control-next" href="#photos-specialist-1" role="button"
+                                       data-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <span class="sr-only">Next</span>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-1 text-justify d-flex align-items-center">
+                                <span class="display-3">&#171;</span>
+                            </div>
+                            <div class="col-10 text-justify">
+                                {{ walker.history|safe }}
+                            </div>
+                            <div class="col-1 text-justify d-flex align-items-center">
+                                <span class="display-3">&#187;</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% include 'footer.html' %}
+{% endblock %}

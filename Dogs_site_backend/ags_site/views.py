@@ -2,16 +2,21 @@ import datetime
 from json import dumps
 
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse, HttpResponseForbidden, HttpResponseBadRequest, Http404
+from django.http import HttpResponse, HttpResponseForbidden, HttpResponseBadRequest, HttpResponseNotFound
 from django.shortcuts import render
 
 from ags_site.forms import ProfileForm, BookWalkingForm
-from ags_site.models import Walker, WalkingZone, WalkingDate, Q
+from ags_site.models import Walker, WalkingZone, WalkingDate, Q, ShopProductCategory, ShopProduct
 from .scripts import get_cur_month_days_amount
 
 
 def training(request):
     return render(request, 'training.html')
+
+
+def specialists(request):
+    walkers = Walker.objects.all()
+    return render(request, 'specialists.html', {'walkers': walkers})
 
 
 def _get_structured_walkers(walkers):
@@ -79,11 +84,21 @@ def walking(request):
 
 
 def test(request):
-    return render(request, 'test.html')
+    if request.GET:
+        return render(request, 'test.html', {'type': request.GET['type']})
+    else:
+        return HttpResponseNotFound()
+
+
+def shop_category(request, url_title):
+    products = ShopProduct.objects.filter(category__url_title=url_title)
+    title = ShopProductCategory.objects.filter(url_title=url_title).values('title')[0]['title']
+    return render(request, 'shop_category.html', {'title': title, 'products': products})
 
 
 def shop(request):
-    return render(request, 'shop.html')
+    categories = ShopProductCategory.objects.all()
+    return render(request, 'shop.html', {'categories': categories})
 
 
 def price(request):
@@ -146,7 +161,7 @@ def profile(request):
     try:
         walker = request.user.walker
     except Walker.DoesNotExist:
-        return Http404()
+        return HttpResponseNotFound()
     if request.method == 'POST':
         form = ProfileForm(request.POST)
         if form.is_valid():
