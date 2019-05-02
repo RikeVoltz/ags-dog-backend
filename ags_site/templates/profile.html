@@ -1,5 +1,6 @@
 {% extends 'base_template.html' %}
 {% load staticfiles %}
+{% block robots %}none{% endblock %}
 {% block content %}
     {% include 'flags.html' %}
     {% include 'header.html' %}
@@ -101,22 +102,6 @@
                                                          data-content="{{ walking.dog_owner_name }}, {{ walking.address }}, {{ walking.breed }}, {{ walking.type }} выгул"
                                                          {% endif %}id="hour-{{ forloop.counter0 }}"
                                                          class="{% if not walker.can_change_dates %}hour-disabled {% endif %}far-area col calendar-col{% if walking.dog_owner_name %} hour-booked
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                                                              {% else %}{% if not walking.is_free %} hour-activated {% endif %}{% endif %}">
                                                     </div>
                                                 {% endfor %}

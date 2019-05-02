@@ -1,23 +1,30 @@
 {% extends 'base_template.html' %}
 {% load staticfiles %}
+{% block robots %}all{% endblock %}
+{% block title %}Товары для собак в Санкт-Петербурге | АГС{% endblock %}
+{% block description %}Натуральные лакомства, лежанки для собак и многое другое по низким ценам.{% endblock %}
 {% block content %}
-    {% include 'flags.html' %}
-    {% include 'header.html' %}
-    <div class="container-fluid p-0 w-80">
-        <h1 class="display-4 text-black text-center" style="margin-top:8%">
-            Товары
-        </h1>
-        <div class="card-deck mb-5">
-            {% for category in categories %}
-                <div class="card shop-card">
-                    <a href="{{ category.url_title }}">
-                        <img class="card-img-top shop-card-img" src="{{ category.thumbnail.url }}"/></a>
-                    <div class="card-body">
-                        <h5 class="card-title card-shop-title text-center">{{ category.title }}</h5>
-                    </div>
-                </div>
-            {% endfor %}
+{% include 'flags.html' %}
+{% include 'header.html' %}
+<div class="container-fluid p-0 w-80">
+    <h1 class="display-4 text-black text-center" style="margin-top:8%">
+        Товары
+    </h1>
+    <div class="card-deck mb-5 h-auto">
+        {% for category in categories %}
+        <div class="card shop-card">
+            <div class="shop-card-category-img-div">
+                <a href="{{ category.url_title }}">
+                    <img class="card-img-top img-fluid" src="{{ category.thumbnail.url }}"/>
+                </a>
+            </div>
+            <div class="card-body text-center">
+                <h5 class="card-title card-shop-title text-center">{{ category.title }}</h5>
+            </div>
         </div>
+        {% endfor %}
     </div>
-    {% include 'footer.html' %}
+</div>
+{% include 'footer.html' %}
 {% endblock %}
+

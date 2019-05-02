@@ -1,31 +1,42 @@
 {% extends 'base_template.html' %}
 {% load staticfiles %}
+{% block robots %}all{% endblock %}
+{% block title %}Кинологические тесты, интересное | АГС{% endblock %}
+{% block description %}Тесты на знание пород, тест на выгульщика собак, породы собак{% endblock %}
 {% block content %}
-    {% include 'flags.html' %}
-    {% include 'header.html' %}
-    <div class="container-fluid p-0">
-        <img class="main-background" src="{% static 'images/interesting-main-back.jpg' %}" alt="Фон"/>
+{% include 'flags.html' %}
+{% include 'header.html' %}
+<div class="container-fluid p-0">
+    <img class="main-background" src="{% static 'images/interesting-main-back.jpg' %}" alt="Фон"/>
+</div>
+<div class="container-fluid p-0">
+    <h1 class="display-4 text-black text-center my-3">
+        Интересное
+    </h1>
+    <h3 class="display-5 text-black text-center my-3">
+        Тест на знание пород &#171;для начинающих&#187;
+    </h3>
+    <div class="row tests-interesting-title justify-content-center">
+        <button class="btn btn-outline-light btn-xl" onclick="location.href='/test?type=breeds_beginner'"
+                type="button">Пройти тест
+        </button>
     </div>
-    <div class="container-fluid p-0">
-        <h1 class="display-4 text-black text-center my-3">
-            Интересное
-        </h1>
-        <h3 class="display-5 text-black text-center my-3">
-            Тест на знание пород для начинающих
-        </h3>
-        <div class="row tests-interesting-title justify-content-center" id="title-1">
-            <button class="btn btn-outline-light btn-xl" onclick="location.href='/test?type=breeds_beginner'"
-                    type="button">Пройти тест
-            </button>
-        </div>
-        <h3 class="display-5 text-black text-center my-3">
-            Тест на волкера
-        </h3>
-        <div class="row tests-interesting-title justify-content-center" id="title-1">
-            <button class="btn btn-outline-light btn-xl" onclick="location.href='/test?type=walker'" type="button">
-                Пройти тест
-            </button>
-        </div>
+    <h3 class="display-5 text-black text-center my-3">
+        Тест на знание пород &#171;для специалистов&#187;
+    </h3>
+    <div class="row tests-interesting-title justify-content-center">
+        <button class="btn btn-outline-light btn-xl" onclick="location.href='/test?type=breeds_specialist'"
+                type="button">Пройти тест
+        </button>
     </div>
-    {% include 'footer.html' %}
+    <h3 class="display-5 text-black text-center my-3">
+        Тест на волкера
+    </h3>
+    <div class="row tests-interesting-title justify-content-center">
+        <button class="btn btn-outline-light btn-xl" onclick="location.href='/test?type=walker'" type="button">
+            Пройти тест
+        </button>
+    </div>
+</div>
+{% include 'footer.html' %}
 {% endblock %}

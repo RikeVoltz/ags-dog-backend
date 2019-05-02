@@ -1,219 +1,228 @@
 {% extends 'base_template.html' %}
 {% load staticfiles %}
+{% block robots %}all{% endblock %}
+{% block title %}Кинологические услуги в СПб. Дрессировка и выгул собак недорого | АГС{% endblock %}
+{% block description %}Дрессировка с кинологом, профессиональный выгул собак, низкие цены{% endblock %}
 {% block content %}
-    {% include 'flags.html' %}
-    {% include 'header.html' %}
-    <div class="container-fluid h-auto d-flex justify-content-center">
-        <video autoplay class="main-video" loop muted>
-            <source src="{% static 'videos/main.mp4' %}" type="video/mp4">
-        </video>
+{% include 'flags.html' %}
+{% include 'header.html' %}
+<div class="container-fluid h-auto d-flex justify-content-center">
+    <video autoplay class="main-video" loop muted>
+        <source src="{% static 'videos/main.mp4' %}" type="video/mp4">
+    </video>
+</div>
+<div class="container-fluid whole-window text-center d-flex flex-column align-items-center">
+    <h1 class="display-4 text-black mt-3">
+        Добро пожаловать в нашу Ассоциацию Грамотноых Собаководов!
+    </h1>
+    <div class="row d-flex justify-content-center text-justify">
+        <p class="w-80 training-text mx-5">Наша команда сформировалась благодаря большой любви к собакам,
+            накопленному за многие годы опыту, жажде продвижения в кинологической сфере и вопиющей несправедливости
+            –
+            необразованной толпы людей, выдающих себя за кинологов.</p>
     </div>
-    <div class="container-fluid whole-window text-center d-flex flex-column align-items-center">
-        <h1 class="display-4 text-black mt-3">
-            Добро пожаловать в нашу Ассоциацию Грамотного Собаководства!
-        </h1>
-        <div class="row d-flex justify-content-center text-justify">
-            <p class="w-80 training-text mx-5">Наша команда сформировалась благодаря большой любви к собакам,
-                накопленному за многие годы опыту, жажде продвижения в кинологической сфере и вопиющей несправедливости
-                –
-                необразованной толпы людей, выдающих себя за кинологов.</p>
-        </div>
-        <div class="row d-flex justify-content-center text-justify">
-            <p class="w-80 training-text mx-5"> Мы рады Вам предложить активный и безопасный выгул питомца или грамотную
-                дрессировку на базе позитивного
-                метода. Мы работаем на мотивации собаки, подкрепляем желательное поведение. В основном мы используем вкусопоощрительный и игровой методы. Мы никтогда не применяем
-                грубость к животным. С нами Вы достигните взаимопонимания со своей собакой, ведь мы с легкостью решим
-                любую
-                Вашу проблему!</p>
-        </div>
-        <div class="row d-flex justify-content-center text-justify">
-            <p class="w-80 training-text mx-5">Мы относимся ответственно к своей работе, каждый сотрудник нашего клуба
-                обладает багажом знаний, необходимым
-                для того, чтобы грамотно обучить или выгулять Вашу собаку. Каждый член нашей команды развивается
-                ежедневно,
-                дополняет свои навыки, получает новый опыт. На протяжении своей работы сотрудники
-                находятся под строгим контролем – мы стараемся сделать все так, чтобы клиент был более, чем доволен.</p>
-        </div>
-        <div class="container-fluid main-table">
-            <div class="row justify-content-center">
-                <div class="blacker row justify-content-center">
-                    <div class="blacker-more">
-                        <div class="row">
+    <div class="row d-flex justify-content-center text-justify">
+        <p class="w-80 training-text mx-5"> Мы рады Вам предложить активный и безопасный выгул питомца или грамотную
+            дрессировку на базе позитивного
+            метода. Мы работаем на мотивации собаки, подкрепляем желательное поведение. В основном мы используем
+            вкусопоощрительный и игровой методы. Мы никтогда не применяем
+            грубость к животным. С нами Вы достигните взаимопонимания со своей собакой, ведь мы с легкостью решим
+            любую
+            Вашу проблему!</p>
+    </div>
+    <div class="row d-flex justify-content-center text-justify">
+        <p class="w-80 training-text mx-5">Мы относимся ответственно к своей работе, каждый сотрудник нашего клуба
+            обладает багажом знаний, необходимым
+            для того, чтобы грамотно обучить или выгулять Вашу собаку. Каждый член нашей команды развивается
+            ежедневно,
+            дополняет свои навыки, получает новый опыт. На протяжении своей работы сотрудники
+            находятся под строгим контролем – мы стараемся сделать все так, чтобы клиент был более, чем доволен.</p>
+    </div>
+    <div class="container-fluid main-table">
+        <div class="row justify-content-center">
+            <div class="blacker row justify-content-center">
+                <div class="blacker-more">
+                    <div class="row">
     <span>
      Основной род нашей деятельности – это дрессировка по курсу ОКД – общему курсу дрессировки собак. Это выработка дисциплинарных навыков у собаки, которые позволяют хозяевам контролировать собаку в повседневных делах, на прогулках, помогают владельцу понять своего питомца.
     </span>
-                        </div>
-                        <div class="row justify-content-center mt-3">
-                            <a class="blacker-btn btn btn-light" href='training#OKD'>Подробнее</a>
-                        </div>
                     </div>
-                    <span class="align-self-end blacker-text">ОКД</span>
-                    <div class="col d-flex main-table-col main-table-col-up" id="block-11">
+                    <div class="row justify-content-center mt-3">
+                        <a class="blacker-btn btn btn-light" href='training#OKD'>Подробнее</a>
                     </div>
                 </div>
-                <div class="blacker row justify-content-center">
-                    <div class="blacker-more">
-                        <div class="row">
+                <span class="align-self-end blacker-text">ОКД</span>
+                <div class="col d-flex main-table-col main-table-col-up" id="block-11">
+                </div>
+            </div>
+            <div class="blacker row justify-content-center">
+                <div class="blacker-more">
+                    <div class="row">
     <span>
         Наши специалисты прошли обязательную сертификацию и грамотное обучение и готовы выгулять Вашего питомца!
     </span>
-                        </div>
-                        <div class="row justify-content-center mt-3">
-                            <a class="blacker-btn btn btn-light" href='walking'>Подробнее</a>
-                        </div>
                     </div>
-                    <span class="align-self-end blacker-text">Выгул</span>
-                    <div class="col d-flex main-table-col main-table-col-up" id="block-12">
+                    <div class="row justify-content-center mt-3">
+                        <a class="blacker-btn btn btn-light" href='walking'>Подробнее</a>
                     </div>
                 </div>
-                <div class="blacker row justify-content-center">
-                    <div class="blacker-more">
-                        <div class="row">
+                <span class="align-self-end blacker-text">Выгул</span>
+                <div class="col d-flex main-table-col main-table-col-up" id="block-12">
+                </div>
+            </div>
+            <div class="blacker row justify-content-center">
+                <div class="blacker-more">
+                    <div class="row">
     <span>
 УГС – курс управляемой городской собаки. Это своеобразная альтернатива курсу ОКД, отличие в том, что это упрощенный вариант, а также специализирующийся на городской среде.
     </span>
-                        </div>
-                        <div class="row justify-content-center mt-3">
-                            <a class="blacker-btn btn btn-light" href='training#UGS'>Подробнее</a>
-                        </div>
                     </div>
-                    <span class="align-self-end blacker-text">УГС</span>
-                    <div class="col d-flex main-table-col main-table-col-up" id="block-13">
+                    <div class="row justify-content-center mt-3">
+                        <a class="blacker-btn btn btn-light" href='training#UGS'>Подробнее</a>
                     </div>
                 </div>
+                <span class="align-self-end blacker-text">УГС</span>
+                <div class="col d-flex main-table-col main-table-col-up" id="block-13">
+                </div>
             </div>
-            <div class="row justify-content-center">
-                <div class="blacker row justify-content-center">
-                    <div class="blacker-more">
-                        <div class="row">
+        </div>
+        <div class="row justify-content-center">
+            <div class="blacker row justify-content-center">
+                <div class="blacker-more">
+                    <div class="row">
     <span>
         Самым захватывающим направлением нашей деятельности является трюковая дрессировка. На данном курсе можно войти в полный резонанс со своей собакой и наслаждаться совместными победами и отличным взаимопониманием.
     </span>
-                        </div>
-                        <div class="row justify-content-center mt-3">
-                            <a class="blacker-btn btn btn-light" href='training#trick'>Подробнее</a>
-                        </div>
                     </div>
-                    <span class="align-self-start blacker-text">Трюковая дрессировка</span>
-                    <div class="col d-flex main-table-col main-table-col-down" id="block-21">
+                    <div class="row justify-content-center mt-3">
+                        <a class="blacker-btn btn btn-light" href='training#trick'>Подробнее</a>
                     </div>
                 </div>
-                <div class="blacker row justify-content-center">
-                    <div class="blacker-more">
-                        <div class="row">
+                <span class="align-self-start blacker-text">Трюковая дрессировка</span>
+                <div class="col d-flex main-table-col main-table-col-down" id="block-21">
+                </div>
+            </div>
+            <div class="blacker row justify-content-center">
+                <div class="blacker-more">
+                    <div class="row">
     <span>
         Если нет возможности ходить на занятия – не беда! Можно просто написать нам, ведь у нас работает система онлайн консультаций – мы ответим Вам в этот же день!
     </span>
-                        </div>
-                        <div class="row justify-content-center mt-3">
-                            <a class="blacker-btn btn btn-light" href='consultation'>Подробнее</a>
-                        </div>
                     </div>
-                    <span class="align-self-start blacker-text">Консультации</span>
-                    <div class="col d-flex main-table-col main-table-col-down" id="block-22">
+                    <div class="row justify-content-center mt-3">
+                        <a class="blacker-btn btn btn-light" href='consultation'>Подробнее</a>
                     </div>
                 </div>
-                <div class="blacker row justify-content-center">
-                    <div class="blacker-more">
-                        <div class="row">
+                <span class="align-self-start blacker-text">Консультации</span>
+                <div class="col d-flex main-table-col main-table-col-down" id="block-22">
+                </div>
+            </div>
+            <div class="blacker row justify-content-center">
+                <div class="blacker-more">
+                    <div class="row">
     <span>
         У нас вы можете приобрести амуницию, лакомства, игрушки, а также множество других полезных товаров для Вас и Вашего питомца!
     </span>
-                        </div>
-                        <div class="row justify-content-center mt-3">
-                            <a class="blacker-btn btn btn-light" href='shop'>Подробнее</a>
-                        </div>
                     </div>
-                    <span class="align-self-start blacker-text">Товары</span>
-                    <div class="col d-flex main-table-col main-table-col-down" id="block-23">
+                    <div class="row justify-content-center mt-3">
+                        <a class="blacker-btn btn btn-light" href='shop'>Подробнее</a>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-    <div class="container-fluid whole-window">
-        <h2 class="display-4 text-black text-center mt-5 logo-title">
-            Почему именно наша команда?
-        </h2>
-        <div class="card-deck justify-content-center mb-n3">
-            <div class="card why-us-card">
-                <img class="card-img-top why-us-card-img align-self-center" src="{% static 'images/handshake.svg' %}"/>
-                <h5 class="card-title why-us-card-title">Профессиональная дрессировка и выгул</h5>
-                <div class="card-body">
-                    <span class="card-text why-us-card-text">Наша команда поможет Вам в сфере классической и трюковой дрессировки, мы выгуляем Вашу собаку и дадим Вам емкую консультацию по воспитанию питомца!</span>
-                </div>
-            </div>
-            <div class="card why-us-card">
-                <img class="card-img-top why-us-card-img align-self-center" src="{% static 'images/student.svg' %}"/>
-                <h5 class="card-title why-us-card-title">Грамотный персонал</h5>
-                <div class="card-body">
-                    <span class="card-text">Каждый инструктор и волкер АГС прошел необходимую подготовку у кинолога и совершенствуется в сфере собаководства каждый день.</span>
-                </div>
-            </div>
-            <div class="card why-us-card">
-                <img class="card-img-top why-us-card-img align-self-center" src="{% static 'images/love.svg' %}"/>
-                <h5 class="card-title why-us-card-title">Бесконфликтный метод дрессировки</h5>
-                <div class="card-body">
-                    <span class="card-text">Наши специалисты никогда не кричат на собаку, знают как выйти из любой затруднительной ситуации и никогда не применяют грубость.</span>
-                </div>
-            </div>
-            <div class="card why-us-card">
-                <img class="card-img-top why-us-card-img align-self-center" src="{% static 'images/money_pig.svg' %}"/>
-                <h5 class="card-title why-us-card-title">Низкие цены</h5>
-                <div class="card-body">
-                    <span class="card-text">Качественные кинологические услуги по выгодной стоимости — воспитанная собака доступна каждому!</span>
-                </div>
-            </div>
-        </div>
-        <div class="card-deck justify-content-center">
-            <div class="card why-us-card">
-                <img class="card-img-top why-us-card-img align-self-center" src="{% static 'images/smile.svg' %}"/>
-                <h5 class="card-title why-us-card-title">Лучшая команда</h5>
-                <div class="card-body">
-                    <span class="card-text">Наша команда не пьет, не курит, и ведет здоровый образ жизни. С нами приятно иметь дело, ведь каждый наш сотрудник проходит предварительный отбор и квалифицированное обучение.</span>
-                </div>
-            </div>
-            <div class="card why-us-card">
-                <img class="card-img-top why-us-card-img align-self-center" src="{% static 'images/all-call.svg' %}"/>
-                <h5 class="card-title why-us-card-title">Услуги по всему городу</h5>
-                <div class="card-body">
-                    <span class="card-text">Мы работаем в каждом районе Санкт-Петербурга и в городе Пушкине.</span>
-                </div>
-            </div>
-            <div class="card why-us-card">
-                <img class="card-img-top why-us-card-img align-self-center" src="{% static 'images/sale.svg' %}"/>
-                <h5 class="card-title why-us-card-title">Акции и скидки</h5>
-                <div class="card-body">
-                    <span class="card-text">В нашем кинологическом клубе мы предоставляем выгодные акции и большие скидки!</span>
-                </div>
-            </div>
-            <div class="card why-us-card">
-                <img class="card-img-top why-us-card-img align-self-center" src="{% static 'images/pet-24-7.svg' %}"/>
-                <h5 class="card-title why-us-card-title">Мы любим собак</h5>
-                <div class="card-body">
-                    <span class="card-text">Наш девиз — грамотное и гуманное воспитание изо дня в день!</span>
+                <span class="align-self-start blacker-text">Товары</span>
+                <div class="col d-flex main-table-col main-table-col-down" id="block-23">
                 </div>
             </div>
         </div>
     </div>
-    <div class="container main-photos-carousel-container">
-        <div class="main-photos-carousel mb-5">
-            <div class="photos-carousel-cell is-selected">
-                <div class="carousel-photo">
-                    <img src="{% static 'images/discounts-main-back.jpg' %}" alt="Фото в карусели"/>
-                </div>
+</div>
+<div class="container-fluid whole-window">
+    <h2 class="display-4 text-black text-center mt-5 logo-title">
+        Почему именно наша команда?
+    </h2>
+    <div class="card-deck justify-content-center mb-n3">
+        <div class="card why-us-card">
+            <img class="card-img-top why-us-card-img align-self-center" src="{% static 'images/handshake.svg' %}"/>
+            <h5 class="card-title why-us-card-title">Профессиональная дрессировка и выгул</h5>
+            <div class="card-body">
+                <span class="card-text why-us-card-text">Наша команда поможет Вам в сфере классической и трюковой дрессировки, мы выгуляем Вашу собаку и дадим Вам емкую консультацию по воспитанию питомца!</span>
             </div>
-            <div class="photos-carousel-cell">
-                <div class="carousel-photo">
-                    <img src="{% static 'images/tests-main-back.jpg' %}" alt="Фото в карусели"/>
-                </div>
+        </div>
+        <div class="card why-us-card">
+            <img class="card-img-top why-us-card-img align-self-center" src="{% static 'images/student.svg' %}"/>
+            <h5 class="card-title why-us-card-title">Грамотный персонал</h5>
+            <div class="card-body">
+                <span class="card-text">Каждый инструктор и волкер АГС прошел необходимую подготовку у кинолога и совершенствуется в сфере собаководства каждый день.</span>
             </div>
-            <div class="photos-carousel-cell">
-                <div class="carousel-photo">
-                    <img src="{% static 'images/walking-main-back.jpg' %}" alt="Фото в карусели"/>
-                </div>
+        </div>
+        <div class="card why-us-card">
+            <img class="card-img-top why-us-card-img align-self-center" src="{% static 'images/love.svg' %}"/>
+            <h5 class="card-title why-us-card-title">Бесконфликтный метод дрессировки</h5>
+            <div class="card-body">
+                <span class="card-text">Наши специалисты никогда не кричат на собаку, знают как выйти из любой затруднительной ситуации и никогда не применяют грубость.</span>
+            </div>
+        </div>
+        <div class="card why-us-card">
+            <img class="card-img-top why-us-card-img align-self-center" src="{% static 'images/money_pig.svg' %}"/>
+            <h5 class="card-title why-us-card-title">Низкие цены</h5>
+            <div class="card-body">
+                <span class="card-text">Качественные кинологические услуги по выгодной стоимости — воспитанная собака доступна каждому!</span>
             </div>
         </div>
     </div>
-    {% include 'footer.html' %}
+    <div class="card-deck justify-content-center">
+        <div class="card why-us-card">
+            <img class="card-img-top why-us-card-img align-self-center" src="{% static 'images/smile.svg' %}"/>
+            <h5 class="card-title why-us-card-title">Лучшая команда</h5>
+            <div class="card-body">
+                <span class="card-text">Наша команда не пьет, не курит, и ведет здоровый образ жизни. С нами приятно иметь дело, ведь каждый наш сотрудник проходит предварительный отбор и квалифицированное обучение.</span>
+            </div>
+        </div>
+        <div class="card why-us-card">
+            <img class="card-img-top why-us-card-img align-self-center" src="{% static 'images/all-call.svg' %}"/>
+            <h5 class="card-title why-us-card-title">Услуги по всему городу</h5>
+            <div class="card-body">
+                <span class="card-text">Мы работаем в каждом районе Санкт-Петербурга и в городе Пушкине.</span>
+            </div>
+        </div>
+        <div class="card why-us-card">
+            <img class="card-img-top why-us-card-img align-self-center" src="{% static 'images/sale.svg' %}"/>
+            <h5 class="card-title why-us-card-title">Акции и скидки</h5>
+            <div class="card-body">
+                <span class="card-text">В нашем кинологическом клубе мы предоставляем выгодные акции и большие скидки!</span>
+            </div>
+        </div>
+        <div class="card why-us-card">
+            <img class="card-img-top why-us-card-img align-self-center" src="{% static 'images/pet-24-7.svg' %}"/>
+            <h5 class="card-title why-us-card-title">Мы любим собак</h5>
+            <div class="card-body">
+                <span class="card-text">Наш девиз — грамотное и гуманное воспитание изо дня в день!</span>
+            </div>
+        </div>
+    </div>
+</div>
+{% if carousel_photos %}
+<a id="gallery"></a>
+<div class="container justify-content-center">
+    <div id="indexCarouselPhotos" class="carousel slide mb-5" data-ride="carousel">
+        <div class="carousel-inner index-photos-carousel-inner">
+            {% for photo in carousel_photos %}
+            <div class="index-photos-carousel-item carousel-item{% if forloop.first %} active{% endif %}">
+                <div class="d-flex justify-content-center">
+                    <img src="{{photo.photo.url}}" class="index-photos-carousel-img img-fluid" alt="Фото в карусели"/>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <a class="carousel-control-prev" href="#indexCarouselPhotos" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class=" carousel-control-next" href="#indexCarouselPhotos" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+</div>
+{% endif %}
+{% include 'footer.html' %}
 {% endblock %}

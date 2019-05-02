@@ -1,187 +1,143 @@
 {% extends 'base_template.html' %}
 {% load staticfiles %}
-{% block title %} Услуги по выгулу собак в Санкт-Петербурге | АГС {% endblock %}
-{% block description %} Здесь вы можете найти цены на кинологические услуги от профессиональных и сертифицированных
-    кинологов Санкт-Петербурга{% endblock %}
+{% block robots %}all{% endblock %}
+{% block title %}Выгул собак в Санкт-Петербурге, недорого | АГС{% endblock %}
+{% block description %}Профессионально выгуляем Вашего питомца. Кинологические услуги по низким ценам{% endblock %}
 {% block content %}
-    {% include 'flags.html' %}
-    {% include 'header.html' %}
-    <div class="container-fluid p-0">
-        <img class="main-background" src="{% static 'images/walking-main-back.jpg' %}" alt="Фон"/>
+{% include 'flags.html' %}
+{% include 'header.html' %}
+<div class="container-fluid p-0">
+    <img class="main-background" src="{% static 'images/walking-main-back.jpg' %}" alt="Фон"/>
+</div>
+<div class="container-fluid p-0">
+    <h2 class="display-4 text-black text-center my-3">
+        Выгул собак
+    </h2>
+    <div class="row d-flex justify-content-center text-justify ml-4">
+        <p class="training-text">Наши специалисты прошли обязательную сертификацию и грамотное обучение у
+            профессионального кинолога и готовы выгулять Вашего питомца!
+            Наша команда не применяет грубые методы дрессировки и общения с собакой, не отвлекается на прогулках во
+            избежание непредвиденных ситуаций, не дергает собаку, не кричит на нее, следит, чтобы питомец не
+            подбирал с земли, а также каждый специалист убирает за своим подопечным. Все наши специалисты носят с
+            собой специальную аптечку первой помощи для собак. Мы не подпускаем других собак к
+            нам, а также никогда не отпускаем питомца с поводка. Наши специалисты всегда трезвые, не курят, ведут
+            здоровый образ жизни и поддерживают хорошее настроение в любой ситуации. Мы не дрессируем собак на
+            выгуле, для этого мы предлагаем Вам отдельную <u><a class="text-black"
+                                                                href='/training#instructor_and_dog'>услугу</a></u></p>.
+        <p class="training-text">Для выгула мы используем свои поводки – проверенные, крепкие,
+            брезентовые, с хорошими карабинами во избежание несчатного случая. Дополнительно они с ошейником собаки
+            блокируются отдельным карабином. От владельца требуется лишь намордник
+            для собак, которые выше 40 сантиметров в холке.
+            Мы выгуливаем собак всегда по-одному, в ином случае - только по просьбе клиента.</p>
+        <p class="training-text">Наша команда предлагает Вам для удобства два варианта: классический
+            выгул и активный.</p>
+        <p class="training-text">При классической прогулке волкер выгуливает Вашего питомца в обычном
+            темпе, не торопит его, выбирает оптимальный маршрут.
+            При активной прогулке волкер играет с Вашей собакой на протяжении всей прогулки, бегает, тратит его
+            энергию и возвращает Вам счастливого питомца! <br> Закажите выгул прямо сейчас!
+        </p>
+        <div class="w-100"></div>
     </div>
-    <div class="container-fluid p-0">
-        <h2 class="display-4 text-black text-center my-3">
-            Выгул собак
-        </h2>
-        <div class="row d-flex justify-content-center text-justify ml-4">
-            <p class="training-text">Наши специалисты прошли обязательную сертификацию и грамотное обучение у
-                профессионального кинолога и готовы выгулять Вашего питомца!
-                Наша команда не применяет грубые методы дрессировки и общения с собакой, не отвлекается на прогулках во
-                избежание непредвиденных ситуаций, не дергает собаку, не кричит на нее, следит, чтобы питомец не
-                подбирал с земли, а также каждый специалист убирает за своим подопечным. Все наши специалисты носят с
-                собой специальную аптечку первой помощи для собак. Мы не подпускаем других собак к
-                нам, а также никогда не отпускаем питомца с поводка. Наши специалисты всегда трезвые, не курят, ведут
-                здоровый образ жизни и поддерживают хорошее настроение в любой ситуации. Мы не дрессируем собак на
-                выгуле, для этого мы предлагаем Вам отдельную <u><a class="text-black"
-                                                                    href='/training#instructor_and_dog'>услугу</a></u></p>.
-            <p class="training-text">Для выгула мы используем свои поводки – проверенные, крепкие,
-                брезентовые, с хорошими карабинами во избежание несчатного случая. От владельца требуется лишь намордник
-                для собак, которые выше 40 сантиметров в холке.
-                Мы выгуливаем собак всегда по-одному, в ином случае - только по просьбе клиента.</p>
-            <p class="training-text">Наша команда предлагает Вам для удобства два варианта: классический
-                выгул и активный.</p>
-            <p class="training-text">При классической прогулке волкер выгуливает Вашего питомца в обычном
-                темпе, не торопит его, выбирает оптимальный маршрут.
-                При активной прогулке волкер играет с Вашей собакой на протяжении всей прогулки, бегает, тратит его
-                энергию и возвращает Вам счастливого питомца! <br> Закажите выгул прямо сейчас!
-            </p>
-            <div class="w-100"></div>
-        </div>
-        <div class="row justify-content-center ml-4">
-            <a class="btn btn-warning btn-order-by-time">Заказать прогулку</a>
-        </div>
-        <div class="container-fluid justify-content-center mt-3 w-50 order-by-time-form" style="display:none;">
-            <form class="order-walking-form">
-                {% csrf_token %}
-                <div class="form-group">
-                    <select class="form-control district-select">
-                        <option value="" disabled selected style='display:none;'>Выберите из списка</option>
-                        {% for walking_zone in walking_zones %}
-                            <option value={{ walking_zone.id }}>{{ walking_zone.name }}</option>
-                        {% endfor %}
-                    </select>
+    <div class="row justify-content-center ml-4">
+        <a class="btn btn-warning btn-order-by-time">Заказать прогулку</a>
+    </div>
+    <div class="container-fluid justify-content-center mt-3 w-50 order-by-time-form" style="display:none;">
+        <form class="order-walking-form">
+            {% csrf_token %}
+            <div class="form-group">
+                <select class="form-control district-select">
+                    <option value="" disabled selected style='display:none;'>Выберите из списка</option>
+                    {% for walking_zone in walking_zones %}
+                    <option value={{ walking_zone.id }}>{{ walking_zone.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <select class="form-control date-select" style='display:none;'>
+                    <option value="" disabled selected style='display:none;'>Выберите из списка</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <div class="walkers-panel card-deck">
                 </div>
-                <div class="form-group">
-                    <select class="form-control date-select" style='display:none;'>
-                        <option value="" disabled selected style='display:none;'>Выберите из списка</option>
-                    </select>
+            </div>
+            <div class="form-row walking-order-contacts" style="display: none">
+                <div class="form-group required col-md-6">
+                    <input required type="text" class="form-control order-walking-name-input" placeholder="Имя">
                 </div>
-                <div class="form-group">
-                    <div class="walkers-panel card-deck">
+                <div class="form-group required col-md-6">
+                    <input required type="text" class="form-control order-walking-phone-input"
+                           placeholder="Телефон">
+                </div>
+            </div>
+            <div class="form-row walking-order-contacts" style="display: none">
+                <div class="form-group required col-md-6">
+                    <input required type="text" class="form-control order-walking-breed-input"
+                           placeholder="Порода собаки">
+                </div>
+                <div class="form-group required col-md-6">
+                    <input required type="text" class="form-control order-walking-address-input"
+                           placeholder="Ваш адрес">
+                </div>
+            </div>
+            <div class=" form-row justify-content-center">
+                <div class="btn-group walking-type" role="group" style='display:none;'>
+                    <button type="button" class="btn btn-warning">Классический</button>
+                    <button type="button" class="btn btn-warning">Активный</button>
+                </div>
+            </div>
+            <div class="form-row justify-content-center row-cost-walking" style='display:none;'>
+                <p>Стоимость прогулки: <span class="walking-cost"></span> рублей</p>
+            </div>
+            <div class="form-row justify-content-center">
+                <button type="submit"
+                        class="btn-warning btn-save-booking" style='display:none;'>Забронировать
+                    прогулку
+                </button>
+            </div>
+        </form>
+    </div>
+    <div class="container-fluid mt-4">
+        <h3 class="display-3 text-black text-center logo-title-4">Наши специалисты по выгулу собак</h3>
+    </div>
+    <div class="container card-columns">
+        <div class="card-deck">
+            {% for walker in walkers %}
+                        <div class="card walker-card">
+                <div class="row no-gutters">
+                    <div class="col">
+                        <img alt="" class="card-img walker-img"
+                             data-alter-img="{{walker.short_card_photo_2.url}}"
+                             src="{{walker.short_card_photo_1.url}}">
                     </div>
-                </div>
-                <div class="form-row walking-order-contacts" style="display: none">
-                    <div class="form-group required col-md-6">
-                        <input required type="text" class="form-control order-walking-name-input" placeholder="Имя">
-                    </div>
-                    <div class="form-group required col-md-6">
-                        <input required type="text" class="form-control order-walking-phone-input"
-                               placeholder="Телефон">
-                    </div>
-                </div>
-                <div class="form-row walking-order-contacts" style="display: none">
-                    <div class="form-group required col-md-6">
-                        <input required type="text" class="form-control order-walking-breed-input"
-                               placeholder="Порода собаки">
-                    </div>
-                    <div class="form-group required col-md-6">
-                        <input required type="text" class="form-control order-walking-address-input"
-                               placeholder="Ваш адрес">
-                    </div>
-                </div>
-                <div class=" form-row justify-content-center">
-                    <div class="btn-group walking-type" role="group" style='display:none;'>
-                        <button type="button" class="btn btn-warning">Классический</button>
-                        <button type="button" class="btn btn-warning">Активный</button>
-                    </div>
-                </div>
-                <div class="form-row justify-content-center row-cost-walking" style='display:none;'>
-                    <p>Стоимость прогулки: <span class="walking-cost"></span> рублей</p>
-                </div>
-                <div class="form-row justify-content-center">
-                    <button type="submit"
-                            class="btn-warning btn-save-booking" style='display:none;'>Забронировать
-                        прогулку
-                    </button>
-                </div>
-            </form>
-        </div>
-        <div class="container-fluid mt-4">
-            <h3 class="display-3 text-black text-center logo-title-4">Наши специалисты по выгулу собак</h3>
-        </div>
-        <div class="container card-columns">
-            <div class="card-deck">
-                <div class="card walker-card">
-                    <div class="row no-gutters">
-                        <div class="col">
-                            <img alt="" class="card-img walker-img"
-                                 data-alter-img="{% static 'images/placeholder2.png' %}"
-                                 src="{% static 'images/placeholder.png' %}">
-                        </div>
-                        <div class=" col">
-                            <div class="card-body">
-                                <h5 class="card-title">Аня</h5>
-                                <p class="card-text">Инструктор-дрессировщик, волкер</p>
-                                <p class="card-text">&#171;Грубость в воспитании - это недостаток знаний и терпения&#187;</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card walker-card">
-                    <div class="row no-gutters">
-                        <div class="col">
-                            <img alt="" class="card-img walker-img"
-                                 data-alter-img="{% static 'images/placeholder2.png' %}"
-                                 src="{% static 'images/placeholder.png' %}">
-                        </div>
-                        <div class="col">
-                            <div class="card-body">
-                                <h5 class="card-title">Катя</h5>
-                                <p class="card-text">Волкер</p>
-                            </div>
+                    <div class="col">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ walker.user.first_name }}</h5>
+                            <p class="card-text">{{ walker.specialization }}</p>
+                            <p class="card-text">{{ walker.phrase|safe }}</p>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="card-deck">
-                <div class="card walker-card">
-                    <div class="row no-gutters">
-                        <div class="col">
-                            <img alt="" class="card-img walker-img"
-                                 data-alter-img="{% static 'images/placeholder2.png' %}"
-                                 src="{% static 'images/placeholder.png' %}">
-                        </div>
-                        <div class="col">
-                            <div class="card-body">
-                                <h5 class="card-title">Денис</h5>
-                                <p class="card-text">Волкер</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card walker-card">
-                    <div class="row no-gutters">
-                        <div class="col">
-                            <img alt="" class="card-img walker-img"
-                                 data-alter-img="{% static 'images/placeholder2.png' %}"
-                                 src="{% static 'images/placeholder.png' %}">
-                        </div>
-                        <div class="col">
-                            <div class="card-body">
-                                <h5 class="card-title">Алина</h5>
-                                <p class="card-text">Волкер</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="walking-order-success" tabindex="-1" role="dialog" aria-hidden="true"
+     aria-labelledby="walking-order-success-label">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content text-center">
+            <div class="modal-header">
+                <h5 class="modal-title" id="walking-order-success-label">Ваш заказ принят!</h5>
+            </div>
+            <div class="modal-body justify-content-center">
+                <p>Ожидайте звонка менеджера в ближайшее время.</p>
+                <button type="button" onclick="location.reload();"
+                        class="btn btn-blue btn-modal-order-walking-success" data-dismiss="modal">Ок
+                </button>
             </div>
         </div>
     </div>
-    <div class="modal fade" id="walking-order-success" tabindex="-1" role="dialog" aria-hidden="true"
-         aria-labelledby="walking-order-success-label">
-        <div class="modal-dialog modal-sm" role="document">
-            <div class="modal-content text-center">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="walking-order-success-label">Ваш заказ принят!</h5>
-                </div>
-                <div class="modal-body justify-content-center">
-                    <p>Ожидайте звонка менеджера в ближайшее время.</p>
-                    <button type="button" onclick="location.reload();"
-                            class="btn btn-blue btn-modal-order-walking-success" data-dismiss="modal">Ок
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-    {% include 'footer.html' %}
+</div>
+{% include 'footer.html' %}
 {% endblock %}

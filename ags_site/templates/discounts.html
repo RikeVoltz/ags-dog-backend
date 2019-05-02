@@ -1,5 +1,8 @@
 {% extends 'base_template.html' %}
 {% load staticfiles %}
+{% block robots %}all{% endblock %}
+{% block title %}Акции и скидки, дрессировка и выгул собак в СПб | АГС{% endblock %}
+{% block description %}Недорогие кинологические услуги в Санкт-Петербурге. Низкие цены{% endblock %}
 {% block content %}
     {% include 'flags.html' %}
     {% include 'header.html' %}
@@ -8,7 +11,7 @@
     </div>
     <div class="container-fluid p-0">
         <h1 class="display-4 text-black text-center my-3">
-            <a name="discounts-block"></a>
+            <a id="discounts-block"></a>
             Акции и скидки
         </h1>
         <div class="row mb-5 text-center justify-content-center">

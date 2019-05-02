@@ -1,12 +1,12 @@
 import datetime
 from json import dumps
 
+from ags_site.forms import ProfileForm, BookWalkingForm
+from ags_site.models import Walker, WalkingZone, WalkingDate, Q, ShopProductCategory, ShopProduct, IndexCarouselPhoto
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseForbidden, HttpResponseBadRequest, HttpResponseNotFound
 from django.shortcuts import render
 
-from ags_site.forms import ProfileForm, BookWalkingForm
-from ags_site.models import Walker, WalkingZone, WalkingDate, Q, ShopProductCategory, ShopProduct
 from .scripts import get_cur_month_days_amount
 
 
@@ -65,6 +65,7 @@ def _get_days(now, cur_month_days, walking_zone_id):
 
 
 def walking(request):
+    walkers = Walker.objects.all()
     walking_zones = WalkingZone.objects.values('id', 'name')
     cur_month_days = get_cur_month_days_amount()
     now = datetime.datetime.now()
@@ -80,7 +81,7 @@ def walking(request):
         else:
             days = _get_days(now, cur_month_days, walking_zone_id)
             return HttpResponse(dumps(days))
-    return render(request, 'walking.html', {'walking_zones': walking_zones})
+    return render(request, 'walking.html', {'walking_zones': walking_zones, 'walkers': walkers})
 
 
 def test(request):
@@ -92,8 +93,9 @@ def test(request):
 
 def shop_category(request, url_title):
     products = ShopProduct.objects.filter(category__url_title=url_title)
-    title = ShopProductCategory.objects.filter(url_title=url_title).values('title')[0]['title']
-    return render(request, 'shop_category.html', {'title': title, 'products': products})
+    data = ShopProductCategory.objects.filter(url_title=url_title).values('title', 'description')[0]
+    return render(request, 'shop_category.html',
+                  {'title': data['title'], 'description': data['description'], 'products': products})
 
 
 def shop(request):
@@ -114,7 +116,8 @@ def interesting(request):
 
 
 def index(request):
-    return render(request, 'index.html')
+    carousel_photos = IndexCarouselPhoto.objects.all().order_by('number')
+    return render(request, 'index.html', {'carousel_photos': carousel_photos})
 
 
 def discounts(request):

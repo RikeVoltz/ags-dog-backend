@@ -5,9 +5,51 @@ from django.contrib.auth.models import User
 from django.core.validators import RegexValidator, MinValueValidator, MaxValueValidator
 from django.db.models import Model, Q, CharField, IntegerField, BooleanField, ForeignKey, CASCADE, OneToOneField, \
     ImageField, DateField, ManyToManyField, FloatField, DO_NOTHING, TextField
+from rikevoltz.settings import MEDIA_ROOT
 
-from Dogs_site_backend.settings import MEDIA_ROOT
 from .scripts import get_cur_month_days_amount, cut_into_weeks
+
+MAX_INDEX_CAROUSEL_PHOTO_AMOUNT = 20
+INDEX_CAROUSEL_PHOTO_NUMBERS = [(idx, str(idx)) for idx in range(1, MAX_INDEX_CAROUSEL_PHOTO_AMOUNT + 1)]
+
+
+class IndexCarouselPhoto(Model):
+    class Meta:
+        verbose_name = 'Фото в карусели на главной странице'
+        verbose_name_plural = 'Фото в карусели на главной странице'
+
+    photo = ImageField(verbose_name='Фотография')
+    number = IntegerField(verbose_name='Порядковый номер',
+                          choices=INDEX_CAROUSEL_PHOTO_NUMBERS)
+
+    def __str__(self):
+        return 'Фото №%d' % self.number
+
+    def save(self, *args, **kwargs):
+        all_photos = IndexCarouselPhoto.objects.all()
+        if len(all_photos) > 20:
+            return
+        if self._state.adding:
+            for photo in all_photos:
+                is_number_taken = (photo.number == self.number)
+                if is_number_taken:
+                    for cphoto in all_photos:
+                        if cphoto.number >= self.number:
+                            IndexCarouselPhoto.objects.filter(pk=cphoto.id).update(number=cphoto.number + 1)
+                    break
+        else:
+            cur_number = IndexCarouselPhoto.objects.get(pk=self.id).number
+            for photo in all_photos:
+                is_number_taken = (photo.number == self.number)
+                if is_number_taken:
+                    if cur_number < self.number:
+                        for idx in range(cur_number + 1, self.number + 1):
+                            IndexCarouselPhoto.objects.filter(number=idx).update(number=idx - 1)
+                    else:
+                        for idx in range(cur_number - 1, self.number - 1, -1):
+                            IndexCarouselPhoto.objects.filter(number=idx).update(number=idx + 1)
+                    break
+        super(IndexCarouselPhoto, self).save(*args, **kwargs)
 
 
 class ShopProductCategory(Model):
@@ -16,10 +58,11 @@ class ShopProductCategory(Model):
         verbose_name_plural = 'Категории товаров'
 
     title = CharField(max_length=30, verbose_name='Название категории')
-    thumbnail = ImageField(max_length=30, blank=True, verbose_name='Обложка категории',
+    thumbnail = ImageField(blank=True, verbose_name='Обложка категории',
                            default=path.join(MEDIA_ROOT, 'default.png'))
     url_regex = RegexValidator(regex=r'^[a-zA-Z_]+$',
                                message="Имя должно состоять из латинских букв и знаков подчёркивания")
+    description = CharField(max_length=200, verbose_name='Описание товара', blank=True)
     url_title = CharField(validators=[url_regex], max_length=30, verbose_name="Имя в адресе страницы")
 
     def __str__(self):
@@ -89,13 +132,17 @@ class Walker(Model):
 
     user = OneToOneField(User, on_delete=CASCADE, verbose_name='Пользователь')
     photo = ImageField(verbose_name='Аватар', upload_to=user_directory_path)
-    extra_photo_1 = ImageField(verbose_name='Дополнительное фото 1', blank=True, null=True,
+    specialization = CharField(max_length=50, verbose_name='Специализация')
+    extra_photo_1 = ImageField(verbose_name='Дополнительное фото 1 на странице специалистов', blank=True, null=True,
                                upload_to=user_directory_path)
-    extra_photo_2 = ImageField(verbose_name='Дополнительное фото 2', blank=True, null=True,
+    extra_photo_2 = ImageField(verbose_name='Дополнительное фото 2 на странице специалистов', blank=True, null=True,
                                upload_to=user_directory_path)
-    extra_photo_3 = ImageField(verbose_name='Дополнительное фото 3', blank=True, null=True,
+    extra_photo_3 = ImageField(verbose_name='Дополнительное фото 3 на странице специалистов', blank=True, null=True,
                                upload_to=user_directory_path)
+    short_card_photo_1 = ImageField(verbose_name='1 фото на странице выгула', upload_to=user_directory_path)
+    short_card_photo_2 = ImageField(verbose_name='2 фото на странице выгула', upload_to=user_directory_path)
     history = TextField(verbose_name='Текст на странице специалистов', blank=True, null=True)
+    phrase = CharField(max_length=100, verbose_name="Фраза на странице выгула", blank=True)
     walking_map = ImageField(verbose_name='Карта выгула', upload_to=user_directory_path, blank=True)
     birth_date = DateField(verbose_name='Дата рождения')
     green_zones = ManyToManyField(WalkingZone, related_name='green_zones', verbose_name='Зеленые зоны')

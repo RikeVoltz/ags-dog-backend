@@ -1,13 +1,13 @@
-from calendar import monthrange, nextmonth
+import calendar
 from datetime import datetime
 
 
 def get_cur_month_days_amount(is_next_month=False):
     now = datetime.now()
     if is_next_month:
-        month_days_amount = monthrange(*nextmonth(now.year, now.month))[1]
+        month_days_amount = calendar.monthrange(*calendar.nextmonth(now.year, now.month))[1]
     else:
-        month_days_amount = monthrange(now.year, now.month)[1]
+        month_days_amount = calendar.monthrange(now.year, now.month)[1]
     return month_days_amount
 
 

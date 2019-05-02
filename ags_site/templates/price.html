@@ -1,8 +1,8 @@
 {% extends 'base_template.html' %}
 {% load staticfiles %}
-{% block title %} Прайс на кинологические услуги в Санкт-Петербурге | АГС {% endblock %}
-{% block description %} Здесь вы можете найти цены на кинологические услуги от профессиональных и сертифицированных
-    кинологов Санкт-Петербурга{% endblock %}
+{% block robots %}all{% endblock %}
+{% block title %}Цены на кинологические услуги в Санкт-Петербурге | АГС{% endblock %}
+{% block description %}Прайс на кинологические услуги от лучших кинологов Санкт-Петербурга. Самые низкие цены на дрессировку и выгул собак. Недорого. | АГС{% endblock %}
 {% block content %}
     {% include 'flags.html' %}
     {% include 'header.html' %}
@@ -78,7 +78,7 @@
             </tbody>
         </table>
         <div class="row-fluid text-center mb-5">
-            <span class="lead get-warning">Остерегайтесь мошенников. Оплата наличными при первом занятии.</span>
+            <span class="lead get-warning">Остерегайтесь мошенников. Оплата после диалога с администратором.</span>
         </div>
         <h3 class="display-5 text-black text-center logo-title">
             Дрессировка собак
@@ -106,51 +106,51 @@
                 <th scope="row">3</th>
                 <td class="text-left">Индивидуальное занятие с выездом на дом в
                     <u class="far-area" data-container="body" data-toggle="popover" data-placement="top"
-                       data-content="Зелёная область - это зона на карте специалиста">
+                       data-content="Зелёная область - это зона на карте, которая находится близко к специалисту.">
                         зеленой области
                     </u>
                 </td>
-                <td>700</td>
+                <td>800</td>
             </tr>
             <tr>
                 <th scope="row">4</th>
                 <td class="text-left">Индивидуальное занятие с выездом на дом в
                     <u class="far-area" data-container="body" data-toggle="popover" data-placement="top"
-                       data-content="Синяя область - это, кароч, другой тырым-пырым, пырым-тырым, вот.">
+                       data-content="Синяя область - это зона на карте, которая находится далеко от специалиста.">
                         синей области
                     </u>
                 </td>
-                <td>1000</td>
+                <td>1200</td>
             </tr>
             <tr>
                 <th scope="row">5</th>
                 <td class="text-left">Индивидуальное занятие по трюковой дрессировке в Красносельском районе</td>
-                <td>400</td>
+                <td>500</td>
             </tr>
             <tr>
                 <th scope="row">6</th>
                 <td class="text-left">Индивидуальное занятие по трюковой дрессировке с выездом на дом в
                     <u class="far-area" data-container="body" data-toggle="popover" data-placement="top"
-                       data-content="Зелёная область - это зона на карте специалиста">
+                       data-content="Зелёная область - это зона на карте, которая находится близко к специалисту.">
                         зеленой области
                     </u>
                 </td>
-                <td>700</td>
+                <td>800</td>
             </tr>
             <tr>
                 <th scope="row">7</th>
                 <td class="text-left">Индивидуальное занятие по трюковой дрессировке с выездом на дом в
                     <u class="far-area" data-container="body" data-toggle="popover" data-placement="top"
-                       data-content="Синяя область - это, кароч, другой тырым-пырым, пырым-тырым, вот.">
+                       data-content="Синяя область - это зона на карте, которая находится далеко от специалиста.">
                         синей области
                     </u>
                 </td>
-                <td>900</td>
+                <td>1200</td>
             </tr>
             </tbody>
         </table>
         <div class="row-fluid text-center mb-5">
-            <span class="lead get-warning">Остерегайтесь мошенников. Оплата наличными при первом занятии.</span>
+            <span class="lead get-warning">Остерегайтесь мошенников. Оплата после диалога с администратором.</span>
         </div>
         <h3 class="display-5 text-black text-center logo-title">
             Выгул
@@ -168,7 +168,7 @@
                 <th scope="row">1</th>
                 <td class="text-left">Классическая прогулка с собакой в <u class="far-area" data-container="body"
                                                                            data-toggle="popover" data-placement="top"
-                                                                           data-content="Зелёная область - это зона на карте специалиста">
+                                                                           data-content="Зелёная область - это зона на карте, которая находится близко к специалисту.">
                     зеленой области
                 </u></td>
                 <td>300</td>
@@ -177,7 +177,7 @@
                 <th scope="row">2</th>
                 <td class="text-left">Активная прогулка с собакой в <u class="far-area" data-container="body"
                                                                        data-toggle="popover" data-placement="top"
-                                                                       data-content="Зелёная область - это зона на карте специалиста">
+                                                                       data-content="Зелёная область - это зона на карте, которая находится близко к специалисту.">
                     зеленой области
                 </u></td>
                 <td>450</td>
@@ -186,7 +186,7 @@
                 <th scope="row">3</th>
                 <td class="text-left">Классическая прогулка с собакой в <u class="far-area" data-container="body"
                                                                            data-toggle="popover" data-placement="top"
-                                                                           data-content="Синяя область - это, кароч, тырым-пырым, пырым-тырым, вот.">
+                                                                           data-content="Синяя область - это зона на карте, которая находится далеко от специалиста.">
                     синей области
                 </u></td>
                 <td>350</td>
@@ -195,7 +195,7 @@
                 <th scope="row">4</th>
                 <td class="text-left">Активная прогулка с собакой в <u class="far-area" data-container="body"
                                                                        data-toggle="popover" data-placement="top"
-                                                                       data-content="Синяя область - это, кароч, тырым-пырым, пырым-тырым, вот.">
+                                                                       data-content="Синяя область - это зона на карте, которая находится далеко от специалиста.">
                     синей области
                 </u></td>
                 <td>500</td>
@@ -203,7 +203,7 @@
             </tbody>
         </table>
         <div class="row-fluid text-center mb-5">
-            <span class="lead get-warning">Остерегайтесь мошенников. Оплата наличными при первом занятии.</span>
+            <span class="lead get-warning">Остерегайтесь мошенников. Оплата после диалога с администратором.</span>
         </div>
         <h3 class="display-5 text-black text-center logo-title">
             Коррекция поведения
@@ -226,7 +226,7 @@
                 <th scope="row">2</th>
                 <td class="text-left">Индивидуальное занятие с выездом на дом в
                     <u class="far-area" data-container="body" data-toggle="popover" data-placement="top"
-                       data-content="Зелёная область - это зона на карте специалиста">
+                       data-content="Зелёная область - это зона на карте, которая находится близко к специалисту.">
                         зеленой области
                     </u>
                 </td>
@@ -236,7 +236,7 @@
                 <th scope="row">3</th>
                 <td class="text-left">Индивидуальное занятие с выездом на дом в
                     <u class="far-area" data-container="body" data-toggle="popover" data-placement="top"
-                       data-content="Синяя область - это, кароч, другой тырым-пырым, пырым-тырым, вот.">
+                       data-content="Синяя область - это зона на карте, которая находится далеко от специалиста.">
                         синей области
                     </u>
                 </td>
@@ -245,7 +245,7 @@
             </tbody>
         </table>
         <div class="row-fluid text-center mb-5">
-            <span class="lead get-warning">Остерегайтесь мошенников. Оплата наличными при первом занятии.</span>
+            <span class="lead get-warning">Остерегайтесь мошенников. Оплата после диалога с администратором.</span>
         </div>
         <h3 class="display-5 text-black text-center logo-title">
             Прочее
@@ -262,87 +262,37 @@
             <tr>
                 <th scope="row">1</th>
                 <td class="text-left">Занятие в связке инструктор-собака в Красносельском районе</td>
-                <td>500</td>
+                <td>600</td>
             </tr>
             <tr>
                 <th scope="row">2</th>
                 <td class="text-left">Занятие в связке инструктор-собака с выездом на дом в
                     <u class="far-area" data-container="body" data-toggle="popover" data-placement="top"
-                       data-content="Зелёная область - это зона на карте специалиста">
+                       data-content="Зелёная область - это зона на карте, которая находится близко к специалисту.">
                         зеленой области
                     </u>
                 </td>
-                <td>700</td>
+                <td>900</td>
             </tr>
             <tr>
                 <th scope="row">3</th>
                 <td class="text-left">Занятие в связке инструктор-собака с выездом на дом в
                     <u class="far-area" data-container="body" data-toggle="popover" data-placement="top"
-                       data-content="Синяя область - это, кароч, другой тырым-пырым, пырым-тырым, вот.">
+                       data-content="Синяя область - это зона на карте, которая находится далеко от специалиста.">
                         синей области
                     </u>
                 </td>
-                <td>1000</td>
+                <td>1300</td>
             </tr>
             <tr>
                 <th scope="row">4</th>
                 <td class="text-left">Консультация с мастером</td>
                 <td>100</td>
             </tr>
-            <tr class="text-grey">
-                <th scope="row">5</th>
-                <td class="text-left">Фотография (1 час) в Красносельском районе</td>
-                <td>400</td>
-            </tr>
-            <tr class="text-grey">
-                <th scope="row">6</th>
-                <td class="text-left">Фотография (1 час) с выездом на дом в
-                    <u class="far-area" data-container="body" data-toggle="popover" data-placement="top"
-                       data-content="Зелёная область - это зона на карте специалиста">
-                        зеленой области
-                    </u>
-                </td>
-                <td>700</td>
-            </tr>
-            <tr class="text-grey">
-                <th scope="row">7</th>
-                <td class="text-left">Фотография (1 час) с выездом на дом в
-                    <u class="far-area" data-container="body" data-toggle="popover" data-placement="top"
-                       data-content="Синяя область - это, кароч, другой тырым-пырым, пырым-тырым, вот.">
-                        синей области
-                    </u>
-                </td>
-                <td>1000</td>
-            </tr>
-            <tr class="text-grey">
-                <th scope="row">8</th>
-                <td class="text-left">Фотография (2 часа) в Красносельском районе</td>
-                <td>700</td>
-            </tr>
-            <tr class="text-grey">
-                <th scope="row">9</th>
-                <td class="text-left">Фотография (2 часа) с выездом на дом в
-                    <u class="far-area" data-container="body" data-toggle="popover" data-placement="top"
-                       data-content="Зелёная область - это зона на карте специалиста">
-                        зеленой области
-                    </u>
-                </td>
-                <td>1000</td>
-            </tr>
-            <tr class="text-grey">
-                <th scope="row">10</th>
-                <td class="text-left">Фотография (2 часа) с выездом на дом в
-                    <u class="far-area" data-container="body" data-toggle="popover" data-placement="top"
-                       data-content="Синяя область - это, кароч, другой тырым-пырым, пырым-тырым, вот.">
-                        синей области
-                    </u>
-                </td>
-                <td>1500</td>
-            </tr>
             </tbody>
         </table>
         <div class="row-fluid text-center mb-5">
-            <span class="lead get-warning">Остерегайтесь мошенников. Оплата наличными при первом занятии.</span>
+            <span class="lead get-warning">Остерегайтесь мошенников. Оплата после диалога с администратором.</span>
         </div>
     </div>
     {% include 'footer.html' %}
