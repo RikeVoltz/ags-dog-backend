@@ -3,6 +3,9 @@
 {% block robots %}all{% endblock %}
 {% block title %}Товары для собак в Санкт-Петербурге | АГС{% endblock %}
 {% block description %}Натуральные лакомства, лежанки для собак и многое другое по низким ценам.{% endblock %}
+{% block links %}
+<link rel="canonical" href="https://agsdog.ru/shop"/>
+{% endblock %}
 {% block content %}
 {% include 'flags.html' %}
 {% include 'header.html' %}
@@ -15,7 +18,8 @@
         <div class="card shop-card">
             <div class="shop-card-category-img-div">
                 <a href="{{ category.url_title }}">
-                    <img class="card-img-top img-fluid" src="{{ category.thumbnail.url }}"/>
+                    <img class="card-img-top img-fluid" alt="{{ category.url_title }}"
+                         src="{{ category.thumbnail.url }}"/>
                 </a>
             </div>
             <div class="card-body text-center">

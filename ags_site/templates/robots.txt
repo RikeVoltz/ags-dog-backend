@@ -1,0 +1,23 @@
+User-agent: Yandex
+Disallow: /profile
+Disallow: /test
+Disallow: /contacts
+Disallow: /vk_callbacks
+Disallow: /book_walking
+Disallow: /login
+Disallow: /admin
+Disallow: /logout
+
+Host: agsdog.ru
+
+User-agent: *
+Disallow: /profile
+Disallow: /test
+Disallow: /contacts
+Disallow: /vk_callbacks
+Disallow: /book_walking
+Disallow: /login
+Disallow: /admin
+Disallow: /logout
+
+Sitemap: https://agsdog.ru/static/sitemap.xml

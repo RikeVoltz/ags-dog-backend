@@ -11,7 +11,7 @@
                         <img alt="Логотип" class="navbar-brand-logo" src="{% static 'images/logo.svg' %}"/>
                     </a>
                 </div>
-                <div class="col px-0">
+                <div class="col px-0 navbar navbar-light navbar-expand-lg">
                     <div class="row d-flex justify-content-around">
                         <div class="col-auto pr-0">
                                 <span class="nav-title">
@@ -30,31 +30,35 @@
                                      src="{% static 'images/instagram.svg' %}"/>
                             </a>
                         </div>
-                        <div class="col-auto mr-auto d-flex align-items-center">
+                        <div class="col-auto mr-lg-auto d-flex align-items-center pl-3 pr-1">
                             <a href="https://vk.com/ags178" target="_blank">
                                 <img alt="ВКонтакте" class="icon-md ml-n2 mb-1" src="{% static 'images/vk.svg' %}"/>
                             </a>
                         </div>
-                        <div class="col-auto pl-1 pr-0 d-flex align-items-center">
-                            <img alt="Город" class="icon-xs mr-2" src="{% static 'images/balloon.svg' %}"/>
-                            <span>г. Санкт-Петербург</span>
-                        </div>
-                        <div class="col-auto pl-0 pr-2 d-flex align-items-center">
-                            <a href="tel:+79516547277">
-                                <img alt="Телефон" class="icon-xs m-2" src="{% static 'images/phone.svg' %}"/>
+                        <div class="col-auto offset-lg-2 px-0 d-flex align-items-center">
+                            <a href="{% url 'contacts' %}">
+                                <img alt="Город" class="icon-md mr-2" src="{% static 'images/balloon.svg' %}"/>
                             </a>
-                            <span>8 (951) 654-72-77</span>
+                            <span class="d-none d-lg-block">г. Санкт-Петербург</span>
+                        </div>
+                        <div class="col-auto pl-0 mr-auto ml-n3 ml-lg-0 d-flex align-items-center">
+                            <a href="tel:+79516547277">
+                                <img alt="Телефон" class="icon-md m-2" src="{% static 'images/phone.svg' %}"/>
+                            </a>
+                            <span class="d-none d-lg-block">8 (951) 654-72-77</span>
+                        </div>
+                        <div class="col-auto pr-0">
+                            <button class="navbar-toggler" type="button" data-toggle="collapse"
+                                    data-target="#main-menu" aria-controls="main-menu"
+                                    aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
                         </div>
                     </div>
-                    <div class="row justify-content-between navbar navbar-light navbar-expand-lg">
-                        <button class="navbar-toggler" type="button" data-toggle="collapse"
-                                data-target="#main-menu" aria-controls="main-menu"
-                                aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
+                    <div class="row justify-content-between">
                         <div class="collapse navbar-collapse" id="main-menu">
                             <div class="nav-item col-auto d-flex align-items-center align-self-start">
-                                <a class="nav-link text-center w-100" href="/">Главная </a>
+                                <a class="nav-link text-center w-100" href="{% url 'index' %}">Главная </a>
                             </div>
                             <div class="nav-item col-auto d-flex align-items-center dropdown align-self-start">
                                 <a class="nav-link text-center w-100">
@@ -63,14 +67,15 @@
                                 </a>
                                 <div class="dropdown-menu py-0">
                                     <div class="dropdown-menu-after"></div>
-                                    <a class="dropdown-item d-flex justify-content-center" href="#">Новости</a>
+                                    <a class="dropdown-item d-flex justify-content-center" href="{% url 'news' %}">Новости</a>
                                     <a class="dropdown-item d-flex justify-content-center"
-                                       href="/interesting/">Интересное</a>
-                                    <a class="dropdown-item d-flex justify-content-center" href="/#gallery">Фотогалерея</a>
+                                       href="/interesting">Интересное</a>
+                                    <a class="dropdown-item d-flex justify-content-center"
+                                       href="https://agsdog.ru/#gallery">Фотогалерея</a>
                                 </div>
                             </div>
                             <div class="nav-item col-auto d-flex align-items-center align-self-start">
-                                <a class="nav-link text-center w-100" href="/specialists">Специалисты</a>
+                                <a class="nav-link text-center w-100" href="{% url 'specialists' %}">Специалисты</a>
                             </div>
                             <div class="nav-item col-auto d-flex align-items-center align-self-start dropdown">
                                 <a class="nav-link text-center w-100">
@@ -79,27 +84,28 @@
                                 </a>
                                 <div class="dropdown-menu py-0">
                                     <div class="dropdown-menu-after"></div>
-                                    <a class="dropdown-item d-flex justify-content-center" href="/training/">Дрессировка
+                                    <a class="dropdown-item d-flex justify-content-center" href="{% url 'training' %}">Дрессировка
                                         собак</a>
-                                    <a class="dropdown-item d-flex justify-content-center" href="/walking/">Выгул
+                                    <a class="dropdown-item d-flex justify-content-center" href="{% url 'walking' %}">Выгул
                                         собак</a>
-                                    <a class="dropdown-item d-flex justify-content-center" href="/consultation/">Консультации</a>
+                                    <a class="dropdown-item d-flex justify-content-center"
+                                       href="{% url 'consultation' %}">Консультации</a>
                                     <a class="dropdown-item d-flex justify-content-center disabled" href="#">Курсинг</a>
                                     <a class="dropdown-item d-flex justify-content-center disabled"
                                        href="#">Фотография</a>
                                 </div>
                             </div>
                             <div class="nav-item col-auto d-flex align-items-center align-self-start">
-                                <a class="nav-link text-center w-100" href="/discounts/">Акции</a>
+                                <a class="nav-link text-center w-100" href="{% url 'discounts' %}">Акции</a>
                             </div>
                             <div class="nav-item col-auto d-flex align-items-center align-self-start">
-                                <a class="nav-link text-center w-100" href="/shop/">Товары </a>
+                                <a class="nav-link text-center w-100" href="{% url 'shop' %}">Товары </a>
                             </div>
                             <div class="nav-item col-auto d-flex align-items-center align-self-start">
-                                <a class="nav-link align-middle text-center w-100" href="/price/">Прайс</a>
+                                <a class="nav-link align-middle text-center w-100" href="{% url 'price' %}">Прайс</a>
                             </div>
                             <div class="nav-item col-auto d-flex align-items-center align-self-start">
-                                <a class="nav-link text-center w-100" href="/contacts/">Контакты</a>
+                                <a class="nav-link text-center w-100" href="{% url 'contacts' %}">Контакты</a>
                             </div>
                         </div>
                     </div>

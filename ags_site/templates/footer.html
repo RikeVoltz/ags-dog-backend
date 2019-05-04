@@ -1,22 +1,27 @@
+{% if form %}
 <div class="container-fluid text-center">
         <span class="h2 display-5 text-black">
             У Вас появились вопросы?
         </span>
-    <form class="feedback-form">
+    <form class="feedback-form col-12 col-lg-6 offset-lg-3" method="post" action="#">
+        {% csrf_token %}
         <div class="form-row">
             <div class="form-group col-md-6">
-                <input class="form-control bordered" id="input-name" placeholder="Имя" type="text">
-                <input class="form-control bordered mt-3" id="input-email" placeholder="Email" type="email">
+                <input class="form-control bordered" type="text" name="name" required id="id_name" placeholder="Имя">
+                <input class="form-control bordered mt-3" type="email" name="email" required id="id_email"
+                       placeholder="Email">
                 <div class="row-fluid d-flex justify-content-center">
                     <button class="btn btn-contact-us bordered mt-4 px-5" type="submit">Отправить</button>
                 </div>
             </div>
             <div class="form-group col-md-6">
-                    <textarea class="form-control bordered" id="input-text" placeholder="Ваше сообщение"
+                    <textarea name="message" required class="form-control bordered" id="id_message"
+                              placeholder="Ваше сообщение"
                               rows="6"></textarea>
             </div>
         </div>
     </form>
+    {% endif %}
 </div>
 <div class="row">
     <span class="copyright">© 2019 AGSdog</span>

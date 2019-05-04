@@ -116,7 +116,7 @@
                 </div>
                 <div class="row-fluid d-flex justify-content-center">
                     <form action="/profile/" method="POST" class="walking-dates-form">{% csrf_token %}
-                        {{ form.as_p }}
+                        {{ profile_form.as_p }}
                         <button type="submit" class="btn btn-save-profile">
                             Сохранить
                         </button>

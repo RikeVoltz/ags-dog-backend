@@ -3,6 +3,9 @@
 {% block robots %}all{% endblock %}
 {% block title %}Кинологические тесты, интересное | АГС{% endblock %}
 {% block description %}Тесты на знание пород, тест на выгульщика собак, породы собак{% endblock %}
+{% block links %}
+<link rel="canonical" href="https://agsdog.ru/interesting" />
+{% endblock %}
 {% block content %}
 {% include 'flags.html' %}
 {% include 'header.html' %}
@@ -30,10 +33,18 @@
         </button>
     </div>
     <h3 class="display-5 text-black text-center my-3">
-        Тест на волкера
+        Экзаменационный тест на волкера
     </h3>
     <div class="row tests-interesting-title justify-content-center">
-        <button class="btn btn-outline-light btn-xl" onclick="location.href='/test?type=walker'" type="button">
+        <button class="btn btn-outline-light btn-xl" onclick="location.href='/test?type=walker_exam'" type="button">
+            Пройти тест
+        </button>
+    </div>
+        <h3 class="display-5 text-black text-center my-3">
+        Тест &#171;Стать волкером&#187;
+    </h3>
+    <div class="row tests-interesting-title justify-content-center">
+        <button class="btn btn-outline-light btn-xl" onclick="location.href='/test?type=walker_beginner'" type="button">
             Пройти тест
         </button>
     </div>

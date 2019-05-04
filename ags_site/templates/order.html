@@ -3,6 +3,9 @@
 {% block robots %}all{% endblock %}
 {% block title %}Заказать дрессировку собак в Санкт-Петербурге | АГС{% endblock %}
 {% block description %}Кинологические услуги, консультации по воспитанию собак, натуральные лакомства{% endblock %}
+{% block links %}
+<link rel="canonical" href="https://agsdog.ru/order" />
+{% endblock %}
 {% block content %}
     {% include 'flags.html' %}
     {% include 'header.html' %}
@@ -22,9 +25,8 @@
         </div>
         <div class="row justify-content-center p-0">
             <iframe class="order-form"
-                    src="https://docs.google.com/forms/d/e/1FAIpQLSfqRJg2KumrlCLUQl8W_mmI6-IVQy8QTuOXZLRq1osWYrOmEg/viewform?embedded=true"
-                    frameborder="0" marginheight="0" marginwidth="0">Загрузка...
-            </iframe>
+                    src="https://docs.google.com/forms/d/e/1FAIpQLSfqRJg2KumrlCLUQl8W_mmI6-IVQy8QTuOXZLRq1osWYrOmEg/viewform?embedded=true">
+                     </iframe>
         </div>
     </div>
     {% include 'footer.html' %}

@@ -1,43 +1,43 @@
-<div class="row-fluid fixed-btn-row d-flex justify-content-center align-items-center">
+<div class="row-fluid fixed-btn-row justify-content-center align-items-center d-none d-lg-flex">
     {% if user.is_authenticated %}
-        <div class="col-3 m-2 p-0"><a href="/order">
+        <div class="col-3 m-2 p-0"><a href="{% url 'order' %}">
             <div class="fixed-btn fixed-order-training">
                 <span>Заказать дрессировку</span>
             </div>
         </a>
         </div>
-        <div class="col-3 m-2 p-0"><a href="/walking">
+        <div class="col-3 m-2 p-0"><a href="{% url 'walking' %}">
             <div class="fixed-btn fixed-order-walking">
                 <span>Заказать выгул</span>
             </div>
         </a>
         </div>
-        <div class="col-3 m-2 p-0"><a href="/profile">
+        <div class="col-3 m-2 p-0"><a href="{% url 'profile' %}">
             <div class=" fixed-btn fixed-profile">
                 <span>Перейти в профиль</span>
             </div>
         </a>
         </div>
     {% else %}
-        <div class="col-2 m-2 p-0"><a href="/order">
+        <div class="col-2 m-2 p-0"><a href="{% url 'order' %}">
             <div class="fixed-btn fixed-order-training">
                 <span>Заказать дрессировку</span>
             </div>
         </a>
         </div>
-        <div class="col-2 m-2 p-0"><a href="/walking">
+        <div class="col-2 m-2 p-0"><a href="{% url 'walking' %}">
             <div class="fixed-btn fixed-order-walking">
                 <span>Заказать выгул</span>
             </div>
         </a>
         </div>
-        <div class="col-2 m-2 p-0"><a href="/walking">
+        <div class="col-2 m-2 p-0"><a href="/test?type=walker_beginner">
             <div class="fixed-btn fixed-become-walker">
                 <span>Стать волкером</span>
             </div>
         </a>
         </div>
-        <div class="col-2 m-2 p-0"><a href="/login">
+        <div class="col-2 m-2 p-0"><a href="{% url 'login' %}">
             <div class="fixed-btn fixed-profile">
                 <span>Войти в аккаунт</span>
             </div>

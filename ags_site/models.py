@@ -1,16 +1,36 @@
 import datetime
+from io import BytesIO
 from os import path
+from uuid import uuid4
 
+from PIL import Image
 from django.contrib.auth.models import User
+from django.core.files.base import ContentFile
 from django.core.validators import RegexValidator, MinValueValidator, MaxValueValidator
 from django.db.models import Model, Q, CharField, IntegerField, BooleanField, ForeignKey, CASCADE, OneToOneField, \
-    ImageField, DateField, ManyToManyField, FloatField, DO_NOTHING, TextField
+    ImageField, DateField, ManyToManyField, FloatField, DO_NOTHING, TextField, DateTimeField
+from django.db.models.signals import post_delete
+from django.dispatch import receiver
 from rikevoltz.settings import MEDIA_ROOT
 
 from .scripts import get_cur_month_days_amount, cut_into_weeks
 
 MAX_INDEX_CAROUSEL_PHOTO_AMOUNT = 20
 INDEX_CAROUSEL_PHOTO_NUMBERS = [(idx, str(idx)) for idx in range(1, MAX_INDEX_CAROUSEL_PHOTO_AMOUNT + 1)]
+
+
+class News(Model):
+    class Meta:
+        verbose_name = 'Новость'
+        verbose_name_plural = 'Новости'
+
+    photos = TextField(blank=True, verbose_name='Ссылки на фотографии')
+    videos = TextField(blank=True, verbose_name='Ссылки на видео')
+    text = TextField(blank=True, verbose_name='Текст новости')
+    date = DateTimeField(verbose_name='Дата публикации')
+
+    def __str__(self):
+        return self.text[:30] + ('...' if len(self.text) > 30 else '')
 
 
 class IndexCarouselPhoto(Model):
@@ -37,6 +57,11 @@ class IndexCarouselPhoto(Model):
                         if cphoto.number >= self.number:
                             IndexCarouselPhoto.objects.filter(pk=cphoto.id).update(number=cphoto.number + 1)
                     break
+            img = Image.open(self.photo)
+            img.thumbnail((10000, 800), Image.ANTIALIAS)
+            cropped_img_io = BytesIO()
+            img.save(cropped_img_io, format='JPEG', quality=75)
+            self.photo.save(uuid4().hex + '.jpg', ContentFile(cropped_img_io.getvalue()), save=False)
         else:
             cur_number = IndexCarouselPhoto.objects.get(pk=self.id).number
             for photo in all_photos:
@@ -50,6 +75,11 @@ class IndexCarouselPhoto(Model):
                             IndexCarouselPhoto.objects.filter(number=idx).update(number=idx + 1)
                     break
         super(IndexCarouselPhoto, self).save(*args, **kwargs)
+
+
+@receiver(post_delete, sender=IndexCarouselPhoto)
+def submission_delete(sender, instance, **kwargs):
+    instance.photo.delete(False)
 
 
 class ShopProductCategory(Model):

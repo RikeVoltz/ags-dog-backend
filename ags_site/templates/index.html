@@ -1,8 +1,11 @@
 {% extends 'base_template.html' %}
 {% load staticfiles %}
 {% block robots %}all{% endblock %}
-{% block title %}Кинологические услуги в СПб. Дрессировка и выгул собак недорого | АГС{% endblock %}
+{% block title %}Дрессировка и выгул собак в Санкт-Петербурге (СПб) | АГС{% endblock %}
 {% block description %}Дрессировка с кинологом, профессиональный выгул собак, низкие цены{% endblock %}
+{% block links %}
+<link rel="canonical" href="https://agsdog.ru"/>
+{% endblock %}
 {% block content %}
 {% include 'flags.html' %}
 {% include 'header.html' %}
@@ -13,7 +16,7 @@
 </div>
 <div class="container-fluid whole-window text-center d-flex flex-column align-items-center">
     <h1 class="display-4 text-black mt-3">
-        Добро пожаловать в нашу Ассоциацию Грамотноых Собаководов!
+        Добро пожаловать в нашу Ассоциацию Грамотных Собаководов!
     </h1>
     <div class="row d-flex justify-content-center text-justify">
         <p class="w-80 training-text mx-5">Наша команда сформировалась благодаря большой любви к собакам,
@@ -48,7 +51,7 @@
     </span>
                     </div>
                     <div class="row justify-content-center mt-3">
-                        <a class="blacker-btn btn btn-light" href='training#OKD'>Подробнее</a>
+                        <a class="blacker-btn btn btn-light" href="{% url 'training' %}#OKD">Подробнее</a>
                     </div>
                 </div>
                 <span class="align-self-end blacker-text">ОКД</span>
@@ -63,7 +66,7 @@
     </span>
                     </div>
                     <div class="row justify-content-center mt-3">
-                        <a class="blacker-btn btn btn-light" href='walking'>Подробнее</a>
+                        <a class="blacker-btn btn btn-light" href="{% url 'walking' %}">Подробнее</a>
                     </div>
                 </div>
                 <span class="align-self-end blacker-text">Выгул</span>
@@ -78,7 +81,7 @@
     </span>
                     </div>
                     <div class="row justify-content-center mt-3">
-                        <a class="blacker-btn btn btn-light" href='training#UGS'>Подробнее</a>
+                        <a class="blacker-btn btn btn-light" href="{% url 'training' %}#UGS">Подробнее</a>
                     </div>
                 </div>
                 <span class="align-self-end blacker-text">УГС</span>
@@ -95,7 +98,7 @@
     </span>
                     </div>
                     <div class="row justify-content-center mt-3">
-                        <a class="blacker-btn btn btn-light" href='training#trick'>Подробнее</a>
+                        <a class="blacker-btn btn btn-light" href="{% url 'training' %}#trick">Подробнее</a>
                     </div>
                 </div>
                 <span class="align-self-start blacker-text">Трюковая дрессировка</span>
@@ -110,7 +113,7 @@
     </span>
                     </div>
                     <div class="row justify-content-center mt-3">
-                        <a class="blacker-btn btn btn-light" href='consultation'>Подробнее</a>
+                        <a class="blacker-btn btn btn-light" href="{% url 'consultation' %}">Подробнее</a>
                     </div>
                 </div>
                 <span class="align-self-start blacker-text">Консультации</span>
@@ -125,7 +128,7 @@
     </span>
                     </div>
                     <div class="row justify-content-center mt-3">
-                        <a class="blacker-btn btn btn-light" href='shop'>Подробнее</a>
+                        <a class="blacker-btn btn btn-light" href="{% url 'shop' %}">Подробнее</a>
                     </div>
                 </div>
                 <span class="align-self-start blacker-text">Товары</span>
@@ -139,60 +142,68 @@
     <h2 class="display-4 text-black text-center mt-5 logo-title">
         Почему именно наша команда?
     </h2>
-    <div class="card-deck justify-content-center mb-n3">
+    <div class="card-deck d-flex justify-content-center align-items-center">
         <div class="card why-us-card">
-            <img class="card-img-top why-us-card-img align-self-center" src="{% static 'images/handshake.svg' %}"/>
+            <img class="card-img-top why-us-card-img align-self-center" alt="Профессиональная дрессировка и выгул"
+                 src="{% static 'images/handshake.svg' %}"/>
             <h5 class="card-title why-us-card-title">Профессиональная дрессировка и выгул</h5>
             <div class="card-body">
                 <span class="card-text why-us-card-text">Наша команда поможет Вам в сфере классической и трюковой дрессировки, мы выгуляем Вашу собаку и дадим Вам емкую консультацию по воспитанию питомца!</span>
             </div>
         </div>
         <div class="card why-us-card">
-            <img class="card-img-top why-us-card-img align-self-center" src="{% static 'images/student.svg' %}"/>
+            <img class="card-img-top why-us-card-img align-self-center" alt="Грамотный персонал"
+                 src="{% static 'images/student.svg' %}"/>
             <h5 class="card-title why-us-card-title">Грамотный персонал</h5>
             <div class="card-body">
                 <span class="card-text">Каждый инструктор и волкер АГС прошел необходимую подготовку у кинолога и совершенствуется в сфере собаководства каждый день.</span>
             </div>
         </div>
         <div class="card why-us-card">
-            <img class="card-img-top why-us-card-img align-self-center" src="{% static 'images/love.svg' %}"/>
+            <img class="card-img-top why-us-card-img align-self-center" alt="Бесконфликтный метод дрессировки"
+                 src="{% static 'images/love.svg' %}"/>
             <h5 class="card-title why-us-card-title">Бесконфликтный метод дрессировки</h5>
             <div class="card-body">
                 <span class="card-text">Наши специалисты никогда не кричат на собаку, знают как выйти из любой затруднительной ситуации и никогда не применяют грубость.</span>
             </div>
         </div>
         <div class="card why-us-card">
-            <img class="card-img-top why-us-card-img align-self-center" src="{% static 'images/money_pig.svg' %}"/>
+            <img class="card-img-top why-us-card-img align-self-center" alt="Низкие цены"
+                 src="{% static 'images/money_pig.svg' %}"/>
             <h5 class="card-title why-us-card-title">Низкие цены</h5>
             <div class="card-body">
                 <span class="card-text">Качественные кинологические услуги по выгодной стоимости — воспитанная собака доступна каждому!</span>
             </div>
         </div>
     </div>
-    <div class="card-deck justify-content-center">
+    <div class="card-deck d-flex justify-content-center align-items-center">
         <div class="card why-us-card">
-            <img class="card-img-top why-us-card-img align-self-center" src="{% static 'images/smile.svg' %}"/>
+            <img class="card-img-top why-us-card-img align-self-center" alt="Лучшая команда"
+                 src="{% static 'images/smile.svg' %}"/>
             <h5 class="card-title why-us-card-title">Лучшая команда</h5>
             <div class="card-body">
                 <span class="card-text">Наша команда не пьет, не курит, и ведет здоровый образ жизни. С нами приятно иметь дело, ведь каждый наш сотрудник проходит предварительный отбор и квалифицированное обучение.</span>
             </div>
         </div>
         <div class="card why-us-card">
-            <img class="card-img-top why-us-card-img align-self-center" src="{% static 'images/all-call.svg' %}"/>
+            <img class="card-img-top why-us-card-img align-self-center" alt="Услуги по всему городу"
+                 src="{% static 'images/all-call.svg' %}"/>
             <h5 class="card-title why-us-card-title">Услуги по всему городу</h5>
             <div class="card-body">
                 <span class="card-text">Мы работаем в каждом районе Санкт-Петербурга и в городе Пушкине.</span>
             </div>
         </div>
         <div class="card why-us-card">
-            <img class="card-img-top why-us-card-img align-self-center" src="{% static 'images/sale.svg' %}"/>
+            <img class="card-img-top why-us-card-img align-self-center" alt="Акции и скидки"
+                 src="{% static 'images/sale.svg' %}"/>
             <h5 class="card-title why-us-card-title">Акции и скидки</h5>
             <div class="card-body">
                 <span class="card-text">В нашем кинологическом клубе мы предоставляем выгодные акции и большие скидки!</span>
             </div>
         </div>
         <div class="card why-us-card">
-            <img class="card-img-top why-us-card-img align-self-center" src="{% static 'images/pet-24-7.svg' %}"/>
+            <img class="card-img-top why-us-card-img align-self-center" alt="Мы любим собак"
+                 src="{% static 'images/pet-24-7.svg' %}"/>
             <h5 class="card-title why-us-card-title">Мы любим собак</h5>
             <div class="card-body">
                 <span class="card-text">Наш девиз — грамотное и гуманное воспитание изо дня в день!</span>

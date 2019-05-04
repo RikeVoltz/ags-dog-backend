@@ -1,0 +1,87 @@
+{% extends 'base_template.html' %}
+{% load staticfiles %}
+{% block robots %}none{% endblock %}
+<!--{% block title %}Кинологические тесты, интересное | АГС{% endblock %}
+{% block description %}Тесты на знание пород, тест на выгульщика собак, породы собак{% endblock %}-->
+{% block content %}
+{% include 'flags.html' %}
+{% include 'header.html' %}
+<div class="container-fluid p-0">
+    <h1 class="display-4 text-black text-center" style="margin-top:8%">
+        Новости
+    </h1>
+    {% for new in news %}
+    <div class="container w-80 mb-5 bordered bordered-grey">
+        {% if new.text %}
+        <div class="row">
+            <div class="col-auto text-justify">
+                {{ new.text|safe|linebreaks }}
+            </div>
+        </div>
+        {% endif %}
+        {% if new.photos %}
+        <div class="mt-3 row justify-content-center">
+            {% for photo in new.photos %}
+            <div class="mt-3 col-auto">
+                <img src="{{ photo }}" class="news_photo" alt="Фото новости"/>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+        {% if new.videos %}
+        <div class="mt-3 row">
+            {% for video in new.videos %}
+            <div class="mt-3 col-6">
+                <a href="{{ video.video }}" class="news_video_col">
+                    <img src="{{video.image}}" alt="Превью для видео новости" class="news_video"/>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+        <div class="row-fluid text-center mt-2">
+            <div class="col-auto">
+                <small class="text-muted">{{ new.date|date:"Y-m-d H:i" }}</small>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    {% if news.has_other_pages %}
+    <div class="container w-80 mb-5">
+        <ul class="pagination">
+            {% if news.has_previous %}
+            <li class="page-item"><a class="page-link" href="?page={{ news.previous_page_number }}">&laquo;</a></li>
+            {% endif %}
+            {% if news.number > 2 %}
+            <li class="page-item"><span class="page-link">...</span></li>
+            {% endif %}
+            {% for i in news.paginator.page_range %}
+            {% if news.number >= i|add:"-1" and  i <= news.number|add:1 %}
+            {% if news.number == i %}
+            <li class="page-item active" aria-current="page"><a class="page-link">{{ i }} <span
+                    class="sr-only">(current)</span></a></li>
+            {% else %}
+            <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+            {% endif %}
+            {% endif %}
+            {% endfor %}
+            {% if news.number < news.paginator.num_pages|add:"-1" %}
+            <li class="page-item"><span class="page-link">...</span></li>
+            {% endif %}
+            {% if news.has_next %}
+            <li class="page-item"><a class="page-link" href="?page={{ news.next_page_number }}">&raquo;</a></li>
+            {% endif %}
+        </ul>
+    </div>
+    {% endif %}
+</div>
+{% include 'footer.html' %}
+{% endblock %}
+{% block links %}
+{% if news.has_previous %}
+<link rel="prev" href='https://agsdog.ru/news?page={{ news.number|add:"-1" }}' />
+{% endif %}
+{% if news.has_next %}
+<link rel="next" href='https://agsdog.ru/news?page={{ news.number|add:"1" }}' />
+{% endif %}
+{% endblock %}
