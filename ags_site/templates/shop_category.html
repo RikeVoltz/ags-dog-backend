@@ -1,8 +1,8 @@
 {% extends 'base_template.html' %}
 {% load staticfiles %}
 {% block robots %}all{% endblock %}
-{% block title %}{{ title }} для собак в Санкт-Петербурге, низкие цены | АГС{% endblock %}
-{% block description %}{{description}}{% endblock %}
+{% block title %}{% block og_title %}{{ title }} для собак в Санкт-Петербурге, низкие цены | АГС{% endblock %}{% endblock %}
+{% block description %}{% block og_description %}{{description}}{% endblock %}{% endblock %}
 {% block links %}
 <link rel="canonical" href="https://agsdog.ru/shop/{{ url_title }}"/>
 {% endblock %}
@@ -13,6 +13,18 @@
     <h1 class="display-4 text-black text-center" style="margin-top:8%">
         {{ title }}
     </h1>
+    {% if text_explanation or image_explanation %}
+    <div class="row-fluid d-flex flex-column justify-content-center">
+        {% if text_explanation %}
+        <p class="text-center">
+            {{ text_explanation }}
+        </p>
+        {% endif %}
+        {% if image_explanation %}
+        <img src="{{ image_explanation.url }}" alt='Картинка - пояснение к категории товаров "{{ title }}"'/>
+        {% endif %}
+    </div>
+    {% endif %}
     {% if products %}
     <div class="card-deck mb-5 h-auto">
         {% for product in products %}
@@ -32,7 +44,7 @@
     </div>
     {% else %}
     <div class="row-fluid text-center my-5">
-        <span class="lead">К сожалению, данного товара нет в наличии.</span>
+        <span class="lead">К сожалению, данных товаров нет в наличии.</span>
     </div>
     {% endif %}
 </div>

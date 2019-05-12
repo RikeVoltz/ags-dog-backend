@@ -3,7 +3,7 @@ from datetime import datetime
 
 from ags_site.forms import ProfileForm, BookWalkingForm, FeedbackForm
 from ags_site.models import Walker, WalkingZone, WalkingDate, Q, ShopProductCategory, ShopProduct, IndexCarouselPhoto, \
-    News
+    News, Sale
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.http import HttpResponse, HttpResponseForbidden, HttpResponseBadRequest, HttpResponseNotFound, \
@@ -25,14 +25,14 @@ def sitemap(request):
 
 
 def add_feedback_form(view):
-    def wrapper(request):
+    def wrapper(request, url_title=None, *args, **kwargs):
         if request.method == 'POST':
             form = FeedbackForm(request.POST)
             if form.is_valid():
                 send_message_to_email(request.POST)
         else:
             form = FeedbackForm()
-        return view(request, form=form)
+        return view(request, url_title, form=form)
 
     return wrapper
 
@@ -187,11 +187,14 @@ def test(request):
 
 
 @add_feedback_form
-def shop_category(request, url_title, *args, **kwargs):
+def shop_category(request, url_title, **kwargs):
     products = ShopProduct.objects.filter(category__url_title=url_title)
-    data = ShopProductCategory.objects.filter(url_title=url_title).values('title', 'description')[0]
+    data = ShopProductCategory.objects.filter(url_title=url_title).values('title', 'description', 'text_explanation',
+                                                                          'image_explanation')[0]
     return render(request, 'shop_category.html',
-                  {'title': data['title'], 'url_title': url_title, 'description': data['description'],
+                  {'title': data['title'], 'text_explanation': data['text_explanation'],
+                   'image_explanation': data['image_explanation'], 'url_title': url_title,
+                   'description': data['description'],
                    'products': products, 'form': kwargs['form']})
 
 
@@ -203,7 +206,8 @@ def shop(request, *args, **kwargs):
 
 @add_feedback_form
 def price(request, *args, **kwargs):
-    return render(request, 'price.html', {'form': kwargs['form']})
+    sales = Sale.objects.all()
+    return render(request, 'price.html', {'form': kwargs['form'], 'sales': sales})
 
 
 @add_feedback_form
@@ -224,7 +228,10 @@ def index(request, *args, **kwargs):
 
 @add_feedback_form
 def discounts(request, *args, **kwargs):
-    return render(request, 'discounts.html', {'form': kwargs['form']})
+    from django.core.cache import cache
+    cache.clear()
+    sales = Sale.objects.all()
+    return render(request, 'discounts.html', {'form': kwargs['form'], 'sales': sales})
 
 
 @add_feedback_form

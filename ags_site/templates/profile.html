@@ -2,217 +2,227 @@
 {% load staticfiles %}
 {% block robots %}none{% endblock %}
 {% block content %}
-    {% include 'flags.html' %}
-    {% include 'header.html' %}
-    <div class="container-fluid p-0">
-        <img class="main-background" src="{% static 'images/auth.jpg' %}" alt="Фоновая картинка"/>
-    </div>
-    <h1 class="display-4 text-black text-center logo-title-4 mt-3">
-        Мой профиль
-    </h1>
-    <div class="container-fluid w-80 mb-5">
-        <div class="row">
-            <div class="col-3 mt-3">
-                <img src="{{ walker.photo.url }}" class="img-fluid bordered mb-3"/>
-                <a href="#" class="map-pop">
-                    <img src="{{ walker.walking_map.url }}" class="bordered img-fluid"/>
-                </a>
-            </div>
-            <div class="col-3 p-0 mr-0 mt-3 justify-content-between">
-                <div class="row">
-                    <div class="col">
-                        <div class="row">
-                            <p class="display-4-5 ml-3">{{ walker.user.get_full_name }}</p>
-                        </div>
-                        <div class="row">
-                            <p class="ml-3">Дата рождения: {{ walker.birth_date|date:"d.m.Y" }}</p>
-                        </div>
-                        <div class="row">
-                            <p class="ml-3">Телефон: {{ walker.phone }}</p>
-                        </div>
-                        <div class="row">
-                            <p class="ml-3">Email: {{ walker.user.email }}</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="row d-flex align-items-end" style="height:63%">
-                    <div class="col">
-                        <p class="display-4-5 ml-2">Мои районы</p>
-                        <div class="row">
-                            <div class="col-1">
-                                <div class="rectangle-legend-map-small green bordered ml-2 mt-1">
-                                </div>
-                            </div>
-                            <div class="col">
-                                <p class="ml-2">
-                                    {% for zone in walker.green_zones.all %}
-                                        {{ zone.name }},
-                                    {% endfor %}
-                                </p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-1">
-                                <div class="rectangle-legend-map-small blue bordered ml-2 mt-1">
-                                </div>
-                            </div>
-                            <div class="col">
-                                <p class="ml-2">
-                                    {% for zone in walker.blue_zones.all %}
-                                        {{ zone.name }},
-                                    {% endfor %}
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-6 pl-0">
-                <div class="row-fluid is-change-enabled">
-                    <p>Изменение дат выгула:
-                        {% if walker.can_change_dates %}
-                            <span style="color:green">возможно</span>
-                        {% else %}
-                            <span style="color:red">невозможно</span>
-                        {% endif %}
-                    </p>
-                </div>
-                <div class="row-fluid text-center">
-                    <div class="calendar-carousel mt-3 mb-5">
-                        {% for month in walker.get_walking_dates %}
-                            <div id="month-{{ forloop.counter0 }}" class="calendar-carousel-cell active">
-                                <div class="container">
-                                    <div class="row calendar-row">
-                                        {% for i in i|rjust:17 %}
-                                            {% if forloop.counter0 == 0 %}
-                                                <div class="col calendar-col-h">&nbsp;</div>
-                                            {% else %}
-                                                <div class="col calendar-col-h">
-                                                    <span class="ml-n2">{{ forloop.counter0|add:6 }}:00</span></div>
-                                            {% endif %}
-                                        {% endfor %}
-                                    </div>
-                                    {% for week in month %}
-                                        {% for day in week %}
-                                            <div id="day-{{ day.0 }}" class="row calendar-row">
-                                                <div class="col calendar-col-h">{{ day.0 }}</div>
-                                                {% for walking in day.1 %}
-                                                    <div {% if walking.dog_owner_name %}data-container="body"
-                                                         data-toggle="popover" data-placement="top"
-                                                         data-content="{{ walking.dog_owner_name }}, {{ walking.address }}, {{ walking.breed }}, {{ walking.type }} выгул"
-                                                         {% endif %}id="hour-{{ forloop.counter0 }}"
-                                                         class="{% if not walker.can_change_dates %}hour-disabled {% endif %}far-area col calendar-col{% if walking.dog_owner_name %} hour-booked
-                                                             {% else %}{% if not walking.is_free %} hour-activated {% endif %}{% endif %}">
-                                                    </div>
-                                                {% endfor %}
-                                            </div>
-                                        {% endfor %}
-                                        <div class="calendar-border"></div>
-                                    {% endfor %}
-                                </div>
-                            </div>
-                        {% endfor %}
-                    </div>
-                </div>
-                <div class="row-fluid d-flex justify-content-center">
-                    <form action="/profile/" method="POST" class="walking-dates-form">{% csrf_token %}
-                        {{ profile_form.as_p }}
-                        <button type="submit" class="btn btn-save-profile">
-                            Сохранить
-                        </button>
-                    </form>
-                </div>
-            </div>
-
+{% include 'flags.html' %}
+{% include 'header.html' %}
+<div class="container-fluid d-flex flex-column align-items-center">
+    <img srcset="{% static 'images/auth-375.jpg' %} 375w,
+                 {% static 'images/auth-750.jpg' %} 750w,
+                 {% static 'images/auth-1500.jpg' %} 1500w,
+                 {% static 'images/auth-3000.jpg' %} 3000w,
+                 {% static 'images/auth.jpg' %} 6000w"
+         sizes="(max-width: 375px) 375px,
+                    (max-width: 750px) 750px,
+                    (max-width: 1500px) 1500px,
+                    (max-width: 3000px) 3000px,
+                    6000px"
+         class="main-background" src="{% static 'images/auth.png' %}" alt="Фоновая картинка"/>
+</div>
+<h1 class="display-4 text-black text-center logo-title-4 mt-3">
+    Мой профиль
+</h1>
+<div class="container-fluid w-80 mb-5">
+    <div class="row">
+        <div class="col-3 mt-3">
+            <img src="{{ walker.photo.url }}" class="img-fluid bordered mb-3"/>
+            <a href="#" class="map-pop">
+                <img src="{{ walker.walking_map.url }}" class="bordered img-fluid"/>
+            </a>
         </div>
-    </div>
-    <div class="modal fade" id="map-modal" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <button type="button" class="close" data-dismiss="modal"><span
-                            aria-hidden="true">&times;</span><span
-                            class="sr-only">Закрыть</span></button>
-                    <img src="" class="map-preview" style="width: 100%;">
+        <div class="col-3 p-0 mr-0 mt-3 justify-content-between">
+            <div class="row">
+                <div class="col">
                     <div class="row">
-                        <div class="col-5">
-                            <h5 style="margin-left:2.5rem">Районы</h5>
-                            <ol>
-                                <li>
-                                    Адмиралтейский
-                                </li>
-                                <li>
-                                    Василеостровский
-                                </li>
-                                <li>
-                                    Выборгский
-                                </li>
-                                <li>
-                                    Калининский
-                                </li>
-                                <li>
-                                    Кировский
-                                </li>
-                                <li>
-                                    Колпинский
-                                </li>
-                                <li>
-                                    Красногвардейский
-                                </li>
-                                <li>
-                                    Красносельский
-                                </li>
-                                <li>
-                                    Кронштадтский
-                                </li>
-                                <li>
-                                    Курортный
-                                </li>
-                                <li>
-                                    Московский
-                                </li>
-                                <li>
-                                    Невский
-                                </li>
-                                <li>
-                                    Петроградский
-                                </li>
-                                <li>
-                                    Петродворцовый
-                                </li>
-                                <li>
-                                    Приморский
-                                </li>
-                                <li>
-                                    Пушкинский
-                                </li>
-                                <li>
-                                    Фрунзенский
-                                </li>
-                                <li>
-                                    Центральный
-                                </li>
-                                <li>
-                                    Мурино
-                                </li>
-                            </ol>
+                        <p class="display-4-5 ml-3">{{ walker.user.get_full_name }}</p>
+                    </div>
+                    <div class="row">
+                        <p class="ml-3">Дата рождения: {{ walker.birth_date|date:"d.m.Y" }}</p>
+                    </div>
+                    <div class="row">
+                        <p class="ml-3">Телефон: {{ walker.phone }}</p>
+                    </div>
+                    <div class="row">
+                        <p class="ml-3">Email: {{ walker.user.email }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row d-flex align-items-end" style="height:63%">
+                <div class="col">
+                    <p class="display-4-5 ml-2">Мои районы</p>
+                    <div class="row">
+                        <div class="col-1">
+                            <div class="rectangle-legend-map-small green bordered ml-2 mt-1">
+                            </div>
                         </div>
-                        <div class="col-5 d-flex flex-column align-items-center justify-content-center">
-                            <div class="row">
-                                <div class="rectangle-legend-map green bordered m-3">
-                                </div>
-                                <span class="mt-2">Районы по обычной стоимости</span>
+                        <div class="col">
+                            <p class="ml-2">
+                                {% for zone in walker.green_zones.all %}
+                                {{ zone.name }},
+                                {% endfor %}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-1">
+                            <div class="rectangle-legend-map-small blue bordered ml-2 mt-1">
                             </div>
-                            <div class="row ml-3">
-                                <div class="rectangle-legend-map blue bordered m-3">
-                                </div>
-                                <span class="mt-2">Районы по повышенной стоимости</span>
+                        </div>
+                        <div class="col">
+                            <p class="ml-2">
+                                {% for zone in walker.blue_zones.all %}
+                                {{ zone.name }},
+                                {% endfor %}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-6 pl-0">
+            <div class="row-fluid is-change-enabled">
+                <p>Изменение дат выгула:
+                    {% if walker.can_change_dates %}
+                    <span style="color:green">возможно</span>
+                    {% else %}
+                    <span style="color:red">невозможно</span>
+                    {% endif %}
+                </p>
+            </div>
+            <div class="row-fluid text-center">
+                <div class="calendar-carousel mt-3 mb-5">
+                    {% for month in walker.get_walking_dates %}
+                    <div id="month-{{ forloop.counter0 }}" class="calendar-carousel-cell active">
+                        <div class="container">
+                            <div class="row calendar-row">
+                                {% for i in i|rjust:17 %}
+                                {% if forloop.counter0 == 0 %}
+                                <div class="col calendar-col-h">&nbsp;</div>
+                                {% else %}
+                                <div class="col calendar-col-h">
+                                    <span class="ml-n2">{{ forloop.counter0|add:6 }}:00</span></div>
+                                {% endif %}
+                                {% endfor %}
                             </div>
+                            {% for week in month %}
+                            {% for day in week %}
+                            <div id="day-{{ day.0 }}" class="row calendar-row">
+                                <div class="col calendar-col-h">{{ day.0 }}</div>
+                                {% for walking in day.1 %}
+                                <div {% if walking.dog_owner_name %}data-container="body"
+                                     data-toggle="popover" data-placement="top"
+                                     data-content="{{ walking.dog_owner_name }}, {{ walking.address }}, {{ walking.breed }}, {{ walking.type }} выгул"
+                                     {% endif %}id="hour-{{ forloop.counter0 }}"
+                                     class="{% if not walker.can_change_dates %}hour-disabled {% endif %}far-area col calendar-col{% if walking.dog_owner_name %} hour-booked
+                                                             {% else %}{% if not walking.is_free %} hour-activated {% endif %}{% endif %}">
+                                </div>
+                                {% endfor %}
+                            </div>
+                            {% endfor %}
+                            <div class="calendar-border"></div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="row-fluid d-flex justify-content-center">
+                <form action="/profile/" method="POST" class="walking-dates-form">{% csrf_token %}
+                    {{ profile_form.as_p }}
+                    <button type="submit" class="btn btn-save-profile">
+                        Сохранить
+                    </button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div class="modal fade" id="map-modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <button type="button" class="close" data-dismiss="modal"><span
+                        aria-hidden="true">&times;</span><span
+                        class="sr-only">Закрыть</span></button>
+                <img src="" class="map-preview" style="width: 100%;">
+                <div class="row">
+                    <div class="col-5">
+                        <h5 style="margin-left:2.5rem">Районы</h5>
+                        <ol>
+                            <li>
+                                Адмиралтейский
+                            </li>
+                            <li>
+                                Василеостровский
+                            </li>
+                            <li>
+                                Выборгский
+                            </li>
+                            <li>
+                                Калининский
+                            </li>
+                            <li>
+                                Кировский
+                            </li>
+                            <li>
+                                Колпинский
+                            </li>
+                            <li>
+                                Красногвардейский
+                            </li>
+                            <li>
+                                Красносельский
+                            </li>
+                            <li>
+                                Кронштадтский
+                            </li>
+                            <li>
+                                Курортный
+                            </li>
+                            <li>
+                                Московский
+                            </li>
+                            <li>
+                                Невский
+                            </li>
+                            <li>
+                                Петроградский
+                            </li>
+                            <li>
+                                Петродворцовый
+                            </li>
+                            <li>
+                                Приморский
+                            </li>
+                            <li>
+                                Пушкинский
+                            </li>
+                            <li>
+                                Фрунзенский
+                            </li>
+                            <li>
+                                Центральный
+                            </li>
+                            <li>
+                                Мурино
+                            </li>
+                        </ol>
+                    </div>
+                    <div class="col-5 d-flex flex-column align-items-center justify-content-center">
+                        <div class="row">
+                            <div class="rectangle-legend-map green bordered m-3">
+                            </div>
+                            <span class="mt-2">Районы по обычной стоимости</span>
+                        </div>
+                        <div class="row ml-3">
+                            <div class="rectangle-legend-map blue bordered m-3">
+                            </div>
+                            <span class="mt-2">Районы по повышенной стоимости</span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    {% include 'footer.html' %}
+</div>
+{% include 'footer.html' %}
 {% endblock %}

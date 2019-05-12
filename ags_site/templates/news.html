@@ -23,7 +23,7 @@
         <div class="mt-3 row justify-content-center">
             {% for photo in new.photos %}
             <div class="mt-3 col-auto">
-                <img src="{{ photo }}" class="news_photo" alt="Фото новости"/>
+                <img src="{{ photo }}" class="news_photo img-fluid" alt="Фото новости"/>
             </div>
             {% endfor %}
         </div>
@@ -33,7 +33,7 @@
             {% for video in new.videos %}
             <div class="mt-3 col-6">
                 <a href="{{ video.video }}" class="news_video_col">
-                    <img src="{{video.image}}" alt="Превью для видео новости" class="news_video"/>
+                    <img src="{{video.image}}" alt="Превью для видео новости" class="news_video img-fluid"/>
                 </a>
             </div>
             {% endfor %}
@@ -56,13 +56,13 @@
             <li class="page-item"><span class="page-link">...</span></li>
             {% endif %}
             {% for i in news.paginator.page_range %}
-            {% if news.number >= i|add:"-1" and  i <= news.number|add:1 %}
-            {% if news.number == i %}
-            <li class="page-item active" aria-current="page"><a class="page-link">{{ i }} <span
-                    class="sr-only">(current)</span></a></li>
-            {% else %}
-            <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
-            {% endif %}
+            {% if i >= news.number|add:"-1" and  i <= news.number|add:"1" %}
+                {% if news.number == i %}
+                <li class="page-item active" aria-current="page"><a class="page-link">{{ i }} <span
+                        class="sr-only">(current)</span></a></li>
+                {% else %}
+                <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                {% endif %}
             {% endif %}
             {% endfor %}
             {% if news.number < news.paginator.num_pages|add:"-1" %}

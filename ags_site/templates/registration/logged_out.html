@@ -4,8 +4,18 @@
 {% block content %}
     {% include 'flags.html' %}
     {% include 'header.html' %}
-    <div class="container-fluid p-0">
-        <img class="main-background" src="{% static 'images/auth.jpg' %}" alt="Фоновая картинка"/>
+    <div class="container-fluid d-flex flex-column align-items-center">
+    <img srcset="{% static 'images/auth-375.jpg' %} 375w,
+                 {% static 'images/auth-750.jpg' %} 750w,
+                 {% static 'images/auth-1500.jpg' %} 1500w,
+                 {% static 'images/auth-3000.jpg' %} 3000w,
+                 {% static 'images/auth.jpg' %} 6000w"
+         sizes="(max-width: 375px) 375px,
+                    (max-width: 750px) 750px,
+                    (max-width: 1500px) 1500px,
+                    (max-width: 3000px) 3000px,
+                    6000px"
+         class="main-background" src="{% static 'images/auth.png' %}" alt="Фоновая картинка"/>
     </div>
     <div class="container w-50 p-0">
         <h2 class="display-4 text-black text-center my-3">

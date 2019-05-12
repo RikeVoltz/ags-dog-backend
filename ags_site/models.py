@@ -19,6 +19,20 @@ MAX_INDEX_CAROUSEL_PHOTO_AMOUNT = 20
 INDEX_CAROUSEL_PHOTO_NUMBERS = [(idx, str(idx)) for idx in range(1, MAX_INDEX_CAROUSEL_PHOTO_AMOUNT + 1)]
 
 
+class Sale(Model):
+    class Meta:
+        verbose_name = 'Акция'
+        verbose_name_plural = 'Акции'
+
+    full_title = CharField(max_length=100, verbose_name="Полное название акции")
+    short_title = CharField(max_length=30, verbose_name="Краткое название акции")
+    description = TextField(verbose_name="Описание акции")
+    price = IntegerField(verbose_name="Стоимость")
+
+    def __str__(self):
+        return self.short_title
+
+
 class News(Model):
     class Meta:
         verbose_name = 'Новость'
@@ -87,6 +101,8 @@ class ShopProductCategory(Model):
         verbose_name = 'Категория товаров'
         verbose_name_plural = 'Категории товаров'
 
+    text_explanation = TextField(blank=True, verbose_name='Текст-пояснение')
+    image_explanation = ImageField(blank=True, null=True, verbose_name='Картинка-пояснение')
     title = CharField(max_length=30, verbose_name='Название категории')
     thumbnail = ImageField(blank=True, verbose_name='Обложка категории',
                            default=path.join(MEDIA_ROOT, 'default.png'))

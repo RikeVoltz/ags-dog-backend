@@ -20,9 +20,14 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link href="{% static 'images/logo.ico' %}" rel="icon">
     <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+    <link rel="icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
     <link href="{% static 'css/main.css' %}" rel="stylesheet">
+    <meta property="og:title" content="{% block og_title %}{% endblock %}"/>
+    <meta property="og:description" content="{% block og_description %}{% endblock %}"/>
+    <meta property="og:image" content="{% static 'images/logo-big.jpg' %}"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content="{{ request.get_full_path }}"/>
     <meta name="robots" content="{% block robots %}{% endblock %}"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1">
     <meta name="description" content="{% block description %}{% endblock %}">

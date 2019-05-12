@@ -1,34 +1,40 @@
 {% extends 'base_template.html' %}
 {% load staticfiles %}
 {% block robots %}all{% endblock %}
-{% block title %}Консультации профессионального кинолога в Санкт-Петербурге | АГС{% endblock %}
-{% block description %}Задайте вопрос кинологу о воспитании собак, агрессии, трусости и дрессировке{% endblock %}
+{% block title %}{% block og_title %}Консультации профессионального кинолога в Санкт-Петербурге | АГС{% endblock %}{% endblock %}
+{% block description %}{% block og_description %}Задайте вопрос кинологу о воспитании собак, агрессии, трусости и дрессировке{% endblock %}{% endblock %}
 {% block links %}
-<link rel="canonical" href="https://agsdog.ru/consultation" />
+<link rel="canonical" href="https://agsdog.ru/consultation"/>
 {% endblock %}
 {% block content %}
-    {% include 'flags.html' %}
-    {% include 'header.html' %}
-    <div class="container-fluid p-0">
-        <img class="main-background" src="{% static 'images/consultation-main-back.png' %}" alt="Фоновая картинка"/>
+{% include 'flags.html' %}
+{% include 'header.html' %}
+<div class="container-fluid d-flex flex-column align-items-center">
+    <img srcset="{% static 'images/consultation-main-back-375.png' %} 375w,
+                     {% static 'images/consultation-main-back-750.png' %} 750w,
+                     {% static 'images/consultation-main-back.png' %} 1366w"
+         sizes="(max-width: 375px) 375px,
+                    (max-width: 750px) 750px,
+                    1366px"
+         class="main-background" src="{% static 'images/consultation-main-back.png' %}" alt="Фоновая картинка"/>
+</div>
+<div class="container-fluid p-0">
+    <h1 class="display-4 text-black text-center my-3">
+        Консультации
+    </h1>
+    <div class="row d-flex justify-content-center text-justify ml-4">
+        <p class="training-text mx-5 w-90">Мы предлагаем грамотную емкую консультацию по интересующим Вас вопросам.
+            Спросите нас, и мы ответим, почему собака рычит на Вас, крушит квартиру, бросается на других питомцев,
+            боится пожилых людей и многое другое. Любые вопросы по деструктивному поведению, фобиям, агрессии мы
+            разберем и решим не входя из дома.</p>
+        <p class="training-text mx-5 w-90">
+            Консультации предоставляются по полной предоплате. Стоимость одной консультации – 100 рублей. При
+            описании своей проблемы постарайтесь изложить ее как можно подробнее. Отправьте нам свой вопрос и мы
+            ответим Вам в течение дня!</p>
     </div>
-    <div class="container-fluid p-0">
-        <h1 class="display-4 text-black text-center my-3">
-            Консультации
-        </h1>
-        <div class="row d-flex justify-content-center text-justify ml-4">
-            <p class="training-text mx-5 w-90">Мы предлагаем грамотную емкую консультацию по интересующим Вас вопросам.
-                Спросите нас, и мы ответим, почему собака рычит на Вас, крушит квартиру, бросается на других питомцев,
-                боится пожилых людей и многое другое. Любые вопросы по деструктивному поведению, фобиям, агрессии мы
-                разберем и решим не входя из дома.</p>
-            <p class="training-text mx-5 w-90">
-                Консультации предоставляются по полной предоплате. Стоимость одной консультации – 100 рублей. При
-                описании своей проблемы постарайтесь изложить ее как можно подробнее. Отправьте нам свой вопрос и мы
-                ответим Вам в течение дня!</p>
-        </div>
-        <div class="d-flex justify-content-center mb-3">
-            <a class="btn btn-warning btn-training" href="/order">Заказать</a>
-        </div>
+    <div class="d-flex justify-content-center mb-3">
+        <a class="btn btn-warning btn-training" href="/order">Заказать</a>
     </div>
-    {% include 'footer.html' %}
+</div>
+{% include 'footer.html' %}
 {% endblock %}

@@ -1,8 +1,8 @@
 {% extends 'base_template.html' %}
 {% load staticfiles %}
 {% block robots %}all{% endblock %}
-{% block title %}Товары для собак в Санкт-Петербурге | АГС{% endblock %}
-{% block description %}Натуральные лакомства, лежанки для собак и многое другое по низким ценам.{% endblock %}
+{% block title %}{% block og_title %}Товары для собак в Санкт-Петербурге | АГС{% endblock %}{% endblock %}
+{% block description %}{% block og_description %}Натуральные лакомства, лежанки для собак и многое другое по низким ценам.{% endblock %}{% endblock %}
 {% block links %}
 <link rel="canonical" href="https://agsdog.ru/shop"/>
 {% endblock %}
@@ -17,7 +17,7 @@
         {% for category in categories %}
         <div class="card shop-card">
             <div class="shop-card-category-img-div">
-                <a href="{{ category.url_title }}">
+                <a href="shop/{{ category.url_title }}">
                     <img class="card-img-top img-fluid" alt="{{ category.url_title }}"
                          src="{{ category.thumbnail.url }}"/>
                 </a>

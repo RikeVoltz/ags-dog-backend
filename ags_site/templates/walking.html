@@ -1,16 +1,26 @@
 {% extends 'base_template.html' %}
 {% load staticfiles %}
 {% block robots %}all{% endblock %}
-{% block title %}Выгул собак в Санкт-Петербурге, недорого | АГС{% endblock %}
-{% block description %}Профессионально выгуляем Вашего питомца. Кинологические услуги по низким ценам{% endblock %}
+{% block title %}{% block og_title %}Выгул собак в Санкт-Петербурге, недорого | АГС{% endblock %}{% endblock %}
+{% block description %}{% block og_description %}Профессионально выгуляем Вашего питомца. Кинологические услуги по низким ценам{% endblock %}{% endblock %}
 {% block links %}
-<link rel="canonical" href="https://agsdog.ru/walking" />
+<link rel="canonical" href="https://agsdog.ru/walking"/>
 {% endblock %}
 {% block content %}
 {% include 'flags.html' %}
 {% include 'header.html' %}
-<div class="container-fluid p-0">
-    <img class="main-background" src="{% static 'images/walking-main-back.jpg' %}" alt="Фон"/>
+<div class="container-fluid d-flex flex-column align-items-center">
+    <img srcset="{% static 'images/walking-main-back-375.jpg' %} 375w,
+                 {% static 'images/walking-main-back-750.jpg' %} 750w,
+                 {% static 'images/walking-main-back-1500.jpg' %} 1500w,
+                 {% static 'images/walking-main-back-3000.jpg' %} 3000w,
+                 {% static 'images/walking-main-back.jpg' %} 4287w"
+         sizes="(max-width: 375px) 375px,
+                    (max-width: 750px) 750px,
+                    (max-width: 1500px) 1500px,
+                    (max-width: 3000px) 3000px,
+                    4287px"
+         class="main-background" src="{% static 'images/walking-main-back.jpg' %}" alt="Фоновая картинка"/>
 </div>
 <div class="container-fluid p-0">
     <h2 class="display-4 text-black text-center my-3">
@@ -101,13 +111,16 @@
         </form>
     </div>
     <div class="container-fluid mt-4">
-        <h3 class="display-3 text-black text-center logo-title-4">Наши специалисты по выгулу собак</h3>
+        <h3 class="display-4 text-black text-center logo-title-4">Наши специалисты по выгулу собак</h3>
     </div>
-    <div class="container card-columns">
-        <div class="card-deck">
+    <div class="container">
+        <div class="card-columns walker-card-columns">
             {% for walker in walkers %}
-                        <div class="card walker-card">
-                <div class="row no-gutters">
+            {% if not forloop.counter|divisibleby:2 %}
+        </div>
+        <div class="card-columns walker-card-columns">{% endif %}
+            <div class="card walker-card">
+                <div class="row no-gutters walker-card-row">
                     <div class="col">
                         <img alt="" class="card-img walker-img"
                              data-alter-img="{{walker.short_card_photo_2.url}}"

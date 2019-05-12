@@ -20,4 +20,4 @@ Disallow: /login
 Disallow: /admin
 Disallow: /logout
 
-Sitemap: https://agsdog.ru/static/sitemap.xml
+Sitemap: https://agsdog.ru/sitemap.xml
